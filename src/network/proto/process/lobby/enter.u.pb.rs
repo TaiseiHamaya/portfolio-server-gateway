@@ -1,22 +1,22 @@
 const _: () = ::protobuf::__internal::assert_compatible_gencode_version("4.32.1-release");
 // This variable must not be referenced except by protobuf generated
 // code.
-pub(crate) static mut Proto__PayloadTextMessage_msg_init: ::protobuf::__internal::runtime::MiniTablePtr =
+pub(crate) static mut Proto__PayloadLobbyEnterRequest_msg_init: ::protobuf::__internal::runtime::MiniTablePtr =
     ::protobuf::__internal::runtime::MiniTablePtr(::std::ptr::null_mut());
 #[allow(non_camel_case_types)]
-pub struct PayloadTextMessage {
-  inner: ::protobuf::__internal::runtime::OwnedMessageInner<PayloadTextMessage>
+pub struct PayloadLobbyEnterRequest {
+  inner: ::protobuf::__internal::runtime::OwnedMessageInner<PayloadLobbyEnterRequest>
 }
 
-impl ::protobuf::Message for PayloadTextMessage {}
+impl ::protobuf::Message for PayloadLobbyEnterRequest {}
 
-impl ::std::default::Default for PayloadTextMessage {
+impl ::std::default::Default for PayloadLobbyEnterRequest {
   fn default() -> Self {
     Self::new()
   }
 }
 
-impl ::protobuf::Parse for PayloadTextMessage {
+impl ::protobuf::Parse for PayloadLobbyEnterRequest {
   fn parse(serialized: &[u8]) -> ::std::result::Result<Self, ::protobuf::ParseError> {
     Self::parse(serialized)
   }
@@ -26,7 +26,7 @@ impl ::protobuf::Parse for PayloadTextMessage {
   }
 }
 
-impl ::std::fmt::Debug for PayloadTextMessage {
+impl ::std::fmt::Debug for PayloadLobbyEnterRequest {
   fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
     let string = unsafe {
       ::protobuf::__internal::runtime::debug_string(
@@ -38,46 +38,46 @@ impl ::std::fmt::Debug for PayloadTextMessage {
   }
 }
 
-impl ::protobuf::Serialize for PayloadTextMessage {
+impl ::protobuf::Serialize for PayloadLobbyEnterRequest {
   fn serialize(&self) -> ::std::result::Result<Vec<u8>, ::protobuf::SerializeError> {
     ::protobuf::AsView::as_view(self).serialize()
   }
 }
 
 // SAFETY:
-// - `PayloadTextMessage` is `Sync` because it does not implement interior mutability.
-//    Neither does `PayloadTextMessageMut`.
-unsafe impl Sync for PayloadTextMessage {}
+// - `PayloadLobbyEnterRequest` is `Sync` because it does not implement interior mutability.
+//    Neither does `PayloadLobbyEnterRequestMut`.
+unsafe impl Sync for PayloadLobbyEnterRequest {}
 
 // SAFETY:
-// - `PayloadTextMessage` is `Send` because it uniquely owns its arena and does
+// - `PayloadLobbyEnterRequest` is `Send` because it uniquely owns its arena and does
 //   not use thread-local data.
-unsafe impl Send for PayloadTextMessage {}
+unsafe impl Send for PayloadLobbyEnterRequest {}
 
-impl ::protobuf::Proxied for PayloadTextMessage {
-  type View<'msg> = PayloadTextMessageView<'msg>;
+impl ::protobuf::Proxied for PayloadLobbyEnterRequest {
+  type View<'msg> = PayloadLobbyEnterRequestView<'msg>;
 }
 
-impl ::protobuf::__internal::SealedInternal for PayloadTextMessage {}
+impl ::protobuf::__internal::SealedInternal for PayloadLobbyEnterRequest {}
 
-impl ::protobuf::MutProxied for PayloadTextMessage {
-  type Mut<'msg> = PayloadTextMessageMut<'msg>;
+impl ::protobuf::MutProxied for PayloadLobbyEnterRequest {
+  type Mut<'msg> = PayloadLobbyEnterRequestMut<'msg>;
 }
 
 #[derive(Copy, Clone)]
 #[allow(dead_code)]
-pub struct PayloadTextMessageView<'msg> {
-  inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, PayloadTextMessage>,
+pub struct PayloadLobbyEnterRequestView<'msg> {
+  inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, PayloadLobbyEnterRequest>,
   _phantom: ::std::marker::PhantomData<&'msg ()>,
 }
 
-impl<'msg> ::protobuf::__internal::SealedInternal for PayloadTextMessageView<'msg> {}
+impl<'msg> ::protobuf::__internal::SealedInternal for PayloadLobbyEnterRequestView<'msg> {}
 
-impl<'msg> ::protobuf::MessageView<'msg> for PayloadTextMessageView<'msg> {
-  type Message = PayloadTextMessage;
+impl<'msg> ::protobuf::MessageView<'msg> for PayloadLobbyEnterRequestView<'msg> {
+  type Message = PayloadLobbyEnterRequest;
 }
 
-impl ::std::fmt::Debug for PayloadTextMessageView<'_> {
+impl ::std::fmt::Debug for PayloadLobbyEnterRequestView<'_> {
   fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
     let string = unsafe {
       ::protobuf::__internal::runtime::debug_string(
@@ -89,7 +89,7 @@ impl ::std::fmt::Debug for PayloadTextMessageView<'_> {
   }
 }
 
-impl ::protobuf::Serialize for PayloadTextMessageView<'_> {
+impl ::protobuf::Serialize for PayloadLobbyEnterRequestView<'_> {
   fn serialize(&self) -> ::std::result::Result<Vec<u8>, ::protobuf::SerializeError> {
     // SAFETY: `MINI_TABLE` is the one associated with `self.raw_msg()`.
     let encoded = unsafe {
@@ -100,17 +100,17 @@ impl ::protobuf::Serialize for PayloadTextMessageView<'_> {
   }
 }
 
-impl ::std::default::Default for PayloadTextMessageView<'_> {
-  fn default() -> PayloadTextMessageView<'static> {
+impl ::std::default::Default for PayloadLobbyEnterRequestView<'_> {
+  fn default() -> PayloadLobbyEnterRequestView<'static> {
     let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(::protobuf::__internal::runtime::ScratchSpace::zeroed_block()) };
-    PayloadTextMessageView::new(::protobuf::__internal::Private, inner)
+    PayloadLobbyEnterRequestView::new(::protobuf::__internal::Private, inner)
   }
 }
 
 #[allow(dead_code)]
-impl<'msg> PayloadTextMessageView<'msg> {
+impl<'msg> PayloadLobbyEnterRequestView<'msg> {
   #[doc(hidden)]
-  pub fn new(_private: ::protobuf::__internal::Private, inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, PayloadTextMessage>) -> Self {
+  pub fn new(_private: ::protobuf::__internal::Private, inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, PayloadLobbyEnterRequest>) -> Self {
     Self { inner, _phantom: ::std::marker::PhantomData }
   }
 
@@ -118,12 +118,12 @@ impl<'msg> PayloadTextMessageView<'msg> {
     self.inner.raw()
   }
 
-  pub fn to_owned(&self) -> PayloadTextMessage {
+  pub fn to_owned(&self) -> PayloadLobbyEnterRequest {
     ::protobuf::IntoProxied::into_proxied(*self, ::protobuf::__internal::Private)
   }
 
-  // id: optional uint64
-  pub fn id(self) -> u64 {
+  // user_id: optional uint64
+  pub fn user_id(self) -> u64 {
     unsafe {
       // TODO: b/361751487: This .into() and .try_into() is only
       // here for the enum<->i32 case, we should avoid it for
@@ -137,49 +137,38 @@ impl<'msg> PayloadTextMessageView<'msg> {
     }
   }
 
-  // message: optional string
-  pub fn message(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
-    let str_view = unsafe {
-      self.inner.ptr().get_string_at_index(
-        1, (b"").into()
-      )
-    };
-    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
-    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
-  }
-
 }
 
 // SAFETY:
-// - `PayloadTextMessageView` is `Sync` because it does not support mutation.
-unsafe impl Sync for PayloadTextMessageView<'_> {}
+// - `PayloadLobbyEnterRequestView` is `Sync` because it does not support mutation.
+unsafe impl Sync for PayloadLobbyEnterRequestView<'_> {}
 
 // SAFETY:
-// - `PayloadTextMessageView` is `Send` because while its alive a `PayloadTextMessageMut` cannot.
-// - `PayloadTextMessageView` does not use thread-local data.
-unsafe impl Send for PayloadTextMessageView<'_> {}
+// - `PayloadLobbyEnterRequestView` is `Send` because while its alive a `PayloadLobbyEnterRequestMut` cannot.
+// - `PayloadLobbyEnterRequestView` does not use thread-local data.
+unsafe impl Send for PayloadLobbyEnterRequestView<'_> {}
 
-impl<'msg> ::protobuf::Proxy<'msg> for PayloadTextMessageView<'msg> {}
-impl<'msg> ::protobuf::ViewProxy<'msg> for PayloadTextMessageView<'msg> {}
+impl<'msg> ::protobuf::Proxy<'msg> for PayloadLobbyEnterRequestView<'msg> {}
+impl<'msg> ::protobuf::ViewProxy<'msg> for PayloadLobbyEnterRequestView<'msg> {}
 
-impl<'msg> ::protobuf::AsView for PayloadTextMessageView<'msg> {
-  type Proxied = PayloadTextMessage;
-  fn as_view(&self) -> ::protobuf::View<'msg, PayloadTextMessage> {
+impl<'msg> ::protobuf::AsView for PayloadLobbyEnterRequestView<'msg> {
+  type Proxied = PayloadLobbyEnterRequest;
+  fn as_view(&self) -> ::protobuf::View<'msg, PayloadLobbyEnterRequest> {
     *self
   }
 }
 
-impl<'msg> ::protobuf::IntoView<'msg> for PayloadTextMessageView<'msg> {
-  fn into_view<'shorter>(self) -> PayloadTextMessageView<'shorter>
+impl<'msg> ::protobuf::IntoView<'msg> for PayloadLobbyEnterRequestView<'msg> {
+  fn into_view<'shorter>(self) -> PayloadLobbyEnterRequestView<'shorter>
   where
       'msg: 'shorter {
     self
   }
 }
 
-impl<'msg> ::protobuf::IntoProxied<PayloadTextMessage> for PayloadTextMessageView<'msg> {
-  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> PayloadTextMessage {
-    let mut dst = PayloadTextMessage::new();
+impl<'msg> ::protobuf::IntoProxied<PayloadLobbyEnterRequest> for PayloadLobbyEnterRequestView<'msg> {
+  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> PayloadLobbyEnterRequest {
+    let mut dst = PayloadLobbyEnterRequest::new();
     let dst_raw = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_raw_message_mut(&mut dst, ::protobuf::__internal::Private);
     let dst_arena = ::protobuf::__internal::runtime::UpbGetArena::get_arena(&mut dst, ::protobuf::__internal::Private);
     let src_raw = ::protobuf::__internal::runtime::UpbGetMessagePtr::get_raw_message(&self, ::protobuf::__internal::Private);
@@ -194,13 +183,13 @@ impl<'msg> ::protobuf::IntoProxied<PayloadTextMessage> for PayloadTextMessageVie
   }
 }
 
-impl<'msg> ::protobuf::IntoProxied<PayloadTextMessage> for PayloadTextMessageMut<'msg> {
-  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> PayloadTextMessage {
+impl<'msg> ::protobuf::IntoProxied<PayloadLobbyEnterRequest> for PayloadLobbyEnterRequestMut<'msg> {
+  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> PayloadLobbyEnterRequest {
     ::protobuf::IntoProxied::into_proxied(::protobuf::IntoView::into_view(self), _private)
   }
 }
 
-impl ::protobuf::__internal::runtime::UpbTypeConversions for PayloadTextMessage {
+impl ::protobuf::__internal::runtime::UpbTypeConversions for PayloadLobbyEnterRequest {
     fn upb_type() -> ::protobuf::__internal::runtime::CType {
         ::protobuf::__internal::runtime::CType::Message
     }
@@ -225,29 +214,29 @@ impl ::protobuf::__internal::runtime::UpbTypeConversions for PayloadTextMessage 
         -> ::protobuf::View<'msg, Self> {
         let raw = unsafe { msg.msg_val }.expect("expected present message value in map");
         let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
-        PayloadTextMessageView::new(::protobuf::__internal::Private, inner)
+        PayloadLobbyEnterRequestView::new(::protobuf::__internal::Private, inner)
     }
 
     unsafe fn from_message_mut<'msg>(msg: ::protobuf::__internal::runtime::RawMessage, arena: &'msg ::protobuf::__internal::runtime::Arena)
-        -> PayloadTextMessageMut<'msg> {
-        let inner = unsafe { ::protobuf::__internal::runtime::MessageMutInner::<'msg, PayloadTextMessage>::wrap_raw(msg, arena) };
-        PayloadTextMessageMut::new(::protobuf::__internal::Private, inner)
+        -> PayloadLobbyEnterRequestMut<'msg> {
+        let inner = unsafe { ::protobuf::__internal::runtime::MessageMutInner::<'msg, PayloadLobbyEnterRequest>::wrap_raw(msg, arena) };
+        PayloadLobbyEnterRequestMut::new(::protobuf::__internal::Private, inner)
     }
 }
 
 #[allow(dead_code)]
 #[allow(non_camel_case_types)]
-pub struct PayloadTextMessageMut<'msg> {
-  inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, PayloadTextMessage>,
+pub struct PayloadLobbyEnterRequestMut<'msg> {
+  inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, PayloadLobbyEnterRequest>,
 }
 
-impl<'msg> ::protobuf::__internal::SealedInternal for PayloadTextMessageMut<'msg> {}
+impl<'msg> ::protobuf::__internal::SealedInternal for PayloadLobbyEnterRequestMut<'msg> {}
 
-impl<'msg> ::protobuf::MessageMut<'msg> for PayloadTextMessageMut<'msg> {
-  type Message = PayloadTextMessage;
+impl<'msg> ::protobuf::MessageMut<'msg> for PayloadLobbyEnterRequestMut<'msg> {
+  type Message = PayloadLobbyEnterRequest;
 }
 
-impl ::std::fmt::Debug for PayloadTextMessageMut<'_> {
+impl ::std::fmt::Debug for PayloadLobbyEnterRequestMut<'_> {
   fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
     let string = unsafe {
       ::protobuf::__internal::runtime::debug_string(
@@ -259,14 +248,14 @@ impl ::std::fmt::Debug for PayloadTextMessageMut<'_> {
   }
 }
 
-impl ::protobuf::Serialize for PayloadTextMessageMut<'_> {
+impl ::protobuf::Serialize for PayloadLobbyEnterRequestMut<'_> {
   fn serialize(&self) -> ::std::result::Result<Vec<u8>, ::protobuf::SerializeError> {
     ::protobuf::AsView::as_view(self).serialize()
   }
 }
 
 #[allow(dead_code)]
-impl<'msg> PayloadTextMessageMut<'msg> {
+impl<'msg> PayloadLobbyEnterRequestMut<'msg> {
   #[doc(hidden)]
   pub fn from_parent<ParentT: ::protobuf::Message>(
              _private: ::protobuf::__internal::Private,
@@ -279,7 +268,7 @@ impl<'msg> PayloadTextMessageMut<'msg> {
   }
 
   #[doc(hidden)]
-  pub fn new(_private: ::protobuf::__internal::Private, inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, PayloadTextMessage>) -> Self {
+  pub fn new(_private: ::protobuf::__internal::Private, inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, PayloadLobbyEnterRequest>) -> Self {
     Self { inner }
   }
 
@@ -289,11 +278,11 @@ impl<'msg> PayloadTextMessageMut<'msg> {
 
   #[doc(hidden)]
   pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
-    -> ::protobuf::__internal::runtime::MessageMutInner<'msg, PayloadTextMessage> {
+    -> ::protobuf::__internal::runtime::MessageMutInner<'msg, PayloadLobbyEnterRequest> {
     self.inner
   }
 
-  pub fn to_owned(&self) -> PayloadTextMessage {
+  pub fn to_owned(&self) -> PayloadLobbyEnterRequest {
     ::protobuf::AsView::as_view(self).to_owned()
   }
 
@@ -301,8 +290,8 @@ impl<'msg> PayloadTextMessageMut<'msg> {
     self.inner.arena()
   }
 
-  // id: optional uint64
-  pub fn id(&self) -> u64 {
+  // user_id: optional uint64
+  pub fn user_id(&self) -> u64 {
     unsafe {
       // TODO: b/361751487: This .into() and .try_into() is only
       // here for the enum<->i32 case, we should avoid it for
@@ -315,7 +304,7 @@ impl<'msg> PayloadTextMessageMut<'msg> {
       ).try_into().unwrap()
     }
   }
-  pub fn set_id(&mut self, val: u64) {
+  pub fn set_user_id(&mut self, val: u64) {
     unsafe {
       // TODO: b/361751487: This .into() is only here
       // here for the enum<->i32 case, we should avoid it for
@@ -327,73 +316,47 @@ impl<'msg> PayloadTextMessageMut<'msg> {
     }
   }
 
-  // message: optional string
-  pub fn message(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
-    let str_view = unsafe {
-      self.inner.ptr().get_string_at_index(
-        1, (b"").into()
-      )
-    };
-    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
-    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
-  }
-  pub fn set_message(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
-    let s = val.into_proxied(::protobuf::__internal::Private);
-    let (view, arena) =
-      s.into_inner(::protobuf::__internal::Private).into_raw_parts();
-
-    let parent_arena = self.inner.arena();
-    parent_arena.fuse(&arena);
-
-    unsafe {
-      self.inner.ptr_mut().set_base_field_string_at_index(
-        1,
-        view,
-      );
-    }
-  }
-
 }
 
 // SAFETY:
-// - `PayloadTextMessageMut` does not perform any shared mutation.
-// - `PayloadTextMessageMut` is not `Send`, and so even in the presence of mutator
+// - `PayloadLobbyEnterRequestMut` does not perform any shared mutation.
+// - `PayloadLobbyEnterRequestMut` is not `Send`, and so even in the presence of mutator
 //   splitting, synchronous access of an arena is impossible.
-unsafe impl Sync for PayloadTextMessageMut<'_> {}
+unsafe impl Sync for PayloadLobbyEnterRequestMut<'_> {}
 
-impl<'msg> ::protobuf::Proxy<'msg> for PayloadTextMessageMut<'msg> {}
-impl<'msg> ::protobuf::MutProxy<'msg> for PayloadTextMessageMut<'msg> {}
+impl<'msg> ::protobuf::Proxy<'msg> for PayloadLobbyEnterRequestMut<'msg> {}
+impl<'msg> ::protobuf::MutProxy<'msg> for PayloadLobbyEnterRequestMut<'msg> {}
 
-impl<'msg> ::protobuf::AsView for PayloadTextMessageMut<'msg> {
-  type Proxied = PayloadTextMessage;
-  fn as_view(&self) -> ::protobuf::View<'_, PayloadTextMessage> {
-    PayloadTextMessageView {
+impl<'msg> ::protobuf::AsView for PayloadLobbyEnterRequestMut<'msg> {
+  type Proxied = PayloadLobbyEnterRequest;
+  fn as_view(&self) -> ::protobuf::View<'_, PayloadLobbyEnterRequest> {
+    PayloadLobbyEnterRequestView {
       inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner.clone()),
       _phantom: ::std::marker::PhantomData
     }
   }
 }
 
-impl<'msg> ::protobuf::IntoView<'msg> for PayloadTextMessageMut<'msg> {
-  fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, PayloadTextMessage>
+impl<'msg> ::protobuf::IntoView<'msg> for PayloadLobbyEnterRequestMut<'msg> {
+  fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, PayloadLobbyEnterRequest>
   where
       'msg: 'shorter {
-    PayloadTextMessageView {
+    PayloadLobbyEnterRequestView {
       inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner.clone()),
       _phantom: ::std::marker::PhantomData
     }
   }
 }
 
-impl<'msg> ::protobuf::AsMut for PayloadTextMessageMut<'msg> {
-  type MutProxied = PayloadTextMessage;
-  fn as_mut(&mut self) -> PayloadTextMessageMut<'msg> {
-    PayloadTextMessageMut { inner: self.inner }
+impl<'msg> ::protobuf::AsMut for PayloadLobbyEnterRequestMut<'msg> {
+  type MutProxied = PayloadLobbyEnterRequest;
+  fn as_mut(&mut self) -> PayloadLobbyEnterRequestMut<'msg> {
+    PayloadLobbyEnterRequestMut { inner: self.inner }
   }
 }
 
-impl<'msg> ::protobuf::IntoMut<'msg> for PayloadTextMessageMut<'msg> {
-  fn into_mut<'shorter>(self) -> PayloadTextMessageMut<'shorter>
+impl<'msg> ::protobuf::IntoMut<'msg> for PayloadLobbyEnterRequestMut<'msg> {
+  fn into_mut<'shorter>(self) -> PayloadLobbyEnterRequestMut<'shorter>
   where
       'msg: 'shorter {
     self
@@ -401,7 +364,7 @@ impl<'msg> ::protobuf::IntoMut<'msg> for PayloadTextMessageMut<'msg> {
 }
 
 #[allow(dead_code)]
-impl PayloadTextMessage {
+impl PayloadLobbyEnterRequest {
   pub fn new() -> Self {
     Self { inner: ::protobuf::__internal::runtime::OwnedMessageInner::<Self>::new() }
   }
@@ -411,7 +374,7 @@ impl PayloadTextMessage {
   }
 
   #[doc(hidden)]
-  pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessageMutInner<'_, PayloadTextMessage> {
+  pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessageMutInner<'_, PayloadLobbyEnterRequest> {
     ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner)
   }
 
@@ -429,19 +392,19 @@ impl PayloadTextMessage {
     ::protobuf::ClearAndParse::clear_and_parse_dont_enforce_required(&mut msg, data).map(|_| msg)
   }
 
-  pub fn as_view(&self) -> PayloadTextMessageView {
-    PayloadTextMessageView::new(
+  pub fn as_view(&self) -> PayloadLobbyEnterRequestView {
+    PayloadLobbyEnterRequestView::new(
         ::protobuf::__internal::Private,
         ::protobuf::__internal::runtime::MessageViewInner::view_of_owned(&self.inner))
   }
 
-  pub fn as_mut(&mut self) -> PayloadTextMessageMut {
+  pub fn as_mut(&mut self) -> PayloadLobbyEnterRequestMut {
     let inner = ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner);
-    PayloadTextMessageMut::new(::protobuf::__internal::Private, inner)
+    PayloadLobbyEnterRequestMut::new(::protobuf::__internal::Private, inner)
   }
 
-  // id: optional uint64
-  pub fn id(&self) -> u64 {
+  // user_id: optional uint64
+  pub fn user_id(&self) -> u64 {
     unsafe {
       // TODO: b/361751487: This .into() and .try_into() is only
       // here for the enum<->i32 case, we should avoid it for
@@ -454,7 +417,7 @@ impl PayloadTextMessage {
       ).try_into().unwrap()
     }
   }
-  pub fn set_id(&mut self, val: u64) {
+  pub fn set_user_id(&mut self, val: u64) {
     unsafe {
       // TODO: b/361751487: This .into() is only here
       // here for the enum<->i32 case, we should avoid it for
@@ -466,68 +429,42 @@ impl PayloadTextMessage {
     }
   }
 
-  // message: optional string
-  pub fn message(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
-    let str_view = unsafe {
-      self.inner.ptr().get_string_at_index(
-        1, (b"").into()
-      )
-    };
-    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
-    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
-  }
-  pub fn set_message(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
-    let s = val.into_proxied(::protobuf::__internal::Private);
-    let (view, arena) =
-      s.into_inner(::protobuf::__internal::Private).into_raw_parts();
+}  // impl PayloadLobbyEnterRequest
 
-    let parent_arena = self.inner.arena();
-    parent_arena.fuse(&arena);
-
-    unsafe {
-      self.inner.ptr_mut().set_base_field_string_at_index(
-        1,
-        view,
-      );
-    }
-  }
-
-}  // impl PayloadTextMessage
-
-impl ::std::ops::Drop for PayloadTextMessage {
+impl ::std::ops::Drop for PayloadLobbyEnterRequest {
   fn drop(&mut self) {
   }
 }
 
-impl ::std::clone::Clone for PayloadTextMessage {
+impl ::std::clone::Clone for PayloadLobbyEnterRequest {
   fn clone(&self) -> Self {
     self.as_view().to_owned()
   }
 }
 
-impl ::protobuf::AsView for PayloadTextMessage {
+impl ::protobuf::AsView for PayloadLobbyEnterRequest {
   type Proxied = Self;
-  fn as_view(&self) -> PayloadTextMessageView {
+  fn as_view(&self) -> PayloadLobbyEnterRequestView {
     self.as_view()
   }
 }
 
-impl ::protobuf::AsMut for PayloadTextMessage {
+impl ::protobuf::AsMut for PayloadLobbyEnterRequest {
   type MutProxied = Self;
-  fn as_mut(&mut self) -> PayloadTextMessageMut {
+  fn as_mut(&mut self) -> PayloadLobbyEnterRequestMut {
     self.as_mut()
   }
 }
 
-unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadTextMessage {
+unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadLobbyEnterRequest {
   fn mini_table() -> *const ::protobuf::__internal::runtime::upb_MiniTable {
     static ONCE_LOCK: ::std::sync::OnceLock<::protobuf::__internal::runtime::MiniTablePtr> =
         ::std::sync::OnceLock::new();
     ONCE_LOCK.get_or_init(|| unsafe {
-      super::Proto__PayloadTextMessage_msg_init.0 =
+      super::Proto__PayloadLobbyEnterRequest_msg_init.0 =
           ::protobuf::__internal::runtime::upb_MiniTable_Build(
-              "$,P1X".as_ptr(),
-              5,
+              "$,P".as_ptr(),
+              3,
               ::protobuf::__internal::runtime::THREAD_LOCAL_ARENA.with(|a| a.raw()),
               ::std::ptr::null_mut());
       let submessages = [
@@ -535,64 +472,64 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadText
       let subenums = [
       ];
       assert!(::protobuf::__internal::runtime::upb_MiniTable_Link(
-          super::Proto__PayloadTextMessage_msg_init.0,
+          super::Proto__PayloadLobbyEnterRequest_msg_init.0,
           submessages.as_ptr() as *const *const ::protobuf::__internal::runtime::upb_MiniTable,
           submessages.len(), subenums.as_ptr(), subenums.len()));
-      ::protobuf::__internal::runtime::MiniTablePtr(super::Proto__PayloadTextMessage_msg_init.0)
+      ::protobuf::__internal::runtime::MiniTablePtr(super::Proto__PayloadLobbyEnterRequest_msg_init.0)
     }).0
   }
 }
-unsafe impl ::protobuf::__internal::runtime::UpbGetArena for PayloadTextMessage {
+unsafe impl ::protobuf::__internal::runtime::UpbGetArena for PayloadLobbyEnterRequest {
   fn get_arena(&mut self, _private: ::protobuf::__internal::Private) -> &::protobuf::__internal::runtime::Arena {
     self.inner.arena()
   }
 }
 
-unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadTextMessageView<'_> {
+unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadLobbyEnterRequestView<'_> {
   #[inline(always)]
   fn mini_table() -> *const ::protobuf::__internal::runtime::upb_MiniTable {
-    <PayloadTextMessage as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table()
+    <PayloadLobbyEnterRequest as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table()
   }
 }
 
-unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadTextMessageMut<'_> {
+unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadLobbyEnterRequestMut<'_> {
   #[inline(always)]
   fn mini_table() -> *const ::protobuf::__internal::runtime::upb_MiniTable {
-    <PayloadTextMessage as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table()
+    <PayloadLobbyEnterRequest as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table()
   }
 }
-unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for PayloadTextMessage {
-  type Msg = PayloadTextMessage;
-  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadTextMessage> {
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for PayloadLobbyEnterRequest {
+  type Msg = PayloadLobbyEnterRequest;
+  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadLobbyEnterRequest> {
     self.inner.ptr_mut()
   }
 }
-unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for PayloadTextMessage {
-  type Msg = PayloadTextMessage;
-  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadTextMessage> {
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for PayloadLobbyEnterRequest {
+  type Msg = PayloadLobbyEnterRequest;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadLobbyEnterRequest> {
     self.inner.ptr()
   }
 }
-unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for PayloadTextMessageMut<'_> {
-  type Msg = PayloadTextMessage;
-  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadTextMessage> {
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for PayloadLobbyEnterRequestMut<'_> {
+  type Msg = PayloadLobbyEnterRequest;
+  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadLobbyEnterRequest> {
     self.inner.ptr_mut()
   }
 }
-unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for PayloadTextMessageMut<'_> {
-  type Msg = PayloadTextMessage;
-  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadTextMessage> {
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for PayloadLobbyEnterRequestMut<'_> {
+  type Msg = PayloadLobbyEnterRequest;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadLobbyEnterRequest> {
     self.inner.ptr()
   }
 }
-unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for PayloadTextMessageView<'_> {
-  type Msg = PayloadTextMessage;
-  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadTextMessage> {
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for PayloadLobbyEnterRequestView<'_> {
+  type Msg = PayloadLobbyEnterRequest;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadLobbyEnterRequest> {
     self.inner.ptr()
   }
 }
 
-unsafe impl ::protobuf::__internal::runtime::UpbGetArena for PayloadTextMessageMut<'_> {
+unsafe impl ::protobuf::__internal::runtime::UpbGetArena for PayloadLobbyEnterRequestMut<'_> {
   fn get_arena(&mut self, _private: ::protobuf::__internal::Private) -> &::protobuf::__internal::runtime::Arena {
     self.inner.arena()
   }
@@ -600,10 +537,10 @@ unsafe impl ::protobuf::__internal::runtime::UpbGetArena for PayloadTextMessageM
 
 
 // upb kernel doesn't support any owned message or message mut interop.
-impl ::protobuf::OwnedMessageInterop for PayloadTextMessage {}
-impl<'a> ::protobuf::MessageMutInterop<'a> for PayloadTextMessageMut<'a> {}
+impl ::protobuf::OwnedMessageInterop for PayloadLobbyEnterRequest {}
+impl<'a> ::protobuf::MessageMutInterop<'a> for PayloadLobbyEnterRequestMut<'a> {}
 
-impl<'a> ::protobuf::MessageViewInterop<'a> for PayloadTextMessageView<'a> {
+impl<'a> ::protobuf::MessageViewInterop<'a> for PayloadLobbyEnterRequestView<'a> {
   unsafe fn __unstable_wrap_raw_message(
     msg: &'a *const ::std::ffi::c_void) -> Self {
     let raw = ::protobuf::__internal::runtime::RawMessage::new(*msg as *mut _).unwrap();
@@ -623,22 +560,22 @@ impl<'a> ::protobuf::MessageViewInterop<'a> for PayloadTextMessageView<'a> {
 
 // This variable must not be referenced except by protobuf generated
 // code.
-pub(crate) static mut Proto__PayloadSystemMessage_msg_init: ::protobuf::__internal::runtime::MiniTablePtr =
+pub(crate) static mut Proto__PayloadLobbyEnterResponse_msg_init: ::protobuf::__internal::runtime::MiniTablePtr =
     ::protobuf::__internal::runtime::MiniTablePtr(::std::ptr::null_mut());
 #[allow(non_camel_case_types)]
-pub struct PayloadSystemMessage {
-  inner: ::protobuf::__internal::runtime::OwnedMessageInner<PayloadSystemMessage>
+pub struct PayloadLobbyEnterResponse {
+  inner: ::protobuf::__internal::runtime::OwnedMessageInner<PayloadLobbyEnterResponse>
 }
 
-impl ::protobuf::Message for PayloadSystemMessage {}
+impl ::protobuf::Message for PayloadLobbyEnterResponse {}
 
-impl ::std::default::Default for PayloadSystemMessage {
+impl ::std::default::Default for PayloadLobbyEnterResponse {
   fn default() -> Self {
     Self::new()
   }
 }
 
-impl ::protobuf::Parse for PayloadSystemMessage {
+impl ::protobuf::Parse for PayloadLobbyEnterResponse {
   fn parse(serialized: &[u8]) -> ::std::result::Result<Self, ::protobuf::ParseError> {
     Self::parse(serialized)
   }
@@ -648,7 +585,7 @@ impl ::protobuf::Parse for PayloadSystemMessage {
   }
 }
 
-impl ::std::fmt::Debug for PayloadSystemMessage {
+impl ::std::fmt::Debug for PayloadLobbyEnterResponse {
   fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
     let string = unsafe {
       ::protobuf::__internal::runtime::debug_string(
@@ -660,46 +597,46 @@ impl ::std::fmt::Debug for PayloadSystemMessage {
   }
 }
 
-impl ::protobuf::Serialize for PayloadSystemMessage {
+impl ::protobuf::Serialize for PayloadLobbyEnterResponse {
   fn serialize(&self) -> ::std::result::Result<Vec<u8>, ::protobuf::SerializeError> {
     ::protobuf::AsView::as_view(self).serialize()
   }
 }
 
 // SAFETY:
-// - `PayloadSystemMessage` is `Sync` because it does not implement interior mutability.
-//    Neither does `PayloadSystemMessageMut`.
-unsafe impl Sync for PayloadSystemMessage {}
+// - `PayloadLobbyEnterResponse` is `Sync` because it does not implement interior mutability.
+//    Neither does `PayloadLobbyEnterResponseMut`.
+unsafe impl Sync for PayloadLobbyEnterResponse {}
 
 // SAFETY:
-// - `PayloadSystemMessage` is `Send` because it uniquely owns its arena and does
+// - `PayloadLobbyEnterResponse` is `Send` because it uniquely owns its arena and does
 //   not use thread-local data.
-unsafe impl Send for PayloadSystemMessage {}
+unsafe impl Send for PayloadLobbyEnterResponse {}
 
-impl ::protobuf::Proxied for PayloadSystemMessage {
-  type View<'msg> = PayloadSystemMessageView<'msg>;
+impl ::protobuf::Proxied for PayloadLobbyEnterResponse {
+  type View<'msg> = PayloadLobbyEnterResponseView<'msg>;
 }
 
-impl ::protobuf::__internal::SealedInternal for PayloadSystemMessage {}
+impl ::protobuf::__internal::SealedInternal for PayloadLobbyEnterResponse {}
 
-impl ::protobuf::MutProxied for PayloadSystemMessage {
-  type Mut<'msg> = PayloadSystemMessageMut<'msg>;
+impl ::protobuf::MutProxied for PayloadLobbyEnterResponse {
+  type Mut<'msg> = PayloadLobbyEnterResponseMut<'msg>;
 }
 
 #[derive(Copy, Clone)]
 #[allow(dead_code)]
-pub struct PayloadSystemMessageView<'msg> {
-  inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, PayloadSystemMessage>,
+pub struct PayloadLobbyEnterResponseView<'msg> {
+  inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, PayloadLobbyEnterResponse>,
   _phantom: ::std::marker::PhantomData<&'msg ()>,
 }
 
-impl<'msg> ::protobuf::__internal::SealedInternal for PayloadSystemMessageView<'msg> {}
+impl<'msg> ::protobuf::__internal::SealedInternal for PayloadLobbyEnterResponseView<'msg> {}
 
-impl<'msg> ::protobuf::MessageView<'msg> for PayloadSystemMessageView<'msg> {
-  type Message = PayloadSystemMessage;
+impl<'msg> ::protobuf::MessageView<'msg> for PayloadLobbyEnterResponseView<'msg> {
+  type Message = PayloadLobbyEnterResponse;
 }
 
-impl ::std::fmt::Debug for PayloadSystemMessageView<'_> {
+impl ::std::fmt::Debug for PayloadLobbyEnterResponseView<'_> {
   fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
     let string = unsafe {
       ::protobuf::__internal::runtime::debug_string(
@@ -711,7 +648,7 @@ impl ::std::fmt::Debug for PayloadSystemMessageView<'_> {
   }
 }
 
-impl ::protobuf::Serialize for PayloadSystemMessageView<'_> {
+impl ::protobuf::Serialize for PayloadLobbyEnterResponseView<'_> {
   fn serialize(&self) -> ::std::result::Result<Vec<u8>, ::protobuf::SerializeError> {
     // SAFETY: `MINI_TABLE` is the one associated with `self.raw_msg()`.
     let encoded = unsafe {
@@ -722,17 +659,17 @@ impl ::protobuf::Serialize for PayloadSystemMessageView<'_> {
   }
 }
 
-impl ::std::default::Default for PayloadSystemMessageView<'_> {
-  fn default() -> PayloadSystemMessageView<'static> {
+impl ::std::default::Default for PayloadLobbyEnterResponseView<'_> {
+  fn default() -> PayloadLobbyEnterResponseView<'static> {
     let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(::protobuf::__internal::runtime::ScratchSpace::zeroed_block()) };
-    PayloadSystemMessageView::new(::protobuf::__internal::Private, inner)
+    PayloadLobbyEnterResponseView::new(::protobuf::__internal::Private, inner)
   }
 }
 
 #[allow(dead_code)]
-impl<'msg> PayloadSystemMessageView<'msg> {
+impl<'msg> PayloadLobbyEnterResponseView<'msg> {
   #[doc(hidden)]
-  pub fn new(_private: ::protobuf::__internal::Private, inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, PayloadSystemMessage>) -> Self {
+  pub fn new(_private: ::protobuf::__internal::Private, inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, PayloadLobbyEnterResponse>) -> Self {
     Self { inner, _phantom: ::std::marker::PhantomData }
   }
 
@@ -740,15 +677,30 @@ impl<'msg> PayloadSystemMessageView<'msg> {
     self.inner.raw()
   }
 
-  pub fn to_owned(&self) -> PayloadSystemMessage {
+  pub fn to_owned(&self) -> PayloadLobbyEnterResponse {
     ::protobuf::IntoProxied::into_proxied(*self, ::protobuf::__internal::Private)
   }
 
-  // message: optional string
-  pub fn message(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
+  // is_succeeded: optional bool
+  pub fn is_succeeded(self) -> bool {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_bool_at_index(
+        0, (false).into()
+      ).try_into().unwrap()
+    }
+  }
+
+  // character_name: optional string
+  pub fn character_name(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
     let str_view = unsafe {
       self.inner.ptr().get_string_at_index(
-        0, (b"").into()
+        1, (b"").into()
       )
     };
     // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
@@ -758,35 +710,35 @@ impl<'msg> PayloadSystemMessageView<'msg> {
 }
 
 // SAFETY:
-// - `PayloadSystemMessageView` is `Sync` because it does not support mutation.
-unsafe impl Sync for PayloadSystemMessageView<'_> {}
+// - `PayloadLobbyEnterResponseView` is `Sync` because it does not support mutation.
+unsafe impl Sync for PayloadLobbyEnterResponseView<'_> {}
 
 // SAFETY:
-// - `PayloadSystemMessageView` is `Send` because while its alive a `PayloadSystemMessageMut` cannot.
-// - `PayloadSystemMessageView` does not use thread-local data.
-unsafe impl Send for PayloadSystemMessageView<'_> {}
+// - `PayloadLobbyEnterResponseView` is `Send` because while its alive a `PayloadLobbyEnterResponseMut` cannot.
+// - `PayloadLobbyEnterResponseView` does not use thread-local data.
+unsafe impl Send for PayloadLobbyEnterResponseView<'_> {}
 
-impl<'msg> ::protobuf::Proxy<'msg> for PayloadSystemMessageView<'msg> {}
-impl<'msg> ::protobuf::ViewProxy<'msg> for PayloadSystemMessageView<'msg> {}
+impl<'msg> ::protobuf::Proxy<'msg> for PayloadLobbyEnterResponseView<'msg> {}
+impl<'msg> ::protobuf::ViewProxy<'msg> for PayloadLobbyEnterResponseView<'msg> {}
 
-impl<'msg> ::protobuf::AsView for PayloadSystemMessageView<'msg> {
-  type Proxied = PayloadSystemMessage;
-  fn as_view(&self) -> ::protobuf::View<'msg, PayloadSystemMessage> {
+impl<'msg> ::protobuf::AsView for PayloadLobbyEnterResponseView<'msg> {
+  type Proxied = PayloadLobbyEnterResponse;
+  fn as_view(&self) -> ::protobuf::View<'msg, PayloadLobbyEnterResponse> {
     *self
   }
 }
 
-impl<'msg> ::protobuf::IntoView<'msg> for PayloadSystemMessageView<'msg> {
-  fn into_view<'shorter>(self) -> PayloadSystemMessageView<'shorter>
+impl<'msg> ::protobuf::IntoView<'msg> for PayloadLobbyEnterResponseView<'msg> {
+  fn into_view<'shorter>(self) -> PayloadLobbyEnterResponseView<'shorter>
   where
       'msg: 'shorter {
     self
   }
 }
 
-impl<'msg> ::protobuf::IntoProxied<PayloadSystemMessage> for PayloadSystemMessageView<'msg> {
-  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> PayloadSystemMessage {
-    let mut dst = PayloadSystemMessage::new();
+impl<'msg> ::protobuf::IntoProxied<PayloadLobbyEnterResponse> for PayloadLobbyEnterResponseView<'msg> {
+  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> PayloadLobbyEnterResponse {
+    let mut dst = PayloadLobbyEnterResponse::new();
     let dst_raw = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_raw_message_mut(&mut dst, ::protobuf::__internal::Private);
     let dst_arena = ::protobuf::__internal::runtime::UpbGetArena::get_arena(&mut dst, ::protobuf::__internal::Private);
     let src_raw = ::protobuf::__internal::runtime::UpbGetMessagePtr::get_raw_message(&self, ::protobuf::__internal::Private);
@@ -801,13 +753,13 @@ impl<'msg> ::protobuf::IntoProxied<PayloadSystemMessage> for PayloadSystemMessag
   }
 }
 
-impl<'msg> ::protobuf::IntoProxied<PayloadSystemMessage> for PayloadSystemMessageMut<'msg> {
-  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> PayloadSystemMessage {
+impl<'msg> ::protobuf::IntoProxied<PayloadLobbyEnterResponse> for PayloadLobbyEnterResponseMut<'msg> {
+  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> PayloadLobbyEnterResponse {
     ::protobuf::IntoProxied::into_proxied(::protobuf::IntoView::into_view(self), _private)
   }
 }
 
-impl ::protobuf::__internal::runtime::UpbTypeConversions for PayloadSystemMessage {
+impl ::protobuf::__internal::runtime::UpbTypeConversions for PayloadLobbyEnterResponse {
     fn upb_type() -> ::protobuf::__internal::runtime::CType {
         ::protobuf::__internal::runtime::CType::Message
     }
@@ -832,29 +784,29 @@ impl ::protobuf::__internal::runtime::UpbTypeConversions for PayloadSystemMessag
         -> ::protobuf::View<'msg, Self> {
         let raw = unsafe { msg.msg_val }.expect("expected present message value in map");
         let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
-        PayloadSystemMessageView::new(::protobuf::__internal::Private, inner)
+        PayloadLobbyEnterResponseView::new(::protobuf::__internal::Private, inner)
     }
 
     unsafe fn from_message_mut<'msg>(msg: ::protobuf::__internal::runtime::RawMessage, arena: &'msg ::protobuf::__internal::runtime::Arena)
-        -> PayloadSystemMessageMut<'msg> {
-        let inner = unsafe { ::protobuf::__internal::runtime::MessageMutInner::<'msg, PayloadSystemMessage>::wrap_raw(msg, arena) };
-        PayloadSystemMessageMut::new(::protobuf::__internal::Private, inner)
+        -> PayloadLobbyEnterResponseMut<'msg> {
+        let inner = unsafe { ::protobuf::__internal::runtime::MessageMutInner::<'msg, PayloadLobbyEnterResponse>::wrap_raw(msg, arena) };
+        PayloadLobbyEnterResponseMut::new(::protobuf::__internal::Private, inner)
     }
 }
 
 #[allow(dead_code)]
 #[allow(non_camel_case_types)]
-pub struct PayloadSystemMessageMut<'msg> {
-  inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, PayloadSystemMessage>,
+pub struct PayloadLobbyEnterResponseMut<'msg> {
+  inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, PayloadLobbyEnterResponse>,
 }
 
-impl<'msg> ::protobuf::__internal::SealedInternal for PayloadSystemMessageMut<'msg> {}
+impl<'msg> ::protobuf::__internal::SealedInternal for PayloadLobbyEnterResponseMut<'msg> {}
 
-impl<'msg> ::protobuf::MessageMut<'msg> for PayloadSystemMessageMut<'msg> {
-  type Message = PayloadSystemMessage;
+impl<'msg> ::protobuf::MessageMut<'msg> for PayloadLobbyEnterResponseMut<'msg> {
+  type Message = PayloadLobbyEnterResponse;
 }
 
-impl ::std::fmt::Debug for PayloadSystemMessageMut<'_> {
+impl ::std::fmt::Debug for PayloadLobbyEnterResponseMut<'_> {
   fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
     let string = unsafe {
       ::protobuf::__internal::runtime::debug_string(
@@ -866,14 +818,14 @@ impl ::std::fmt::Debug for PayloadSystemMessageMut<'_> {
   }
 }
 
-impl ::protobuf::Serialize for PayloadSystemMessageMut<'_> {
+impl ::protobuf::Serialize for PayloadLobbyEnterResponseMut<'_> {
   fn serialize(&self) -> ::std::result::Result<Vec<u8>, ::protobuf::SerializeError> {
     ::protobuf::AsView::as_view(self).serialize()
   }
 }
 
 #[allow(dead_code)]
-impl<'msg> PayloadSystemMessageMut<'msg> {
+impl<'msg> PayloadLobbyEnterResponseMut<'msg> {
   #[doc(hidden)]
   pub fn from_parent<ParentT: ::protobuf::Message>(
              _private: ::protobuf::__internal::Private,
@@ -886,7 +838,7 @@ impl<'msg> PayloadSystemMessageMut<'msg> {
   }
 
   #[doc(hidden)]
-  pub fn new(_private: ::protobuf::__internal::Private, inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, PayloadSystemMessage>) -> Self {
+  pub fn new(_private: ::protobuf::__internal::Private, inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, PayloadLobbyEnterResponse>) -> Self {
     Self { inner }
   }
 
@@ -896,11 +848,11 @@ impl<'msg> PayloadSystemMessageMut<'msg> {
 
   #[doc(hidden)]
   pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
-    -> ::protobuf::__internal::runtime::MessageMutInner<'msg, PayloadSystemMessage> {
+    -> ::protobuf::__internal::runtime::MessageMutInner<'msg, PayloadLobbyEnterResponse> {
     self.inner
   }
 
-  pub fn to_owned(&self) -> PayloadSystemMessage {
+  pub fn to_owned(&self) -> PayloadLobbyEnterResponse {
     ::protobuf::AsView::as_view(self).to_owned()
   }
 
@@ -908,17 +860,43 @@ impl<'msg> PayloadSystemMessageMut<'msg> {
     self.inner.arena()
   }
 
-  // message: optional string
-  pub fn message(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+  // is_succeeded: optional bool
+  pub fn is_succeeded(&self) -> bool {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_bool_at_index(
+        0, (false).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_is_succeeded(&mut self, val: bool) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_bool_at_index(
+        0, val.into()
+      )
+    }
+  }
+
+  // character_name: optional string
+  pub fn character_name(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
     let str_view = unsafe {
       self.inner.ptr().get_string_at_index(
-        0, (b"").into()
+        1, (b"").into()
       )
     };
     // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
     unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
-  pub fn set_message(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+  pub fn set_character_name(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     let s = val.into_proxied(::protobuf::__internal::Private);
     let (view, arena) =
       s.into_inner(::protobuf::__internal::Private).into_raw_parts();
@@ -928,7 +906,7 @@ impl<'msg> PayloadSystemMessageMut<'msg> {
 
     unsafe {
       self.inner.ptr_mut().set_base_field_string_at_index(
-        0,
+        1,
         view,
       );
     }
@@ -937,44 +915,44 @@ impl<'msg> PayloadSystemMessageMut<'msg> {
 }
 
 // SAFETY:
-// - `PayloadSystemMessageMut` does not perform any shared mutation.
-// - `PayloadSystemMessageMut` is not `Send`, and so even in the presence of mutator
+// - `PayloadLobbyEnterResponseMut` does not perform any shared mutation.
+// - `PayloadLobbyEnterResponseMut` is not `Send`, and so even in the presence of mutator
 //   splitting, synchronous access of an arena is impossible.
-unsafe impl Sync for PayloadSystemMessageMut<'_> {}
+unsafe impl Sync for PayloadLobbyEnterResponseMut<'_> {}
 
-impl<'msg> ::protobuf::Proxy<'msg> for PayloadSystemMessageMut<'msg> {}
-impl<'msg> ::protobuf::MutProxy<'msg> for PayloadSystemMessageMut<'msg> {}
+impl<'msg> ::protobuf::Proxy<'msg> for PayloadLobbyEnterResponseMut<'msg> {}
+impl<'msg> ::protobuf::MutProxy<'msg> for PayloadLobbyEnterResponseMut<'msg> {}
 
-impl<'msg> ::protobuf::AsView for PayloadSystemMessageMut<'msg> {
-  type Proxied = PayloadSystemMessage;
-  fn as_view(&self) -> ::protobuf::View<'_, PayloadSystemMessage> {
-    PayloadSystemMessageView {
+impl<'msg> ::protobuf::AsView for PayloadLobbyEnterResponseMut<'msg> {
+  type Proxied = PayloadLobbyEnterResponse;
+  fn as_view(&self) -> ::protobuf::View<'_, PayloadLobbyEnterResponse> {
+    PayloadLobbyEnterResponseView {
       inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner.clone()),
       _phantom: ::std::marker::PhantomData
     }
   }
 }
 
-impl<'msg> ::protobuf::IntoView<'msg> for PayloadSystemMessageMut<'msg> {
-  fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, PayloadSystemMessage>
+impl<'msg> ::protobuf::IntoView<'msg> for PayloadLobbyEnterResponseMut<'msg> {
+  fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, PayloadLobbyEnterResponse>
   where
       'msg: 'shorter {
-    PayloadSystemMessageView {
+    PayloadLobbyEnterResponseView {
       inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner.clone()),
       _phantom: ::std::marker::PhantomData
     }
   }
 }
 
-impl<'msg> ::protobuf::AsMut for PayloadSystemMessageMut<'msg> {
-  type MutProxied = PayloadSystemMessage;
-  fn as_mut(&mut self) -> PayloadSystemMessageMut<'msg> {
-    PayloadSystemMessageMut { inner: self.inner }
+impl<'msg> ::protobuf::AsMut for PayloadLobbyEnterResponseMut<'msg> {
+  type MutProxied = PayloadLobbyEnterResponse;
+  fn as_mut(&mut self) -> PayloadLobbyEnterResponseMut<'msg> {
+    PayloadLobbyEnterResponseMut { inner: self.inner }
   }
 }
 
-impl<'msg> ::protobuf::IntoMut<'msg> for PayloadSystemMessageMut<'msg> {
-  fn into_mut<'shorter>(self) -> PayloadSystemMessageMut<'shorter>
+impl<'msg> ::protobuf::IntoMut<'msg> for PayloadLobbyEnterResponseMut<'msg> {
+  fn into_mut<'shorter>(self) -> PayloadLobbyEnterResponseMut<'shorter>
   where
       'msg: 'shorter {
     self
@@ -982,7 +960,7 @@ impl<'msg> ::protobuf::IntoMut<'msg> for PayloadSystemMessageMut<'msg> {
 }
 
 #[allow(dead_code)]
-impl PayloadSystemMessage {
+impl PayloadLobbyEnterResponse {
   pub fn new() -> Self {
     Self { inner: ::protobuf::__internal::runtime::OwnedMessageInner::<Self>::new() }
   }
@@ -992,7 +970,7 @@ impl PayloadSystemMessage {
   }
 
   #[doc(hidden)]
-  pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessageMutInner<'_, PayloadSystemMessage> {
+  pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessageMutInner<'_, PayloadLobbyEnterResponse> {
     ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner)
   }
 
@@ -1010,28 +988,54 @@ impl PayloadSystemMessage {
     ::protobuf::ClearAndParse::clear_and_parse_dont_enforce_required(&mut msg, data).map(|_| msg)
   }
 
-  pub fn as_view(&self) -> PayloadSystemMessageView {
-    PayloadSystemMessageView::new(
+  pub fn as_view(&self) -> PayloadLobbyEnterResponseView {
+    PayloadLobbyEnterResponseView::new(
         ::protobuf::__internal::Private,
         ::protobuf::__internal::runtime::MessageViewInner::view_of_owned(&self.inner))
   }
 
-  pub fn as_mut(&mut self) -> PayloadSystemMessageMut {
+  pub fn as_mut(&mut self) -> PayloadLobbyEnterResponseMut {
     let inner = ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner);
-    PayloadSystemMessageMut::new(::protobuf::__internal::Private, inner)
+    PayloadLobbyEnterResponseMut::new(::protobuf::__internal::Private, inner)
   }
 
-  // message: optional string
-  pub fn message(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+  // is_succeeded: optional bool
+  pub fn is_succeeded(&self) -> bool {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_bool_at_index(
+        0, (false).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_is_succeeded(&mut self, val: bool) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_bool_at_index(
+        0, val.into()
+      )
+    }
+  }
+
+  // character_name: optional string
+  pub fn character_name(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
     let str_view = unsafe {
       self.inner.ptr().get_string_at_index(
-        0, (b"").into()
+        1, (b"").into()
       )
     };
     // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
     unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
-  pub fn set_message(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+  pub fn set_character_name(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     let s = val.into_proxied(::protobuf::__internal::Private);
     let (view, arena) =
       s.into_inner(::protobuf::__internal::Private).into_raw_parts();
@@ -1041,48 +1045,48 @@ impl PayloadSystemMessage {
 
     unsafe {
       self.inner.ptr_mut().set_base_field_string_at_index(
-        0,
+        1,
         view,
       );
     }
   }
 
-}  // impl PayloadSystemMessage
+}  // impl PayloadLobbyEnterResponse
 
-impl ::std::ops::Drop for PayloadSystemMessage {
+impl ::std::ops::Drop for PayloadLobbyEnterResponse {
   fn drop(&mut self) {
   }
 }
 
-impl ::std::clone::Clone for PayloadSystemMessage {
+impl ::std::clone::Clone for PayloadLobbyEnterResponse {
   fn clone(&self) -> Self {
     self.as_view().to_owned()
   }
 }
 
-impl ::protobuf::AsView for PayloadSystemMessage {
+impl ::protobuf::AsView for PayloadLobbyEnterResponse {
   type Proxied = Self;
-  fn as_view(&self) -> PayloadSystemMessageView {
+  fn as_view(&self) -> PayloadLobbyEnterResponseView {
     self.as_view()
   }
 }
 
-impl ::protobuf::AsMut for PayloadSystemMessage {
+impl ::protobuf::AsMut for PayloadLobbyEnterResponse {
   type MutProxied = Self;
-  fn as_mut(&mut self) -> PayloadSystemMessageMut {
+  fn as_mut(&mut self) -> PayloadLobbyEnterResponseMut {
     self.as_mut()
   }
 }
 
-unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadSystemMessage {
+unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadLobbyEnterResponse {
   fn mini_table() -> *const ::protobuf::__internal::runtime::upb_MiniTable {
     static ONCE_LOCK: ::std::sync::OnceLock<::protobuf::__internal::runtime::MiniTablePtr> =
         ::std::sync::OnceLock::new();
     ONCE_LOCK.get_or_init(|| unsafe {
-      super::Proto__PayloadSystemMessage_msg_init.0 =
+      super::Proto__PayloadLobbyEnterResponse_msg_init.0 =
           ::protobuf::__internal::runtime::upb_MiniTable_Build(
-              "$M1P".as_ptr(),
-              4,
+              "$/P1X".as_ptr(),
+              5,
               ::protobuf::__internal::runtime::THREAD_LOCAL_ARENA.with(|a| a.raw()),
               ::std::ptr::null_mut());
       let submessages = [
@@ -1090,64 +1094,64 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadSyst
       let subenums = [
       ];
       assert!(::protobuf::__internal::runtime::upb_MiniTable_Link(
-          super::Proto__PayloadSystemMessage_msg_init.0,
+          super::Proto__PayloadLobbyEnterResponse_msg_init.0,
           submessages.as_ptr() as *const *const ::protobuf::__internal::runtime::upb_MiniTable,
           submessages.len(), subenums.as_ptr(), subenums.len()));
-      ::protobuf::__internal::runtime::MiniTablePtr(super::Proto__PayloadSystemMessage_msg_init.0)
+      ::protobuf::__internal::runtime::MiniTablePtr(super::Proto__PayloadLobbyEnterResponse_msg_init.0)
     }).0
   }
 }
-unsafe impl ::protobuf::__internal::runtime::UpbGetArena for PayloadSystemMessage {
+unsafe impl ::protobuf::__internal::runtime::UpbGetArena for PayloadLobbyEnterResponse {
   fn get_arena(&mut self, _private: ::protobuf::__internal::Private) -> &::protobuf::__internal::runtime::Arena {
     self.inner.arena()
   }
 }
 
-unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadSystemMessageView<'_> {
+unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadLobbyEnterResponseView<'_> {
   #[inline(always)]
   fn mini_table() -> *const ::protobuf::__internal::runtime::upb_MiniTable {
-    <PayloadSystemMessage as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table()
+    <PayloadLobbyEnterResponse as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table()
   }
 }
 
-unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadSystemMessageMut<'_> {
+unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadLobbyEnterResponseMut<'_> {
   #[inline(always)]
   fn mini_table() -> *const ::protobuf::__internal::runtime::upb_MiniTable {
-    <PayloadSystemMessage as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table()
+    <PayloadLobbyEnterResponse as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table()
   }
 }
-unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for PayloadSystemMessage {
-  type Msg = PayloadSystemMessage;
-  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadSystemMessage> {
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for PayloadLobbyEnterResponse {
+  type Msg = PayloadLobbyEnterResponse;
+  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadLobbyEnterResponse> {
     self.inner.ptr_mut()
   }
 }
-unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for PayloadSystemMessage {
-  type Msg = PayloadSystemMessage;
-  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadSystemMessage> {
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for PayloadLobbyEnterResponse {
+  type Msg = PayloadLobbyEnterResponse;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadLobbyEnterResponse> {
     self.inner.ptr()
   }
 }
-unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for PayloadSystemMessageMut<'_> {
-  type Msg = PayloadSystemMessage;
-  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadSystemMessage> {
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for PayloadLobbyEnterResponseMut<'_> {
+  type Msg = PayloadLobbyEnterResponse;
+  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadLobbyEnterResponse> {
     self.inner.ptr_mut()
   }
 }
-unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for PayloadSystemMessageMut<'_> {
-  type Msg = PayloadSystemMessage;
-  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadSystemMessage> {
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for PayloadLobbyEnterResponseMut<'_> {
+  type Msg = PayloadLobbyEnterResponse;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadLobbyEnterResponse> {
     self.inner.ptr()
   }
 }
-unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for PayloadSystemMessageView<'_> {
-  type Msg = PayloadSystemMessage;
-  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadSystemMessage> {
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for PayloadLobbyEnterResponseView<'_> {
+  type Msg = PayloadLobbyEnterResponse;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadLobbyEnterResponse> {
     self.inner.ptr()
   }
 }
 
-unsafe impl ::protobuf::__internal::runtime::UpbGetArena for PayloadSystemMessageMut<'_> {
+unsafe impl ::protobuf::__internal::runtime::UpbGetArena for PayloadLobbyEnterResponseMut<'_> {
   fn get_arena(&mut self, _private: ::protobuf::__internal::Private) -> &::protobuf::__internal::runtime::Arena {
     self.inner.arena()
   }
@@ -1155,10 +1159,10 @@ unsafe impl ::protobuf::__internal::runtime::UpbGetArena for PayloadSystemMessag
 
 
 // upb kernel doesn't support any owned message or message mut interop.
-impl ::protobuf::OwnedMessageInterop for PayloadSystemMessage {}
-impl<'a> ::protobuf::MessageMutInterop<'a> for PayloadSystemMessageMut<'a> {}
+impl ::protobuf::OwnedMessageInterop for PayloadLobbyEnterResponse {}
+impl<'a> ::protobuf::MessageMutInterop<'a> for PayloadLobbyEnterResponseMut<'a> {}
 
-impl<'a> ::protobuf::MessageViewInterop<'a> for PayloadSystemMessageView<'a> {
+impl<'a> ::protobuf::MessageViewInterop<'a> for PayloadLobbyEnterResponseView<'a> {
   unsafe fn __unstable_wrap_raw_message(
     msg: &'a *const ::std::ffi::c_void) -> Self {
     let raw = ::protobuf::__internal::runtime::RawMessage::new(*msg as *mut _).unwrap();

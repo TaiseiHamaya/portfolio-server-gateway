@@ -890,6 +890,21 @@ impl<'msg> PayloadPlayActionView<'msg> {
     }
   }
 
+  // target_id: optional uint64
+  pub fn target_id(self) -> u64 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u64_at_index(
+        1, (0u64).into()
+      ).try_into().unwrap()
+    }
+  }
+
   // action_id: optional uint32
   pub fn action_id(self) -> u32 {
     unsafe {
@@ -900,13 +915,13 @@ impl<'msg> PayloadPlayActionView<'msg> {
       // i32->enum types, since even for closed enums we trust
       // upb to only return one of the named values).
       self.inner.ptr().get_u32_at_index(
-        1, (0u32).into()
+        2, (0u32).into()
       ).try_into().unwrap()
     }
   }
 
-  // timestamp: optional uint64
-  pub fn timestamp(self) -> u64 {
+  // timestamp: optional int64
+  pub fn timestamp(self) -> i64 {
     unsafe {
       // TODO: b/361751487: This .into() and .try_into() is only
       // here for the enum<->i32 case, we should avoid it for
@@ -914,75 +929,12 @@ impl<'msg> PayloadPlayActionView<'msg> {
       // perfectly (and do an unchecked conversion for
       // i32->enum types, since even for closed enums we trust
       // upb to only return one of the named values).
-      self.inner.ptr().get_u64_at_index(
-        2, (0u64).into()
+      self.inner.ptr().get_i64_at_index(
+        3, (0i64).into()
       ).try_into().unwrap()
     }
   }
 
-  // entity_id: optional uint64
-  pub fn has_entity_id(self) -> bool {
-    unsafe {
-      self.inner.ptr().has_field_at_index(3)
-    }
-  }
-  pub fn entity_id_opt(self) -> ::protobuf::Optional<u64> {
-        ::protobuf::Optional::new(self.entity_id(), self.has_entity_id())
-  }
-  pub fn entity_id(self) -> u64 {
-    unsafe {
-      // TODO: b/361751487: This .into() and .try_into() is only
-      // here for the enum<->i32 case, we should avoid it for
-      // other primitives where the types naturally match
-      // perfectly (and do an unchecked conversion for
-      // i32->enum types, since even for closed enums we trust
-      // upb to only return one of the named values).
-      self.inner.ptr().get_u64_at_index(
-        3, (0u64).into()
-      ).try_into().unwrap()
-    }
-  }
-
-  // position: optional message Proto.Vector3
-  pub fn has_position(self) -> bool {
-    unsafe {
-      self.inner.ptr().has_field_at_index(4)
-    }
-  }
-  pub fn position_opt(self) -> ::protobuf::Optional<super::Vector3View<'msg>> {
-        ::protobuf::Optional::new(self.position(), self.has_position())
-  }
-  pub fn position(self) -> super::Vector3View<'msg> {
-    let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(4)
-    };
-    let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
-    let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
-    super::Vector3View::new(::protobuf::__internal::Private, inner)
-  }
-
-  pub fn target(self) -> super::payload_play_action::TargetOneof<'msg> {
-    match self.target_case() {
-      super::payload_play_action::TargetCase::EntityId =>
-          super::payload_play_action::TargetOneof::EntityId(self.entity_id()),
-      super::payload_play_action::TargetCase::Position =>
-          super::payload_play_action::TargetOneof::Position(self.position()),
-      _ => super::payload_play_action::TargetOneof::not_set(std::marker::PhantomData)
-    }
-  }
-
-  pub fn target_case(self) -> super::payload_play_action::TargetCase {
-    let field_num = unsafe {
-      let f = ::protobuf::__internal::runtime::upb_MiniTable_GetFieldByIndex(
-          <Self as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
-          3);
-      ::protobuf::__internal::runtime::upb_Message_WhichOneofFieldNumber(
-            self.raw_msg(), f)
-    };
-    unsafe {
-      super::payload_play_action::TargetCase::try_from(field_num).unwrap_unchecked()
-    }
-  }
 }
 
 // SAFETY:
@@ -1162,6 +1114,32 @@ impl<'msg> PayloadPlayActionMut<'msg> {
     }
   }
 
+  // target_id: optional uint64
+  pub fn target_id(&self) -> u64 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u64_at_index(
+        1, (0u64).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_target_id(&mut self, val: u64) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u64_at_index(
+        1, val.into()
+      )
+    }
+  }
+
   // action_id: optional uint32
   pub fn action_id(&self) -> u32 {
     unsafe {
@@ -1172,7 +1150,7 @@ impl<'msg> PayloadPlayActionMut<'msg> {
       // i32->enum types, since even for closed enums we trust
       // upb to only return one of the named values).
       self.inner.ptr().get_u32_at_index(
-        1, (0u32).into()
+        2, (0u32).into()
       ).try_into().unwrap()
     }
   }
@@ -1183,54 +1161,13 @@ impl<'msg> PayloadPlayActionMut<'msg> {
       // other primitives where the types naturally match
       //perfectly.
       self.inner.ptr_mut().set_base_field_u32_at_index(
-        1, val.into()
-      )
-    }
-  }
-
-  // timestamp: optional uint64
-  pub fn timestamp(&self) -> u64 {
-    unsafe {
-      // TODO: b/361751487: This .into() and .try_into() is only
-      // here for the enum<->i32 case, we should avoid it for
-      // other primitives where the types naturally match
-      // perfectly (and do an unchecked conversion for
-      // i32->enum types, since even for closed enums we trust
-      // upb to only return one of the named values).
-      self.inner.ptr().get_u64_at_index(
-        2, (0u64).into()
-      ).try_into().unwrap()
-    }
-  }
-  pub fn set_timestamp(&mut self, val: u64) {
-    unsafe {
-      // TODO: b/361751487: This .into() is only here
-      // here for the enum<->i32 case, we should avoid it for
-      // other primitives where the types naturally match
-      //perfectly.
-      self.inner.ptr_mut().set_base_field_u64_at_index(
         2, val.into()
       )
     }
   }
 
-  // entity_id: optional uint64
-  pub fn has_entity_id(&self) -> bool {
-    unsafe {
-      self.inner.ptr().has_field_at_index(3)
-    }
-  }
-  pub fn clear_entity_id(&mut self) {
-    unsafe {
-      self.inner.ptr().clear_field_at_index(
-        3
-      );
-    }
-  }
-  pub fn entity_id_opt(&self) -> ::protobuf::Optional<u64> {
-        ::protobuf::Optional::new(self.entity_id(), self.has_entity_id())
-  }
-  pub fn entity_id(&self) -> u64 {
+  // timestamp: optional int64
+  pub fn timestamp(&self) -> i64 {
     unsafe {
       // TODO: b/361751487: This .into() and .try_into() is only
       // here for the enum<->i32 case, we should avoid it for
@@ -1238,99 +1175,23 @@ impl<'msg> PayloadPlayActionMut<'msg> {
       // perfectly (and do an unchecked conversion for
       // i32->enum types, since even for closed enums we trust
       // upb to only return one of the named values).
-      self.inner.ptr().get_u64_at_index(
-        3, (0u64).into()
+      self.inner.ptr().get_i64_at_index(
+        3, (0i64).into()
       ).try_into().unwrap()
     }
   }
-  pub fn set_entity_id(&mut self, val: u64) {
+  pub fn set_timestamp(&mut self, val: i64) {
     unsafe {
       // TODO: b/361751487: This .into() is only here
       // here for the enum<->i32 case, we should avoid it for
       // other primitives where the types naturally match
       //perfectly.
-      self.inner.ptr_mut().set_base_field_u64_at_index(
+      self.inner.ptr_mut().set_base_field_i64_at_index(
         3, val.into()
       )
     }
   }
 
-  // position: optional message Proto.Vector3
-  pub fn has_position(&self) -> bool {
-    unsafe {
-      self.inner.ptr().has_field_at_index(4)
-    }
-  }
-  pub fn clear_position(&mut self) {
-    unsafe {
-      self.inner.ptr().clear_field_at_index(
-        4
-      );
-    }
-  }
-  pub fn position_opt(&self) -> ::protobuf::Optional<super::Vector3View<'_>> {
-        ::protobuf::Optional::new(self.position(), self.has_position())
-  }
-  pub fn position(&self) -> super::Vector3View<'_> {
-    let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(4)
-    };
-    let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
-    let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
-    super::Vector3View::new(::protobuf::__internal::Private, inner)
-  }
-  pub fn position_mut(&mut self) -> super::Vector3Mut<'_> {
-     let ptr = unsafe {
-       self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         4, self.arena()
-       ).unwrap()
-     };
-     super::Vector3Mut::from_parent(
-       ::protobuf::__internal::Private,
-       self.as_message_mut_inner(::protobuf::__internal::Private),
-       ptr.raw())
-  }
-  pub fn set_position(&mut self,
-    val: impl ::protobuf::IntoProxied<super::Vector3>) {
-
-    // The message and arena are dropped after the setter. The
-    // memory remains allocated as we fuse the arena with the
-    // parent message's arena.
-    let mut child = val.into_proxied(::protobuf::__internal::Private);
-    self.inner
-      .arena()
-      .fuse(::protobuf::__internal::runtime::UpbGetArena::get_arena(&mut child, ::protobuf::__internal::Private));
-
-    let child_ptr = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_ptr_mut(&mut child, ::protobuf::__internal::Private);
-    unsafe {
-      self.inner.ptr_mut().set_base_field_message_at_index(
-        4, child_ptr
-      );
-    }
-  }
-
-  pub fn target(&self) -> super::payload_play_action::TargetOneof<'_> {
-    match &self.target_case() {
-      super::payload_play_action::TargetCase::EntityId =>
-          super::payload_play_action::TargetOneof::EntityId(self.entity_id()),
-      super::payload_play_action::TargetCase::Position =>
-          super::payload_play_action::TargetOneof::Position(self.position()),
-      _ => super::payload_play_action::TargetOneof::not_set(std::marker::PhantomData)
-    }
-  }
-
-  pub fn target_case(&self) -> super::payload_play_action::TargetCase {
-    let field_num = unsafe {
-      let f = ::protobuf::__internal::runtime::upb_MiniTable_GetFieldByIndex(
-          <Self as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
-          3);
-      ::protobuf::__internal::runtime::upb_Message_WhichOneofFieldNumber(
-            self.raw_msg(), f)
-    };
-    unsafe {
-      super::payload_play_action::TargetCase::try_from(field_num).unwrap_unchecked()
-    }
-  }
 }
 
 // SAFETY:
@@ -1444,6 +1305,32 @@ impl PayloadPlayAction {
     }
   }
 
+  // target_id: optional uint64
+  pub fn target_id(&self) -> u64 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u64_at_index(
+        1, (0u64).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_target_id(&mut self, val: u64) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u64_at_index(
+        1, val.into()
+      )
+    }
+  }
+
   // action_id: optional uint32
   pub fn action_id(&self) -> u32 {
     unsafe {
@@ -1454,7 +1341,7 @@ impl PayloadPlayAction {
       // i32->enum types, since even for closed enums we trust
       // upb to only return one of the named values).
       self.inner.ptr().get_u32_at_index(
-        1, (0u32).into()
+        2, (0u32).into()
       ).try_into().unwrap()
     }
   }
@@ -1465,54 +1352,13 @@ impl PayloadPlayAction {
       // other primitives where the types naturally match
       //perfectly.
       self.inner.ptr_mut().set_base_field_u32_at_index(
-        1, val.into()
-      )
-    }
-  }
-
-  // timestamp: optional uint64
-  pub fn timestamp(&self) -> u64 {
-    unsafe {
-      // TODO: b/361751487: This .into() and .try_into() is only
-      // here for the enum<->i32 case, we should avoid it for
-      // other primitives where the types naturally match
-      // perfectly (and do an unchecked conversion for
-      // i32->enum types, since even for closed enums we trust
-      // upb to only return one of the named values).
-      self.inner.ptr().get_u64_at_index(
-        2, (0u64).into()
-      ).try_into().unwrap()
-    }
-  }
-  pub fn set_timestamp(&mut self, val: u64) {
-    unsafe {
-      // TODO: b/361751487: This .into() is only here
-      // here for the enum<->i32 case, we should avoid it for
-      // other primitives where the types naturally match
-      //perfectly.
-      self.inner.ptr_mut().set_base_field_u64_at_index(
         2, val.into()
       )
     }
   }
 
-  // entity_id: optional uint64
-  pub fn has_entity_id(&self) -> bool {
-    unsafe {
-      self.inner.ptr().has_field_at_index(3)
-    }
-  }
-  pub fn clear_entity_id(&mut self) {
-    unsafe {
-      self.inner.ptr().clear_field_at_index(
-        3
-      );
-    }
-  }
-  pub fn entity_id_opt(&self) -> ::protobuf::Optional<u64> {
-        ::protobuf::Optional::new(self.entity_id(), self.has_entity_id())
-  }
-  pub fn entity_id(&self) -> u64 {
+  // timestamp: optional int64
+  pub fn timestamp(&self) -> i64 {
     unsafe {
       // TODO: b/361751487: This .into() and .try_into() is only
       // here for the enum<->i32 case, we should avoid it for
@@ -1520,99 +1366,23 @@ impl PayloadPlayAction {
       // perfectly (and do an unchecked conversion for
       // i32->enum types, since even for closed enums we trust
       // upb to only return one of the named values).
-      self.inner.ptr().get_u64_at_index(
-        3, (0u64).into()
+      self.inner.ptr().get_i64_at_index(
+        3, (0i64).into()
       ).try_into().unwrap()
     }
   }
-  pub fn set_entity_id(&mut self, val: u64) {
+  pub fn set_timestamp(&mut self, val: i64) {
     unsafe {
       // TODO: b/361751487: This .into() is only here
       // here for the enum<->i32 case, we should avoid it for
       // other primitives where the types naturally match
       //perfectly.
-      self.inner.ptr_mut().set_base_field_u64_at_index(
+      self.inner.ptr_mut().set_base_field_i64_at_index(
         3, val.into()
       )
     }
   }
 
-  // position: optional message Proto.Vector3
-  pub fn has_position(&self) -> bool {
-    unsafe {
-      self.inner.ptr().has_field_at_index(4)
-    }
-  }
-  pub fn clear_position(&mut self) {
-    unsafe {
-      self.inner.ptr().clear_field_at_index(
-        4
-      );
-    }
-  }
-  pub fn position_opt(&self) -> ::protobuf::Optional<super::Vector3View<'_>> {
-        ::protobuf::Optional::new(self.position(), self.has_position())
-  }
-  pub fn position(&self) -> super::Vector3View<'_> {
-    let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(4)
-    };
-    let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
-    let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
-    super::Vector3View::new(::protobuf::__internal::Private, inner)
-  }
-  pub fn position_mut(&mut self) -> super::Vector3Mut<'_> {
-     let ptr = unsafe {
-       self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         4, self.arena()
-       ).unwrap()
-     };
-     super::Vector3Mut::from_parent(
-       ::protobuf::__internal::Private,
-       self.as_message_mut_inner(::protobuf::__internal::Private),
-       ptr.raw())
-  }
-  pub fn set_position(&mut self,
-    val: impl ::protobuf::IntoProxied<super::Vector3>) {
-
-    // The message and arena are dropped after the setter. The
-    // memory remains allocated as we fuse the arena with the
-    // parent message's arena.
-    let mut child = val.into_proxied(::protobuf::__internal::Private);
-    self.inner
-      .arena()
-      .fuse(::protobuf::__internal::runtime::UpbGetArena::get_arena(&mut child, ::protobuf::__internal::Private));
-
-    let child_ptr = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_ptr_mut(&mut child, ::protobuf::__internal::Private);
-    unsafe {
-      self.inner.ptr_mut().set_base_field_message_at_index(
-        4, child_ptr
-      );
-    }
-  }
-
-  pub fn target(&self) -> super::payload_play_action::TargetOneof<'_> {
-    match &self.target_case() {
-      super::payload_play_action::TargetCase::EntityId =>
-          super::payload_play_action::TargetOneof::EntityId(self.entity_id()),
-      super::payload_play_action::TargetCase::Position =>
-          super::payload_play_action::TargetOneof::Position(self.position()),
-      _ => super::payload_play_action::TargetOneof::not_set(std::marker::PhantomData)
-    }
-  }
-
-  pub fn target_case(&self) -> super::payload_play_action::TargetCase {
-    let field_num = unsafe {
-      let f = ::protobuf::__internal::runtime::upb_MiniTable_GetFieldByIndex(
-          <Self as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
-          3);
-      ::protobuf::__internal::runtime::upb_Message_WhichOneofFieldNumber(
-            self.raw_msg(), f)
-    };
-    unsafe {
-      super::payload_play_action::TargetCase::try_from(field_num).unwrap_unchecked()
-    }
-  }
 }  // impl PayloadPlayAction
 
 impl ::std::ops::Drop for PayloadPlayAction {
@@ -1647,12 +1417,11 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadPlay
     ONCE_LOCK.get_or_init(|| unsafe {
       super::Proto__PayloadPlayAction_msg_init.0 =
           ::protobuf::__internal::runtime::upb_MiniTable_Build(
-              "$,P)P,P,3^%|&".as_ptr(),
-              13,
+              "$,P,P)P+P".as_ptr(),
+              9,
               ::protobuf::__internal::runtime::THREAD_LOCAL_ARENA.with(|a| a.raw()),
               ::std::ptr::null_mut());
       let submessages = [
-        <super::Vector3 as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
       ];
       let subenums = [
       ];
@@ -1720,41 +1489,6 @@ unsafe impl ::protobuf::__internal::runtime::UpbGetArena for PayloadPlayActionMu
   }
 }
 
-pub mod payload_play_action {
-
-#[non_exhaustive]
-#[derive(Debug, Clone, Copy)]
-#[allow(dead_code)]
-#[repr(u32)]
-pub enum TargetOneof<'msg> {
-  EntityId(u64) = 4,
-  Position(::protobuf::View<'msg, super::super::Vector3>) = 5,
-
-  not_set(std::marker::PhantomData<&'msg ()>) = 0
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone, PartialEq, Eq)]
-#[non_exhaustive]
-#[allow(dead_code)]
-pub enum TargetCase {
-  EntityId = 4,
-  Position = 5,
-
-  not_set = 0
-}
-
-impl TargetCase {
-  #[allow(dead_code)]
-  pub(crate) fn try_from(v: u32) -> ::std::option::Option<TargetCase> {
-    match v {
-      0 => Some(TargetCase::not_set),
-      4 => Some(TargetCase::EntityId),
-      5 => Some(TargetCase::Position),
-      _ => None
-    }
-  }
-}
-}  // pub mod payload_play_action
 
 // upb kernel doesn't support any owned message or message mut interop.
 impl ::protobuf::OwnedMessageInterop for PayloadPlayAction {}
@@ -1901,8 +1635,8 @@ impl<'msg> PayloadEntityDamagedView<'msg> {
     ::protobuf::IntoProxied::into_proxied(*self, ::protobuf::__internal::Private)
   }
 
-  // attacker_id: optional uint64
-  pub fn attacker_id(self) -> u64 {
+  // entity_id: optional uint64
+  pub fn entity_id(self) -> u64 {
     unsafe {
       // TODO: b/361751487: This .into() and .try_into() is only
       // here for the enum<->i32 case, we should avoid it for
@@ -1912,21 +1646,6 @@ impl<'msg> PayloadEntityDamagedView<'msg> {
       // upb to only return one of the named values).
       self.inner.ptr().get_u64_at_index(
         0, (0u64).into()
-      ).try_into().unwrap()
-    }
-  }
-
-  // target_id: optional uint64
-  pub fn target_id(self) -> u64 {
-    unsafe {
-      // TODO: b/361751487: This .into() and .try_into() is only
-      // here for the enum<->i32 case, we should avoid it for
-      // other primitives where the types naturally match
-      // perfectly (and do an unchecked conversion for
-      // i32->enum types, since even for closed enums we trust
-      // upb to only return one of the named values).
-      self.inner.ptr().get_u64_at_index(
-        1, (0u64).into()
       ).try_into().unwrap()
     }
   }
@@ -1941,7 +1660,7 @@ impl<'msg> PayloadEntityDamagedView<'msg> {
       // i32->enum types, since even for closed enums we trust
       // upb to only return one of the named values).
       self.inner.ptr().get_i32_at_index(
-        2, (0i32).into()
+        1, (0i32).into()
       ).try_into().unwrap()
     }
   }
@@ -2099,8 +1818,8 @@ impl<'msg> PayloadEntityDamagedMut<'msg> {
     self.inner.arena()
   }
 
-  // attacker_id: optional uint64
-  pub fn attacker_id(&self) -> u64 {
+  // entity_id: optional uint64
+  pub fn entity_id(&self) -> u64 {
     unsafe {
       // TODO: b/361751487: This .into() and .try_into() is only
       // here for the enum<->i32 case, we should avoid it for
@@ -2113,7 +1832,7 @@ impl<'msg> PayloadEntityDamagedMut<'msg> {
       ).try_into().unwrap()
     }
   }
-  pub fn set_attacker_id(&mut self, val: u64) {
+  pub fn set_entity_id(&mut self, val: u64) {
     unsafe {
       // TODO: b/361751487: This .into() is only here
       // here for the enum<->i32 case, we should avoid it for
@@ -2121,32 +1840,6 @@ impl<'msg> PayloadEntityDamagedMut<'msg> {
       //perfectly.
       self.inner.ptr_mut().set_base_field_u64_at_index(
         0, val.into()
-      )
-    }
-  }
-
-  // target_id: optional uint64
-  pub fn target_id(&self) -> u64 {
-    unsafe {
-      // TODO: b/361751487: This .into() and .try_into() is only
-      // here for the enum<->i32 case, we should avoid it for
-      // other primitives where the types naturally match
-      // perfectly (and do an unchecked conversion for
-      // i32->enum types, since even for closed enums we trust
-      // upb to only return one of the named values).
-      self.inner.ptr().get_u64_at_index(
-        1, (0u64).into()
-      ).try_into().unwrap()
-    }
-  }
-  pub fn set_target_id(&mut self, val: u64) {
-    unsafe {
-      // TODO: b/361751487: This .into() is only here
-      // here for the enum<->i32 case, we should avoid it for
-      // other primitives where the types naturally match
-      //perfectly.
-      self.inner.ptr_mut().set_base_field_u64_at_index(
-        1, val.into()
       )
     }
   }
@@ -2161,7 +1854,7 @@ impl<'msg> PayloadEntityDamagedMut<'msg> {
       // i32->enum types, since even for closed enums we trust
       // upb to only return one of the named values).
       self.inner.ptr().get_i32_at_index(
-        2, (0i32).into()
+        1, (0i32).into()
       ).try_into().unwrap()
     }
   }
@@ -2172,7 +1865,7 @@ impl<'msg> PayloadEntityDamagedMut<'msg> {
       // other primitives where the types naturally match
       //perfectly.
       self.inner.ptr_mut().set_base_field_i32_at_index(
-        2, val.into()
+        1, val.into()
       )
     }
   }
@@ -2264,8 +1957,8 @@ impl PayloadEntityDamaged {
     PayloadEntityDamagedMut::new(::protobuf::__internal::Private, inner)
   }
 
-  // attacker_id: optional uint64
-  pub fn attacker_id(&self) -> u64 {
+  // entity_id: optional uint64
+  pub fn entity_id(&self) -> u64 {
     unsafe {
       // TODO: b/361751487: This .into() and .try_into() is only
       // here for the enum<->i32 case, we should avoid it for
@@ -2278,7 +1971,7 @@ impl PayloadEntityDamaged {
       ).try_into().unwrap()
     }
   }
-  pub fn set_attacker_id(&mut self, val: u64) {
+  pub fn set_entity_id(&mut self, val: u64) {
     unsafe {
       // TODO: b/361751487: This .into() is only here
       // here for the enum<->i32 case, we should avoid it for
@@ -2286,32 +1979,6 @@ impl PayloadEntityDamaged {
       //perfectly.
       self.inner.ptr_mut().set_base_field_u64_at_index(
         0, val.into()
-      )
-    }
-  }
-
-  // target_id: optional uint64
-  pub fn target_id(&self) -> u64 {
-    unsafe {
-      // TODO: b/361751487: This .into() and .try_into() is only
-      // here for the enum<->i32 case, we should avoid it for
-      // other primitives where the types naturally match
-      // perfectly (and do an unchecked conversion for
-      // i32->enum types, since even for closed enums we trust
-      // upb to only return one of the named values).
-      self.inner.ptr().get_u64_at_index(
-        1, (0u64).into()
-      ).try_into().unwrap()
-    }
-  }
-  pub fn set_target_id(&mut self, val: u64) {
-    unsafe {
-      // TODO: b/361751487: This .into() is only here
-      // here for the enum<->i32 case, we should avoid it for
-      // other primitives where the types naturally match
-      //perfectly.
-      self.inner.ptr_mut().set_base_field_u64_at_index(
-        1, val.into()
       )
     }
   }
@@ -2326,7 +1993,7 @@ impl PayloadEntityDamaged {
       // i32->enum types, since even for closed enums we trust
       // upb to only return one of the named values).
       self.inner.ptr().get_i32_at_index(
-        2, (0i32).into()
+        1, (0i32).into()
       ).try_into().unwrap()
     }
   }
@@ -2337,7 +2004,7 @@ impl PayloadEntityDamaged {
       // other primitives where the types naturally match
       //perfectly.
       self.inner.ptr_mut().set_base_field_i32_at_index(
-        2, val.into()
+        1, val.into()
       )
     }
   }
@@ -2376,8 +2043,8 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadEnti
     ONCE_LOCK.get_or_init(|| unsafe {
       super::Proto__PayloadEntityDamaged_msg_init.0 =
           ::protobuf::__internal::runtime::upb_MiniTable_Build(
-              "$,P,P(P".as_ptr(),
-              7,
+              "$a,P(P".as_ptr(),
+              6,
               ::protobuf::__internal::runtime::THREAD_LOCAL_ARENA.with(|a| a.raw()),
               ::std::ptr::null_mut());
       let submessages = [
@@ -2471,177 +2138,1311 @@ impl<'a> ::protobuf::MessageViewInterop<'a> for PayloadEntityDamagedView<'a> {
   }
 }
 
-#[repr(transparent)]
-#[derive(Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord)]
-pub struct CategorySyncMessage(i32);
-
-#[allow(non_upper_case_globals)]
-impl CategorySyncMessage {
-  pub const SyncTransform: CategorySyncMessage = CategorySyncMessage(0);
-  pub const PlayAction: CategorySyncMessage = CategorySyncMessage(1);
-  pub const EntityDamaged: CategorySyncMessage = CategorySyncMessage(2);
-
-  fn constant_name(&self) -> ::std::option::Option<&'static str> {
-    #[allow(unreachable_patterns)] // In the case of aliases, just emit them all and let the first one match.
-    Some(match self.0 {
-      0 => "SyncTransform",
-      1 => "PlayAction",
-      2 => "EntityDamaged",
-      _ => return None
-    })
-  }
+// This variable must not be referenced except by protobuf generated
+// code.
+pub(crate) static mut Proto__PayloadZoneEnterNotification_msg_init: ::protobuf::__internal::runtime::MiniTablePtr =
+    ::protobuf::__internal::runtime::MiniTablePtr(::std::ptr::null_mut());
+#[allow(non_camel_case_types)]
+pub struct PayloadZoneEnterNotification {
+  inner: ::protobuf::__internal::runtime::OwnedMessageInner<PayloadZoneEnterNotification>
 }
 
-impl ::std::convert::From<CategorySyncMessage> for i32 {
-  fn from(val: CategorySyncMessage) -> i32 {
-    val.0
-  }
-}
+impl ::protobuf::Message for PayloadZoneEnterNotification {}
 
-impl ::std::convert::From<i32> for CategorySyncMessage {
-  fn from(val: i32) -> CategorySyncMessage {
-    Self(val)
-  }
-}
-
-impl ::std::default::Default for CategorySyncMessage {
+impl ::std::default::Default for PayloadZoneEnterNotification {
   fn default() -> Self {
-    Self(0)
+    Self::new()
   }
 }
 
-impl ::std::fmt::Debug for CategorySyncMessage {
+impl ::protobuf::Parse for PayloadZoneEnterNotification {
+  fn parse(serialized: &[u8]) -> ::std::result::Result<Self, ::protobuf::ParseError> {
+    Self::parse(serialized)
+  }
+
+  fn parse_dont_enforce_required(serialized: &[u8]) -> ::std::result::Result<Self, ::protobuf::ParseError> {
+    Self::parse_dont_enforce_required(serialized)
+  }
+}
+
+impl ::std::fmt::Debug for PayloadZoneEnterNotification {
   fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-    if let Some(constant_name) = self.constant_name() {
-      write!(f, "CategorySyncMessage::{}", constant_name)
-    } else {
-      write!(f, "CategorySyncMessage::from({})", self.0)
+    let string = unsafe {
+      ::protobuf::__internal::runtime::debug_string(
+        self.raw_msg(),
+        <Self as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table()
+      )
+    };
+    write!(f, "{}", string)
+  }
+}
+
+impl ::protobuf::Serialize for PayloadZoneEnterNotification {
+  fn serialize(&self) -> ::std::result::Result<Vec<u8>, ::protobuf::SerializeError> {
+    ::protobuf::AsView::as_view(self).serialize()
+  }
+}
+
+// SAFETY:
+// - `PayloadZoneEnterNotification` is `Sync` because it does not implement interior mutability.
+//    Neither does `PayloadZoneEnterNotificationMut`.
+unsafe impl Sync for PayloadZoneEnterNotification {}
+
+// SAFETY:
+// - `PayloadZoneEnterNotification` is `Send` because it uniquely owns its arena and does
+//   not use thread-local data.
+unsafe impl Send for PayloadZoneEnterNotification {}
+
+impl ::protobuf::Proxied for PayloadZoneEnterNotification {
+  type View<'msg> = PayloadZoneEnterNotificationView<'msg>;
+}
+
+impl ::protobuf::__internal::SealedInternal for PayloadZoneEnterNotification {}
+
+impl ::protobuf::MutProxied for PayloadZoneEnterNotification {
+  type Mut<'msg> = PayloadZoneEnterNotificationMut<'msg>;
+}
+
+#[derive(Copy, Clone)]
+#[allow(dead_code)]
+pub struct PayloadZoneEnterNotificationView<'msg> {
+  inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, PayloadZoneEnterNotification>,
+  _phantom: ::std::marker::PhantomData<&'msg ()>,
+}
+
+impl<'msg> ::protobuf::__internal::SealedInternal for PayloadZoneEnterNotificationView<'msg> {}
+
+impl<'msg> ::protobuf::MessageView<'msg> for PayloadZoneEnterNotificationView<'msg> {
+  type Message = PayloadZoneEnterNotification;
+}
+
+impl ::std::fmt::Debug for PayloadZoneEnterNotificationView<'_> {
+  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+    let string = unsafe {
+      ::protobuf::__internal::runtime::debug_string(
+        self.raw_msg(),
+        <Self as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table()
+      )
+    };
+    write!(f, "{}", string)
+  }
+}
+
+impl ::protobuf::Serialize for PayloadZoneEnterNotificationView<'_> {
+  fn serialize(&self) -> ::std::result::Result<Vec<u8>, ::protobuf::SerializeError> {
+    // SAFETY: `MINI_TABLE` is the one associated with `self.raw_msg()`.
+    let encoded = unsafe {
+      ::protobuf::__internal::runtime::wire::encode(self.raw_msg(),
+          <Self as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table())
+    };
+    encoded.map_err(|_| ::protobuf::SerializeError)
+  }
+}
+
+impl ::std::default::Default for PayloadZoneEnterNotificationView<'_> {
+  fn default() -> PayloadZoneEnterNotificationView<'static> {
+    let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(::protobuf::__internal::runtime::ScratchSpace::zeroed_block()) };
+    PayloadZoneEnterNotificationView::new(::protobuf::__internal::Private, inner)
+  }
+}
+
+#[allow(dead_code)]
+impl<'msg> PayloadZoneEnterNotificationView<'msg> {
+  #[doc(hidden)]
+  pub fn new(_private: ::protobuf::__internal::Private, inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, PayloadZoneEnterNotification>) -> Self {
+    Self { inner, _phantom: ::std::marker::PhantomData }
+  }
+
+  fn raw_msg(&self) -> ::protobuf::__internal::runtime::RawMessage {
+    self.inner.raw()
+  }
+
+  pub fn to_owned(&self) -> PayloadZoneEnterNotification {
+    ::protobuf::IntoProxied::into_proxied(*self, ::protobuf::__internal::Private)
+  }
+
+  // id: optional uint64
+  pub fn id(self) -> u64 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u64_at_index(
+        0, (0u64).into()
+      ).try_into().unwrap()
     }
   }
-}
 
-impl ::protobuf::IntoProxied<i32> for CategorySyncMessage {
-  fn into_proxied(self, _: ::protobuf::__internal::Private) -> i32 {
-    self.0
+  // username: optional string
+  pub fn username(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        1, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
+
+  // position: optional message Proto.Vector3
+  pub fn has_position(self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(2)
+    }
+  }
+  pub fn position_opt(self) -> ::protobuf::Optional<super::Vector3View<'msg>> {
+        ::protobuf::Optional::new(self.position(), self.has_position())
+  }
+  pub fn position(self) -> super::Vector3View<'msg> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(2)
+    };
+    let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
+    let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
+    super::Vector3View::new(::protobuf::__internal::Private, inner)
+  }
+
 }
 
-impl ::protobuf::__internal::SealedInternal for CategorySyncMessage {}
+// SAFETY:
+// - `PayloadZoneEnterNotificationView` is `Sync` because it does not support mutation.
+unsafe impl Sync for PayloadZoneEnterNotificationView<'_> {}
 
-impl ::protobuf::Proxied for CategorySyncMessage {
-  type View<'a> = CategorySyncMessage;
-}
+// SAFETY:
+// - `PayloadZoneEnterNotificationView` is `Send` because while its alive a `PayloadZoneEnterNotificationMut` cannot.
+// - `PayloadZoneEnterNotificationView` does not use thread-local data.
+unsafe impl Send for PayloadZoneEnterNotificationView<'_> {}
 
-impl ::protobuf::Proxy<'_> for CategorySyncMessage {}
-impl ::protobuf::ViewProxy<'_> for CategorySyncMessage {}
+impl<'msg> ::protobuf::Proxy<'msg> for PayloadZoneEnterNotificationView<'msg> {}
+impl<'msg> ::protobuf::ViewProxy<'msg> for PayloadZoneEnterNotificationView<'msg> {}
 
-impl ::protobuf::AsView for CategorySyncMessage {
-  type Proxied = CategorySyncMessage;
-
-  fn as_view(&self) -> CategorySyncMessage {
+impl<'msg> ::protobuf::AsView for PayloadZoneEnterNotificationView<'msg> {
+  type Proxied = PayloadZoneEnterNotification;
+  fn as_view(&self) -> ::protobuf::View<'msg, PayloadZoneEnterNotification> {
     *self
   }
 }
 
-impl<'msg> ::protobuf::IntoView<'msg> for CategorySyncMessage {
-  fn into_view<'shorter>(self) -> CategorySyncMessage where 'msg: 'shorter {
+impl<'msg> ::protobuf::IntoView<'msg> for PayloadZoneEnterNotificationView<'msg> {
+  fn into_view<'shorter>(self) -> PayloadZoneEnterNotificationView<'shorter>
+  where
+      'msg: 'shorter {
     self
   }
 }
 
-unsafe impl ::protobuf::ProxiedInRepeated for CategorySyncMessage {
-  fn repeated_new(_private: ::protobuf::__internal::Private) -> ::protobuf::Repeated<Self> {
-    ::protobuf::__internal::runtime::new_enum_repeated()
-  }
+impl<'msg> ::protobuf::IntoProxied<PayloadZoneEnterNotification> for PayloadZoneEnterNotificationView<'msg> {
+  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> PayloadZoneEnterNotification {
+    let mut dst = PayloadZoneEnterNotification::new();
+    let dst_raw = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_raw_message_mut(&mut dst, ::protobuf::__internal::Private);
+    let dst_arena = ::protobuf::__internal::runtime::UpbGetArena::get_arena(&mut dst, ::protobuf::__internal::Private);
+    let src_raw = ::protobuf::__internal::runtime::UpbGetMessagePtr::get_raw_message(&self, ::protobuf::__internal::Private);
 
-  unsafe fn repeated_free(_private: ::protobuf::__internal::Private, f: &mut ::protobuf::Repeated<Self>) {
-    ::protobuf::__internal::runtime::free_enum_repeated(f)
-  }
-
-  fn repeated_len(r: ::protobuf::View<::protobuf::Repeated<Self>>) -> usize {
-    ::protobuf::__internal::runtime::cast_enum_repeated_view(r).len()
-  }
-
-  fn repeated_push(r: ::protobuf::Mut<::protobuf::Repeated<Self>>, val: impl ::protobuf::IntoProxied<CategorySyncMessage>) {
-    ::protobuf::__internal::runtime::cast_enum_repeated_mut(r).push(val.into_proxied(::protobuf::__internal::Private))
-  }
-
-  fn repeated_clear(r: ::protobuf::Mut<::protobuf::Repeated<Self>>) {
-    ::protobuf::__internal::runtime::cast_enum_repeated_mut(r).clear()
-  }
-
-  unsafe fn repeated_get_unchecked(
-      r: ::protobuf::View<::protobuf::Repeated<Self>>,
-      index: usize,
-  ) -> ::protobuf::View<CategorySyncMessage> {
-    // SAFETY: In-bounds as promised by the caller.
-    unsafe {
-      ::protobuf::__internal::runtime::cast_enum_repeated_view(r)
-        .get_unchecked(index)
-        .try_into()
-        .unwrap_unchecked()
-    }
-  }
-
-  unsafe fn repeated_set_unchecked(
-      r: ::protobuf::Mut<::protobuf::Repeated<Self>>,
-      index: usize,
-      val: impl ::protobuf::IntoProxied<CategorySyncMessage>,
-  ) {
-    // SAFETY: In-bounds as promised by the caller.
-    unsafe {
-      ::protobuf::__internal::runtime::cast_enum_repeated_mut(r)
-        .set_unchecked(index, val.into_proxied(::protobuf::__internal::Private))
-    }
-  }
-
-  fn repeated_copy_from(
-      src: ::protobuf::View<::protobuf::Repeated<Self>>,
-      dest: ::protobuf::Mut<::protobuf::Repeated<Self>>,
-  ) {
-    ::protobuf::__internal::runtime::cast_enum_repeated_mut(dest)
-      .copy_from(::protobuf::__internal::runtime::cast_enum_repeated_view(src))
-  }
-
-  fn repeated_reserve(
-      r: ::protobuf::Mut<::protobuf::Repeated<Self>>,
-      additional: usize,
-  ) {
-      // SAFETY:
-      // - `f.as_raw()` is valid.
-      ::protobuf::__internal::runtime::reserve_enum_repeated_mut(r, additional);
+    unsafe { ::protobuf::__internal::runtime::upb_Message_DeepCopy(
+      dst_raw,
+      src_raw,
+      <Self as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
+      dst_arena.raw(),
+    ) };
+    dst
   }
 }
 
-// SAFETY: this is an enum type
-unsafe impl ::protobuf::__internal::Enum for CategorySyncMessage {
-  const NAME: &'static str = "CategorySyncMessage";
-
-  fn is_known(value: i32) -> bool {
-    matches!(value, 0|1|2)
+impl<'msg> ::protobuf::IntoProxied<PayloadZoneEnterNotification> for PayloadZoneEnterNotificationMut<'msg> {
+  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> PayloadZoneEnterNotification {
+    ::protobuf::IntoProxied::into_proxied(::protobuf::IntoView::into_view(self), _private)
   }
 }
 
-impl ::protobuf::__internal::runtime::UpbTypeConversions for CategorySyncMessage {
+impl ::protobuf::__internal::runtime::UpbTypeConversions for PayloadZoneEnterNotification {
     fn upb_type() -> ::protobuf::__internal::runtime::CType {
-        ::protobuf::__internal::runtime::CType::Enum
+        ::protobuf::__internal::runtime::CType::Message
     }
 
     fn to_message_value(
         val: ::protobuf::View<'_, Self>) -> ::protobuf::__internal::runtime::upb_MessageValue {
-        ::protobuf::__internal::runtime::upb_MessageValue { int32_val: val.0 }
+        ::protobuf::__internal::runtime::upb_MessageValue { msg_val: Some(val.raw_msg()) }
     }
 
     unsafe fn into_message_value_fuse_if_required(
-      _raw_parent_arena: ::protobuf::__internal::runtime::RawArena,
-      val: Self) -> ::protobuf::__internal::runtime::upb_MessageValue {
-        ::protobuf::__internal::runtime::upb_MessageValue { int32_val: val.0 }
+      raw_parent_arena: ::protobuf::__internal::runtime::RawArena,
+      mut val: Self) -> ::protobuf::__internal::runtime::upb_MessageValue {
+      // SAFETY: The arena memory is not freed due to `ManuallyDrop`.
+      let parent_arena = ::std::mem::ManuallyDrop::new(
+          unsafe { ::protobuf::__internal::runtime::Arena::from_raw(raw_parent_arena) });
+
+      parent_arena.fuse(val.as_message_mut_inner(::protobuf::__internal::Private).arena());
+      ::protobuf::__internal::runtime::upb_MessageValue { msg_val: Some(val.raw_msg()) }
     }
 
-    unsafe fn from_message_value<'msg>(val: ::protobuf::__internal::runtime::upb_MessageValue)
+    unsafe fn from_message_value<'msg>(msg: ::protobuf::__internal::runtime::upb_MessageValue)
         -> ::protobuf::View<'msg, Self> {
-      CategorySyncMessage(unsafe { val.int32_val })
+        let raw = unsafe { msg.msg_val }.expect("expected present message value in map");
+        let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
+        PayloadZoneEnterNotificationView::new(::protobuf::__internal::Private, inner)
+    }
+
+    unsafe fn from_message_mut<'msg>(msg: ::protobuf::__internal::runtime::RawMessage, arena: &'msg ::protobuf::__internal::runtime::Arena)
+        -> PayloadZoneEnterNotificationMut<'msg> {
+        let inner = unsafe { ::protobuf::__internal::runtime::MessageMutInner::<'msg, PayloadZoneEnterNotification>::wrap_raw(msg, arena) };
+        PayloadZoneEnterNotificationMut::new(::protobuf::__internal::Private, inner)
     }
 }
 
+#[allow(dead_code)]
+#[allow(non_camel_case_types)]
+pub struct PayloadZoneEnterNotificationMut<'msg> {
+  inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, PayloadZoneEnterNotification>,
+}
+
+impl<'msg> ::protobuf::__internal::SealedInternal for PayloadZoneEnterNotificationMut<'msg> {}
+
+impl<'msg> ::protobuf::MessageMut<'msg> for PayloadZoneEnterNotificationMut<'msg> {
+  type Message = PayloadZoneEnterNotification;
+}
+
+impl ::std::fmt::Debug for PayloadZoneEnterNotificationMut<'_> {
+  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+    let string = unsafe {
+      ::protobuf::__internal::runtime::debug_string(
+        self.raw_msg(),
+        <Self as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table()
+      )
+    };
+    write!(f, "{}", string)
+  }
+}
+
+impl ::protobuf::Serialize for PayloadZoneEnterNotificationMut<'_> {
+  fn serialize(&self) -> ::std::result::Result<Vec<u8>, ::protobuf::SerializeError> {
+    ::protobuf::AsView::as_view(self).serialize()
+  }
+}
+
+#[allow(dead_code)]
+impl<'msg> PayloadZoneEnterNotificationMut<'msg> {
+  #[doc(hidden)]
+  pub fn from_parent<ParentT: ::protobuf::Message>(
+             _private: ::protobuf::__internal::Private,
+             parent: ::protobuf::__internal::runtime::MessageMutInner<'msg, ParentT>,
+             msg: ::protobuf::__internal::runtime::RawMessage)
+    -> Self {
+    Self {
+      inner: ::protobuf::__internal::runtime::MessageMutInner::from_parent(parent, msg)
+    }
+  }
+
+  #[doc(hidden)]
+  pub fn new(_private: ::protobuf::__internal::Private, inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, PayloadZoneEnterNotification>) -> Self {
+    Self { inner }
+  }
+
+  fn raw_msg(&self) -> ::protobuf::__internal::runtime::RawMessage {
+    self.inner.raw()
+  }
+
+  #[doc(hidden)]
+  pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
+    -> ::protobuf::__internal::runtime::MessageMutInner<'msg, PayloadZoneEnterNotification> {
+    self.inner
+  }
+
+  pub fn to_owned(&self) -> PayloadZoneEnterNotification {
+    ::protobuf::AsView::as_view(self).to_owned()
+  }
+
+  fn arena(&mut self) -> &::protobuf::__internal::runtime::Arena {
+    self.inner.arena()
+  }
+
+  // id: optional uint64
+  pub fn id(&self) -> u64 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u64_at_index(
+        0, (0u64).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_id(&mut self, val: u64) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u64_at_index(
+        0, val.into()
+      )
+    }
+  }
+
+  // username: optional string
+  pub fn username(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        1, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_username(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    let s = val.into_proxied(::protobuf::__internal::Private);
+    let (view, arena) =
+      s.into_inner(::protobuf::__internal::Private).into_raw_parts();
+
+    let parent_arena = self.inner.arena();
+    parent_arena.fuse(&arena);
+
+    unsafe {
+      self.inner.ptr_mut().set_base_field_string_at_index(
+        1,
+        view,
+      );
+    }
+  }
+
+  // position: optional message Proto.Vector3
+  pub fn has_position(&self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(2)
+    }
+  }
+  pub fn clear_position(&mut self) {
+    unsafe {
+      self.inner.ptr().clear_field_at_index(
+        2
+      );
+    }
+  }
+  pub fn position_opt(&self) -> ::protobuf::Optional<super::Vector3View<'_>> {
+        ::protobuf::Optional::new(self.position(), self.has_position())
+  }
+  pub fn position(&self) -> super::Vector3View<'_> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(2)
+    };
+    let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
+    let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
+    super::Vector3View::new(::protobuf::__internal::Private, inner)
+  }
+  pub fn position_mut(&mut self) -> super::Vector3Mut<'_> {
+     let ptr = unsafe {
+       self.inner.ptr_mut().get_or_create_mutable_message_at_index(
+         2, self.arena()
+       ).unwrap()
+     };
+     super::Vector3Mut::from_parent(
+       ::protobuf::__internal::Private,
+       self.as_message_mut_inner(::protobuf::__internal::Private),
+       ptr.raw())
+  }
+  pub fn set_position(&mut self,
+    val: impl ::protobuf::IntoProxied<super::Vector3>) {
+
+    // The message and arena are dropped after the setter. The
+    // memory remains allocated as we fuse the arena with the
+    // parent message's arena.
+    let mut child = val.into_proxied(::protobuf::__internal::Private);
+    self.inner
+      .arena()
+      .fuse(::protobuf::__internal::runtime::UpbGetArena::get_arena(&mut child, ::protobuf::__internal::Private));
+
+    let child_ptr = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_ptr_mut(&mut child, ::protobuf::__internal::Private);
+    unsafe {
+      self.inner.ptr_mut().set_base_field_message_at_index(
+        2, child_ptr
+      );
+    }
+  }
+
+}
+
+// SAFETY:
+// - `PayloadZoneEnterNotificationMut` does not perform any shared mutation.
+// - `PayloadZoneEnterNotificationMut` is not `Send`, and so even in the presence of mutator
+//   splitting, synchronous access of an arena is impossible.
+unsafe impl Sync for PayloadZoneEnterNotificationMut<'_> {}
+
+impl<'msg> ::protobuf::Proxy<'msg> for PayloadZoneEnterNotificationMut<'msg> {}
+impl<'msg> ::protobuf::MutProxy<'msg> for PayloadZoneEnterNotificationMut<'msg> {}
+
+impl<'msg> ::protobuf::AsView for PayloadZoneEnterNotificationMut<'msg> {
+  type Proxied = PayloadZoneEnterNotification;
+  fn as_view(&self) -> ::protobuf::View<'_, PayloadZoneEnterNotification> {
+    PayloadZoneEnterNotificationView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner.clone()),
+      _phantom: ::std::marker::PhantomData
+    }
+  }
+}
+
+impl<'msg> ::protobuf::IntoView<'msg> for PayloadZoneEnterNotificationMut<'msg> {
+  fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, PayloadZoneEnterNotification>
+  where
+      'msg: 'shorter {
+    PayloadZoneEnterNotificationView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner.clone()),
+      _phantom: ::std::marker::PhantomData
+    }
+  }
+}
+
+impl<'msg> ::protobuf::AsMut for PayloadZoneEnterNotificationMut<'msg> {
+  type MutProxied = PayloadZoneEnterNotification;
+  fn as_mut(&mut self) -> PayloadZoneEnterNotificationMut<'msg> {
+    PayloadZoneEnterNotificationMut { inner: self.inner }
+  }
+}
+
+impl<'msg> ::protobuf::IntoMut<'msg> for PayloadZoneEnterNotificationMut<'msg> {
+  fn into_mut<'shorter>(self) -> PayloadZoneEnterNotificationMut<'shorter>
+  where
+      'msg: 'shorter {
+    self
+  }
+}
+
+#[allow(dead_code)]
+impl PayloadZoneEnterNotification {
+  pub fn new() -> Self {
+    Self { inner: ::protobuf::__internal::runtime::OwnedMessageInner::<Self>::new() }
+  }
+
+  fn raw_msg(&self) -> ::protobuf::__internal::runtime::RawMessage {
+    self.inner.raw()
+  }
+
+  #[doc(hidden)]
+  pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessageMutInner<'_, PayloadZoneEnterNotification> {
+    ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner)
+  }
+
+  fn arena(&mut self) -> &::protobuf::__internal::runtime::Arena {
+    self.inner.arena()
+  }
+
+  pub fn parse(data: &[u8]) -> ::std::result::Result<Self, ::protobuf::ParseError> {
+    let mut msg = Self::new();
+    ::protobuf::ClearAndParse::clear_and_parse(&mut msg, data).map(|_| msg)
+  }
+
+  pub fn parse_dont_enforce_required(data: &[u8]) -> ::std::result::Result<Self, ::protobuf::ParseError> {
+    let mut msg = Self::new();
+    ::protobuf::ClearAndParse::clear_and_parse_dont_enforce_required(&mut msg, data).map(|_| msg)
+  }
+
+  pub fn as_view(&self) -> PayloadZoneEnterNotificationView {
+    PayloadZoneEnterNotificationView::new(
+        ::protobuf::__internal::Private,
+        ::protobuf::__internal::runtime::MessageViewInner::view_of_owned(&self.inner))
+  }
+
+  pub fn as_mut(&mut self) -> PayloadZoneEnterNotificationMut {
+    let inner = ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner);
+    PayloadZoneEnterNotificationMut::new(::protobuf::__internal::Private, inner)
+  }
+
+  // id: optional uint64
+  pub fn id(&self) -> u64 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u64_at_index(
+        0, (0u64).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_id(&mut self, val: u64) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u64_at_index(
+        0, val.into()
+      )
+    }
+  }
+
+  // username: optional string
+  pub fn username(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        1, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_username(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    let s = val.into_proxied(::protobuf::__internal::Private);
+    let (view, arena) =
+      s.into_inner(::protobuf::__internal::Private).into_raw_parts();
+
+    let parent_arena = self.inner.arena();
+    parent_arena.fuse(&arena);
+
+    unsafe {
+      self.inner.ptr_mut().set_base_field_string_at_index(
+        1,
+        view,
+      );
+    }
+  }
+
+  // position: optional message Proto.Vector3
+  pub fn has_position(&self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(2)
+    }
+  }
+  pub fn clear_position(&mut self) {
+    unsafe {
+      self.inner.ptr().clear_field_at_index(
+        2
+      );
+    }
+  }
+  pub fn position_opt(&self) -> ::protobuf::Optional<super::Vector3View<'_>> {
+        ::protobuf::Optional::new(self.position(), self.has_position())
+  }
+  pub fn position(&self) -> super::Vector3View<'_> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(2)
+    };
+    let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
+    let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
+    super::Vector3View::new(::protobuf::__internal::Private, inner)
+  }
+  pub fn position_mut(&mut self) -> super::Vector3Mut<'_> {
+     let ptr = unsafe {
+       self.inner.ptr_mut().get_or_create_mutable_message_at_index(
+         2, self.arena()
+       ).unwrap()
+     };
+     super::Vector3Mut::from_parent(
+       ::protobuf::__internal::Private,
+       self.as_message_mut_inner(::protobuf::__internal::Private),
+       ptr.raw())
+  }
+  pub fn set_position(&mut self,
+    val: impl ::protobuf::IntoProxied<super::Vector3>) {
+
+    // The message and arena are dropped after the setter. The
+    // memory remains allocated as we fuse the arena with the
+    // parent message's arena.
+    let mut child = val.into_proxied(::protobuf::__internal::Private);
+    self.inner
+      .arena()
+      .fuse(::protobuf::__internal::runtime::UpbGetArena::get_arena(&mut child, ::protobuf::__internal::Private));
+
+    let child_ptr = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_ptr_mut(&mut child, ::protobuf::__internal::Private);
+    unsafe {
+      self.inner.ptr_mut().set_base_field_message_at_index(
+        2, child_ptr
+      );
+    }
+  }
+
+}  // impl PayloadZoneEnterNotification
+
+impl ::std::ops::Drop for PayloadZoneEnterNotification {
+  fn drop(&mut self) {
+  }
+}
+
+impl ::std::clone::Clone for PayloadZoneEnterNotification {
+  fn clone(&self) -> Self {
+    self.as_view().to_owned()
+  }
+}
+
+impl ::protobuf::AsView for PayloadZoneEnterNotification {
+  type Proxied = Self;
+  fn as_view(&self) -> PayloadZoneEnterNotificationView {
+    self.as_view()
+  }
+}
+
+impl ::protobuf::AsMut for PayloadZoneEnterNotification {
+  type MutProxied = Self;
+  fn as_mut(&mut self) -> PayloadZoneEnterNotificationMut {
+    self.as_mut()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadZoneEnterNotification {
+  fn mini_table() -> *const ::protobuf::__internal::runtime::upb_MiniTable {
+    static ONCE_LOCK: ::std::sync::OnceLock<::protobuf::__internal::runtime::MiniTablePtr> =
+        ::std::sync::OnceLock::new();
+    ONCE_LOCK.get_or_init(|| unsafe {
+      super::Proto__PayloadZoneEnterNotification_msg_init.0 =
+          ::protobuf::__internal::runtime::upb_MiniTable_Build(
+              "$,P1X3".as_ptr(),
+              6,
+              ::protobuf::__internal::runtime::THREAD_LOCAL_ARENA.with(|a| a.raw()),
+              ::std::ptr::null_mut());
+      let submessages = [
+        <super::Vector3 as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
+      ];
+      let subenums = [
+      ];
+      assert!(::protobuf::__internal::runtime::upb_MiniTable_Link(
+          super::Proto__PayloadZoneEnterNotification_msg_init.0,
+          submessages.as_ptr() as *const *const ::protobuf::__internal::runtime::upb_MiniTable,
+          submessages.len(), subenums.as_ptr(), subenums.len()));
+      ::protobuf::__internal::runtime::MiniTablePtr(super::Proto__PayloadZoneEnterNotification_msg_init.0)
+    }).0
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetArena for PayloadZoneEnterNotification {
+  fn get_arena(&mut self, _private: ::protobuf::__internal::Private) -> &::protobuf::__internal::runtime::Arena {
+    self.inner.arena()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadZoneEnterNotificationView<'_> {
+  #[inline(always)]
+  fn mini_table() -> *const ::protobuf::__internal::runtime::upb_MiniTable {
+    <PayloadZoneEnterNotification as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadZoneEnterNotificationMut<'_> {
+  #[inline(always)]
+  fn mini_table() -> *const ::protobuf::__internal::runtime::upb_MiniTable {
+    <PayloadZoneEnterNotification as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for PayloadZoneEnterNotification {
+  type Msg = PayloadZoneEnterNotification;
+  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadZoneEnterNotification> {
+    self.inner.ptr_mut()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for PayloadZoneEnterNotification {
+  type Msg = PayloadZoneEnterNotification;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadZoneEnterNotification> {
+    self.inner.ptr()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for PayloadZoneEnterNotificationMut<'_> {
+  type Msg = PayloadZoneEnterNotification;
+  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadZoneEnterNotification> {
+    self.inner.ptr_mut()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for PayloadZoneEnterNotificationMut<'_> {
+  type Msg = PayloadZoneEnterNotification;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadZoneEnterNotification> {
+    self.inner.ptr()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for PayloadZoneEnterNotificationView<'_> {
+  type Msg = PayloadZoneEnterNotification;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadZoneEnterNotification> {
+    self.inner.ptr()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::UpbGetArena for PayloadZoneEnterNotificationMut<'_> {
+  fn get_arena(&mut self, _private: ::protobuf::__internal::Private) -> &::protobuf::__internal::runtime::Arena {
+    self.inner.arena()
+  }
+}
+
+
+// upb kernel doesn't support any owned message or message mut interop.
+impl ::protobuf::OwnedMessageInterop for PayloadZoneEnterNotification {}
+impl<'a> ::protobuf::MessageMutInterop<'a> for PayloadZoneEnterNotificationMut<'a> {}
+
+impl<'a> ::protobuf::MessageViewInterop<'a> for PayloadZoneEnterNotificationView<'a> {
+  unsafe fn __unstable_wrap_raw_message(
+    msg: &'a *const ::std::ffi::c_void) -> Self {
+    let raw = ::protobuf::__internal::runtime::RawMessage::new(*msg as *mut _).unwrap();
+    let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
+    Self::new(::protobuf::__internal::Private, inner)
+  }
+  unsafe fn __unstable_wrap_raw_message_unchecked_lifetime(
+    msg: *const ::std::ffi::c_void) -> Self {
+    let raw = ::protobuf::__internal::runtime::RawMessage::new(msg as *mut _).unwrap();
+    let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
+    Self::new(::protobuf::__internal::Private, inner)
+  }
+  fn __unstable_as_raw_message(&self) -> *const ::std::ffi::c_void {
+    self.inner.raw().as_ptr() as *const _
+  }
+}
+
+// This variable must not be referenced except by protobuf generated
+// code.
+pub(crate) static mut Proto__PayloadZoneExitNotification_msg_init: ::protobuf::__internal::runtime::MiniTablePtr =
+    ::protobuf::__internal::runtime::MiniTablePtr(::std::ptr::null_mut());
+#[allow(non_camel_case_types)]
+pub struct PayloadZoneExitNotification {
+  inner: ::protobuf::__internal::runtime::OwnedMessageInner<PayloadZoneExitNotification>
+}
+
+impl ::protobuf::Message for PayloadZoneExitNotification {}
+
+impl ::std::default::Default for PayloadZoneExitNotification {
+  fn default() -> Self {
+    Self::new()
+  }
+}
+
+impl ::protobuf::Parse for PayloadZoneExitNotification {
+  fn parse(serialized: &[u8]) -> ::std::result::Result<Self, ::protobuf::ParseError> {
+    Self::parse(serialized)
+  }
+
+  fn parse_dont_enforce_required(serialized: &[u8]) -> ::std::result::Result<Self, ::protobuf::ParseError> {
+    Self::parse_dont_enforce_required(serialized)
+  }
+}
+
+impl ::std::fmt::Debug for PayloadZoneExitNotification {
+  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+    let string = unsafe {
+      ::protobuf::__internal::runtime::debug_string(
+        self.raw_msg(),
+        <Self as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table()
+      )
+    };
+    write!(f, "{}", string)
+  }
+}
+
+impl ::protobuf::Serialize for PayloadZoneExitNotification {
+  fn serialize(&self) -> ::std::result::Result<Vec<u8>, ::protobuf::SerializeError> {
+    ::protobuf::AsView::as_view(self).serialize()
+  }
+}
+
+// SAFETY:
+// - `PayloadZoneExitNotification` is `Sync` because it does not implement interior mutability.
+//    Neither does `PayloadZoneExitNotificationMut`.
+unsafe impl Sync for PayloadZoneExitNotification {}
+
+// SAFETY:
+// - `PayloadZoneExitNotification` is `Send` because it uniquely owns its arena and does
+//   not use thread-local data.
+unsafe impl Send for PayloadZoneExitNotification {}
+
+impl ::protobuf::Proxied for PayloadZoneExitNotification {
+  type View<'msg> = PayloadZoneExitNotificationView<'msg>;
+}
+
+impl ::protobuf::__internal::SealedInternal for PayloadZoneExitNotification {}
+
+impl ::protobuf::MutProxied for PayloadZoneExitNotification {
+  type Mut<'msg> = PayloadZoneExitNotificationMut<'msg>;
+}
+
+#[derive(Copy, Clone)]
+#[allow(dead_code)]
+pub struct PayloadZoneExitNotificationView<'msg> {
+  inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, PayloadZoneExitNotification>,
+  _phantom: ::std::marker::PhantomData<&'msg ()>,
+}
+
+impl<'msg> ::protobuf::__internal::SealedInternal for PayloadZoneExitNotificationView<'msg> {}
+
+impl<'msg> ::protobuf::MessageView<'msg> for PayloadZoneExitNotificationView<'msg> {
+  type Message = PayloadZoneExitNotification;
+}
+
+impl ::std::fmt::Debug for PayloadZoneExitNotificationView<'_> {
+  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+    let string = unsafe {
+      ::protobuf::__internal::runtime::debug_string(
+        self.raw_msg(),
+        <Self as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table()
+      )
+    };
+    write!(f, "{}", string)
+  }
+}
+
+impl ::protobuf::Serialize for PayloadZoneExitNotificationView<'_> {
+  fn serialize(&self) -> ::std::result::Result<Vec<u8>, ::protobuf::SerializeError> {
+    // SAFETY: `MINI_TABLE` is the one associated with `self.raw_msg()`.
+    let encoded = unsafe {
+      ::protobuf::__internal::runtime::wire::encode(self.raw_msg(),
+          <Self as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table())
+    };
+    encoded.map_err(|_| ::protobuf::SerializeError)
+  }
+}
+
+impl ::std::default::Default for PayloadZoneExitNotificationView<'_> {
+  fn default() -> PayloadZoneExitNotificationView<'static> {
+    let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(::protobuf::__internal::runtime::ScratchSpace::zeroed_block()) };
+    PayloadZoneExitNotificationView::new(::protobuf::__internal::Private, inner)
+  }
+}
+
+#[allow(dead_code)]
+impl<'msg> PayloadZoneExitNotificationView<'msg> {
+  #[doc(hidden)]
+  pub fn new(_private: ::protobuf::__internal::Private, inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, PayloadZoneExitNotification>) -> Self {
+    Self { inner, _phantom: ::std::marker::PhantomData }
+  }
+
+  fn raw_msg(&self) -> ::protobuf::__internal::runtime::RawMessage {
+    self.inner.raw()
+  }
+
+  pub fn to_owned(&self) -> PayloadZoneExitNotification {
+    ::protobuf::IntoProxied::into_proxied(*self, ::protobuf::__internal::Private)
+  }
+
+  // id: optional uint64
+  pub fn id(self) -> u64 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u64_at_index(
+        0, (0u64).into()
+      ).try_into().unwrap()
+    }
+  }
+
+}
+
+// SAFETY:
+// - `PayloadZoneExitNotificationView` is `Sync` because it does not support mutation.
+unsafe impl Sync for PayloadZoneExitNotificationView<'_> {}
+
+// SAFETY:
+// - `PayloadZoneExitNotificationView` is `Send` because while its alive a `PayloadZoneExitNotificationMut` cannot.
+// - `PayloadZoneExitNotificationView` does not use thread-local data.
+unsafe impl Send for PayloadZoneExitNotificationView<'_> {}
+
+impl<'msg> ::protobuf::Proxy<'msg> for PayloadZoneExitNotificationView<'msg> {}
+impl<'msg> ::protobuf::ViewProxy<'msg> for PayloadZoneExitNotificationView<'msg> {}
+
+impl<'msg> ::protobuf::AsView for PayloadZoneExitNotificationView<'msg> {
+  type Proxied = PayloadZoneExitNotification;
+  fn as_view(&self) -> ::protobuf::View<'msg, PayloadZoneExitNotification> {
+    *self
+  }
+}
+
+impl<'msg> ::protobuf::IntoView<'msg> for PayloadZoneExitNotificationView<'msg> {
+  fn into_view<'shorter>(self) -> PayloadZoneExitNotificationView<'shorter>
+  where
+      'msg: 'shorter {
+    self
+  }
+}
+
+impl<'msg> ::protobuf::IntoProxied<PayloadZoneExitNotification> for PayloadZoneExitNotificationView<'msg> {
+  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> PayloadZoneExitNotification {
+    let mut dst = PayloadZoneExitNotification::new();
+    let dst_raw = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_raw_message_mut(&mut dst, ::protobuf::__internal::Private);
+    let dst_arena = ::protobuf::__internal::runtime::UpbGetArena::get_arena(&mut dst, ::protobuf::__internal::Private);
+    let src_raw = ::protobuf::__internal::runtime::UpbGetMessagePtr::get_raw_message(&self, ::protobuf::__internal::Private);
+
+    unsafe { ::protobuf::__internal::runtime::upb_Message_DeepCopy(
+      dst_raw,
+      src_raw,
+      <Self as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
+      dst_arena.raw(),
+    ) };
+    dst
+  }
+}
+
+impl<'msg> ::protobuf::IntoProxied<PayloadZoneExitNotification> for PayloadZoneExitNotificationMut<'msg> {
+  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> PayloadZoneExitNotification {
+    ::protobuf::IntoProxied::into_proxied(::protobuf::IntoView::into_view(self), _private)
+  }
+}
+
+impl ::protobuf::__internal::runtime::UpbTypeConversions for PayloadZoneExitNotification {
+    fn upb_type() -> ::protobuf::__internal::runtime::CType {
+        ::protobuf::__internal::runtime::CType::Message
+    }
+
+    fn to_message_value(
+        val: ::protobuf::View<'_, Self>) -> ::protobuf::__internal::runtime::upb_MessageValue {
+        ::protobuf::__internal::runtime::upb_MessageValue { msg_val: Some(val.raw_msg()) }
+    }
+
+    unsafe fn into_message_value_fuse_if_required(
+      raw_parent_arena: ::protobuf::__internal::runtime::RawArena,
+      mut val: Self) -> ::protobuf::__internal::runtime::upb_MessageValue {
+      // SAFETY: The arena memory is not freed due to `ManuallyDrop`.
+      let parent_arena = ::std::mem::ManuallyDrop::new(
+          unsafe { ::protobuf::__internal::runtime::Arena::from_raw(raw_parent_arena) });
+
+      parent_arena.fuse(val.as_message_mut_inner(::protobuf::__internal::Private).arena());
+      ::protobuf::__internal::runtime::upb_MessageValue { msg_val: Some(val.raw_msg()) }
+    }
+
+    unsafe fn from_message_value<'msg>(msg: ::protobuf::__internal::runtime::upb_MessageValue)
+        -> ::protobuf::View<'msg, Self> {
+        let raw = unsafe { msg.msg_val }.expect("expected present message value in map");
+        let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
+        PayloadZoneExitNotificationView::new(::protobuf::__internal::Private, inner)
+    }
+
+    unsafe fn from_message_mut<'msg>(msg: ::protobuf::__internal::runtime::RawMessage, arena: &'msg ::protobuf::__internal::runtime::Arena)
+        -> PayloadZoneExitNotificationMut<'msg> {
+        let inner = unsafe { ::protobuf::__internal::runtime::MessageMutInner::<'msg, PayloadZoneExitNotification>::wrap_raw(msg, arena) };
+        PayloadZoneExitNotificationMut::new(::protobuf::__internal::Private, inner)
+    }
+}
+
+#[allow(dead_code)]
+#[allow(non_camel_case_types)]
+pub struct PayloadZoneExitNotificationMut<'msg> {
+  inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, PayloadZoneExitNotification>,
+}
+
+impl<'msg> ::protobuf::__internal::SealedInternal for PayloadZoneExitNotificationMut<'msg> {}
+
+impl<'msg> ::protobuf::MessageMut<'msg> for PayloadZoneExitNotificationMut<'msg> {
+  type Message = PayloadZoneExitNotification;
+}
+
+impl ::std::fmt::Debug for PayloadZoneExitNotificationMut<'_> {
+  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+    let string = unsafe {
+      ::protobuf::__internal::runtime::debug_string(
+        self.raw_msg(),
+        <Self as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table()
+      )
+    };
+    write!(f, "{}", string)
+  }
+}
+
+impl ::protobuf::Serialize for PayloadZoneExitNotificationMut<'_> {
+  fn serialize(&self) -> ::std::result::Result<Vec<u8>, ::protobuf::SerializeError> {
+    ::protobuf::AsView::as_view(self).serialize()
+  }
+}
+
+#[allow(dead_code)]
+impl<'msg> PayloadZoneExitNotificationMut<'msg> {
+  #[doc(hidden)]
+  pub fn from_parent<ParentT: ::protobuf::Message>(
+             _private: ::protobuf::__internal::Private,
+             parent: ::protobuf::__internal::runtime::MessageMutInner<'msg, ParentT>,
+             msg: ::protobuf::__internal::runtime::RawMessage)
+    -> Self {
+    Self {
+      inner: ::protobuf::__internal::runtime::MessageMutInner::from_parent(parent, msg)
+    }
+  }
+
+  #[doc(hidden)]
+  pub fn new(_private: ::protobuf::__internal::Private, inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, PayloadZoneExitNotification>) -> Self {
+    Self { inner }
+  }
+
+  fn raw_msg(&self) -> ::protobuf::__internal::runtime::RawMessage {
+    self.inner.raw()
+  }
+
+  #[doc(hidden)]
+  pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
+    -> ::protobuf::__internal::runtime::MessageMutInner<'msg, PayloadZoneExitNotification> {
+    self.inner
+  }
+
+  pub fn to_owned(&self) -> PayloadZoneExitNotification {
+    ::protobuf::AsView::as_view(self).to_owned()
+  }
+
+  fn arena(&mut self) -> &::protobuf::__internal::runtime::Arena {
+    self.inner.arena()
+  }
+
+  // id: optional uint64
+  pub fn id(&self) -> u64 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u64_at_index(
+        0, (0u64).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_id(&mut self, val: u64) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u64_at_index(
+        0, val.into()
+      )
+    }
+  }
+
+}
+
+// SAFETY:
+// - `PayloadZoneExitNotificationMut` does not perform any shared mutation.
+// - `PayloadZoneExitNotificationMut` is not `Send`, and so even in the presence of mutator
+//   splitting, synchronous access of an arena is impossible.
+unsafe impl Sync for PayloadZoneExitNotificationMut<'_> {}
+
+impl<'msg> ::protobuf::Proxy<'msg> for PayloadZoneExitNotificationMut<'msg> {}
+impl<'msg> ::protobuf::MutProxy<'msg> for PayloadZoneExitNotificationMut<'msg> {}
+
+impl<'msg> ::protobuf::AsView for PayloadZoneExitNotificationMut<'msg> {
+  type Proxied = PayloadZoneExitNotification;
+  fn as_view(&self) -> ::protobuf::View<'_, PayloadZoneExitNotification> {
+    PayloadZoneExitNotificationView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner.clone()),
+      _phantom: ::std::marker::PhantomData
+    }
+  }
+}
+
+impl<'msg> ::protobuf::IntoView<'msg> for PayloadZoneExitNotificationMut<'msg> {
+  fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, PayloadZoneExitNotification>
+  where
+      'msg: 'shorter {
+    PayloadZoneExitNotificationView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner.clone()),
+      _phantom: ::std::marker::PhantomData
+    }
+  }
+}
+
+impl<'msg> ::protobuf::AsMut for PayloadZoneExitNotificationMut<'msg> {
+  type MutProxied = PayloadZoneExitNotification;
+  fn as_mut(&mut self) -> PayloadZoneExitNotificationMut<'msg> {
+    PayloadZoneExitNotificationMut { inner: self.inner }
+  }
+}
+
+impl<'msg> ::protobuf::IntoMut<'msg> for PayloadZoneExitNotificationMut<'msg> {
+  fn into_mut<'shorter>(self) -> PayloadZoneExitNotificationMut<'shorter>
+  where
+      'msg: 'shorter {
+    self
+  }
+}
+
+#[allow(dead_code)]
+impl PayloadZoneExitNotification {
+  pub fn new() -> Self {
+    Self { inner: ::protobuf::__internal::runtime::OwnedMessageInner::<Self>::new() }
+  }
+
+  fn raw_msg(&self) -> ::protobuf::__internal::runtime::RawMessage {
+    self.inner.raw()
+  }
+
+  #[doc(hidden)]
+  pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessageMutInner<'_, PayloadZoneExitNotification> {
+    ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner)
+  }
+
+  fn arena(&mut self) -> &::protobuf::__internal::runtime::Arena {
+    self.inner.arena()
+  }
+
+  pub fn parse(data: &[u8]) -> ::std::result::Result<Self, ::protobuf::ParseError> {
+    let mut msg = Self::new();
+    ::protobuf::ClearAndParse::clear_and_parse(&mut msg, data).map(|_| msg)
+  }
+
+  pub fn parse_dont_enforce_required(data: &[u8]) -> ::std::result::Result<Self, ::protobuf::ParseError> {
+    let mut msg = Self::new();
+    ::protobuf::ClearAndParse::clear_and_parse_dont_enforce_required(&mut msg, data).map(|_| msg)
+  }
+
+  pub fn as_view(&self) -> PayloadZoneExitNotificationView {
+    PayloadZoneExitNotificationView::new(
+        ::protobuf::__internal::Private,
+        ::protobuf::__internal::runtime::MessageViewInner::view_of_owned(&self.inner))
+  }
+
+  pub fn as_mut(&mut self) -> PayloadZoneExitNotificationMut {
+    let inner = ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner);
+    PayloadZoneExitNotificationMut::new(::protobuf::__internal::Private, inner)
+  }
+
+  // id: optional uint64
+  pub fn id(&self) -> u64 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u64_at_index(
+        0, (0u64).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_id(&mut self, val: u64) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u64_at_index(
+        0, val.into()
+      )
+    }
+  }
+
+}  // impl PayloadZoneExitNotification
+
+impl ::std::ops::Drop for PayloadZoneExitNotification {
+  fn drop(&mut self) {
+  }
+}
+
+impl ::std::clone::Clone for PayloadZoneExitNotification {
+  fn clone(&self) -> Self {
+    self.as_view().to_owned()
+  }
+}
+
+impl ::protobuf::AsView for PayloadZoneExitNotification {
+  type Proxied = Self;
+  fn as_view(&self) -> PayloadZoneExitNotificationView {
+    self.as_view()
+  }
+}
+
+impl ::protobuf::AsMut for PayloadZoneExitNotification {
+  type MutProxied = Self;
+  fn as_mut(&mut self) -> PayloadZoneExitNotificationMut {
+    self.as_mut()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadZoneExitNotification {
+  fn mini_table() -> *const ::protobuf::__internal::runtime::upb_MiniTable {
+    static ONCE_LOCK: ::std::sync::OnceLock<::protobuf::__internal::runtime::MiniTablePtr> =
+        ::std::sync::OnceLock::new();
+    ONCE_LOCK.get_or_init(|| unsafe {
+      super::Proto__PayloadZoneExitNotification_msg_init.0 =
+          ::protobuf::__internal::runtime::upb_MiniTable_Build(
+              "$,P".as_ptr(),
+              3,
+              ::protobuf::__internal::runtime::THREAD_LOCAL_ARENA.with(|a| a.raw()),
+              ::std::ptr::null_mut());
+      let submessages = [
+      ];
+      let subenums = [
+      ];
+      assert!(::protobuf::__internal::runtime::upb_MiniTable_Link(
+          super::Proto__PayloadZoneExitNotification_msg_init.0,
+          submessages.as_ptr() as *const *const ::protobuf::__internal::runtime::upb_MiniTable,
+          submessages.len(), subenums.as_ptr(), subenums.len()));
+      ::protobuf::__internal::runtime::MiniTablePtr(super::Proto__PayloadZoneExitNotification_msg_init.0)
+    }).0
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetArena for PayloadZoneExitNotification {
+  fn get_arena(&mut self, _private: ::protobuf::__internal::Private) -> &::protobuf::__internal::runtime::Arena {
+    self.inner.arena()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadZoneExitNotificationView<'_> {
+  #[inline(always)]
+  fn mini_table() -> *const ::protobuf::__internal::runtime::upb_MiniTable {
+    <PayloadZoneExitNotification as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadZoneExitNotificationMut<'_> {
+  #[inline(always)]
+  fn mini_table() -> *const ::protobuf::__internal::runtime::upb_MiniTable {
+    <PayloadZoneExitNotification as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for PayloadZoneExitNotification {
+  type Msg = PayloadZoneExitNotification;
+  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadZoneExitNotification> {
+    self.inner.ptr_mut()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for PayloadZoneExitNotification {
+  type Msg = PayloadZoneExitNotification;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadZoneExitNotification> {
+    self.inner.ptr()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for PayloadZoneExitNotificationMut<'_> {
+  type Msg = PayloadZoneExitNotification;
+  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadZoneExitNotification> {
+    self.inner.ptr_mut()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for PayloadZoneExitNotificationMut<'_> {
+  type Msg = PayloadZoneExitNotification;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadZoneExitNotification> {
+    self.inner.ptr()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for PayloadZoneExitNotificationView<'_> {
+  type Msg = PayloadZoneExitNotification;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadZoneExitNotification> {
+    self.inner.ptr()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::UpbGetArena for PayloadZoneExitNotificationMut<'_> {
+  fn get_arena(&mut self, _private: ::protobuf::__internal::Private) -> &::protobuf::__internal::runtime::Arena {
+    self.inner.arena()
+  }
+}
+
+
+// upb kernel doesn't support any owned message or message mut interop.
+impl ::protobuf::OwnedMessageInterop for PayloadZoneExitNotification {}
+impl<'a> ::protobuf::MessageMutInterop<'a> for PayloadZoneExitNotificationMut<'a> {}
+
+impl<'a> ::protobuf::MessageViewInterop<'a> for PayloadZoneExitNotificationView<'a> {
+  unsafe fn __unstable_wrap_raw_message(
+    msg: &'a *const ::std::ffi::c_void) -> Self {
+    let raw = ::protobuf::__internal::runtime::RawMessage::new(*msg as *mut _).unwrap();
+    let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
+    Self::new(::protobuf::__internal::Private, inner)
+  }
+  unsafe fn __unstable_wrap_raw_message_unchecked_lifetime(
+    msg: *const ::std::ffi::c_void) -> Self {
+    let raw = ::protobuf::__internal::runtime::RawMessage::new(msg as *mut _).unwrap();
+    let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
+    Self::new(::protobuf::__internal::Private, inner)
+  }
+  fn __unstable_as_raw_message(&self) -> *const ::std::ffi::c_void {
+    self.inner.raw().as_ptr() as *const _
+  }
+}
 

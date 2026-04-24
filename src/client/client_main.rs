@@ -1,29 +1,78 @@
+use dashmap::DashMap;
+use futures::SinkExt;
+use std::sync::Arc;
+
 use protobuf::Serialize;
-use tokio::sync::mpsc;
-use tokio::{
-    io::AsyncWriteExt,
-    net::tcp::{OwnedReadHalf, OwnedWriteHalf},
-};
+use tokio::net::tcp::{OwnedReadHalf, OwnedWriteHalf};
+use tokio::sync::{RwLock, mpsc};
 use tokio_stream::StreamExt;
 use tokio_util::{
-    bytes::Buf,
-    codec::{FramedRead, LengthDelimitedCodec},
+    bytes::{Buf, Bytes},
+    codec::{FramedRead, FramedWrite, LengthDelimitedCodec},
 };
 
 use super::proto_handler::handler;
-use crate::network::*;
+use crate::network::proto::proto::{ToServerMessage, to_client_message};
+use crate::network::proto::*;
+
+#[allow(dead_code)]
+#[derive(Debug, Clone, Copy, PartialEq)]
+pub enum BackendServerType {
+    Login,
+    Lobby,
+    World,
+    Zone(u64), // zone_id
+    DB,
+}
+
+#[allow(dead_code)]
+#[derive(Debug, Clone, Copy, PartialEq)]
+pub enum ClientStatus {
+    Connected,
+    Authenticated,
+    Lobby,
+    Routing,
+    Zone(u64), // zone_id
+    Disconnected,
+}
+
+#[allow(dead_code)]
+pub struct Client {
+    pub status: ClientStatus,
+    pub user_id: Option<u64>,
+    pub entity_id: Option<u64>,
+    pub tx: mpsc::Sender<(BackendServerType, proto::ToClientMessage)>,
+}
 
 pub fn client_main(
     socket: tokio::net::TcpStream,
     addr: std::net::SocketAddr,
-) -> mpsc::Sender<proto::Packet> {
+    senders: Arc<
+        DashMap<std::net::SocketAddr, mpsc::Sender<(BackendServerType, proto::ToClientMessage)>>,
+    >,
+) -> mpsc::Sender<(BackendServerType, proto::ToClientMessage)> {
     log::info!("New connection from {}", addr);
     let (read_socket, write_socket) = socket.into_split();
 
-    let (tx, rx) = mpsc::channel::<proto::Packet>(100);
+    let (tx, rx) = mpsc::channel::<(BackendServerType, proto::ToClientMessage)>(128);
 
-    tokio::spawn(reader(read_socket, addr, tx.clone()));
-    tokio::spawn(writer(write_socket, rx));
+    let client = Arc::new(RwLock::new(Client {
+        status: ClientStatus::Connected,
+        user_id: None,
+        entity_id: None,
+        tx: tx.clone(),
+    }));
+
+    tokio::spawn(reader(
+        read_socket,
+        addr,
+        client.clone(),
+        tx.clone(),
+        senders,
+    ));
+    tokio::spawn(writer(write_socket, rx, client.clone()));
+
+    log::info!("Spawned reader and writer tasks for {}", addr);
 
     return tx;
 }
@@ -31,7 +80,11 @@ pub fn client_main(
 async fn reader(
     read_socket: OwnedReadHalf,
     addr: std::net::SocketAddr,
-    tx: mpsc::Sender<proto::Packet>,
+    client: Arc<RwLock<Client>>,
+    tx: mpsc::Sender<(BackendServerType, proto::ToClientMessage)>,
+    senders: Arc<
+        DashMap<std::net::SocketAddr, mpsc::Sender<(BackendServerType, proto::ToClientMessage)>>,
+    >,
 ) {
     // デフォルトのヘッダ
     // 32bitのメッセージ長ヘッダ
@@ -40,9 +93,10 @@ async fn reader(
 
     loop {
         match frame_reader.next().await {
-            Some(Ok(frame)) => match proto::Packet::parse(frame.chunk()) {
+            Some(Ok(frame)) => match proto::ToServerMessage::parse(frame.chunk()) {
                 Ok(packet) => {
-                    // TODO
+                    log::info!("Received packet from {}: {:?}", addr, packet.message_case());
+                    handler.handle_message(packet, client.clone()).await;
                 }
                 Err(e) => log::error!("Failed to parse packet from {}: {}", addr, e),
             },
@@ -52,21 +106,74 @@ async fn reader(
     }
 
     drop(tx); // close channel
+    senders.remove(&addr);
 
     log::info!("Connection from {} closed", addr);
+
+    let mut message = ToServerMessage::default();
+    message.clear_end_game();
+    handler.handle_message(message, client.clone()).await;
 }
 
-async fn writer(mut write_socket: OwnedWriteHalf, mut rx: mpsc::Receiver<proto::Packet>) {
-    // receive packet from channel and write to socket
-    while let Some(packet) = rx.recv().await {
-        match packet.serialize() {
-            Ok(bytes) => {
-                if let Err(e) = write_socket.write_all(&bytes).await {
-                    log::error!("Failed to write to socket: {}", e);
-                    break;
+async fn send_message_to_client(
+    framed_write: &mut FramedWrite<OwnedWriteHalf, LengthDelimitedCodec>,
+    message: proto::ToClientMessage,
+) {
+    let Ok(buffer) = message.serialize().map(|buffer| Bytes::from(buffer)) else {
+        log::error!("Failed to serialize message");
+        return;
+    };
+    let Ok(result) = framed_write.send(buffer).await else {
+        log::error!("Failed to send message");
+        return;
+    };
+
+    result
+}
+
+async fn writer(
+    write_socket: OwnedWriteHalf,
+    mut rx: mpsc::Receiver<(BackendServerType, proto::ToClientMessage)>,
+    client: Arc<RwLock<Client>>,
+) {
+    let mut framed_write = FramedWrite::new(write_socket, LengthDelimitedCodec::new());
+    while let Some((server_type, packet)) = rx.recv().await {
+        log::info!(
+            "Received message to send to client: {:?}",
+            packet.message_case()
+        );
+
+        let message_case = packet.message_case();
+        match message_case {
+            to_client_message::MessageCase::LogoutResponse
+            | to_client_message::MessageCase::SignupResponse => {
+                send_message_to_client(&mut framed_write, packet).await;
+            }
+            to_client_message::MessageCase::EnemySpawn
+            | to_client_message::MessageCase::EnemyDespawn
+            | to_client_message::MessageCase::TransformSync
+            | to_client_message::MessageCase::PlayAction
+            | to_client_message::MessageCase::EntityDamaged
+            | to_client_message::MessageCase::TextMessage => {
+                let zone_id = match server_type {
+                    BackendServerType::Zone(id) => id,
+                    _ => {
+                        // skip if not zone message
+                        continue;
+                    }
+                };
+                // if the same zone, send directly
+                // otherwise, discard
+                if client.read().await.status == ClientStatus::Zone(zone_id) {
+                    send_message_to_client(&mut framed_write, packet).await;
                 }
             }
-            Err(e) => log::error!("Failed to serialize packet: {}", e),
+            to_client_message::MessageCase::LobbyEnterResponse => {
+                if client.read().await.status == ClientStatus::Lobby {
+                    send_message_to_client(&mut framed_write, packet).await;
+                }
+            }
+            _ => {}
         }
     }
 }
