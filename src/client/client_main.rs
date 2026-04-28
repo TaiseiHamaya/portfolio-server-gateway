@@ -173,6 +173,13 @@ async fn writer(
                     send_message_to_client(&mut framed_write, packet).await;
                 }
             }
+            to_client_message::MessageCase::StartGameResponse => {
+                if client.read().await.status == ClientStatus::Routing {
+                    client.write().await.status =
+                        ClientStatus::Zone(packet.start_game_response().zone_id());
+                    send_message_to_client(&mut framed_write, packet).await;
+                }
+            }
             _ => {}
         }
     }

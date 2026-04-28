@@ -18,6 +18,7 @@ pub async fn handle_endgame(_message: proto::ToServerMessage, client: Arc<RwLock
         }
     };
     if let ClientStatus::Zone(zone_id) = status {
+        client.write().await.status = ClientStatus::Routing;
         let mut world_route_client = backend_client::BACKEND_CLIENT_INSTANCE
             .get()
             .expect("Uninitialized BackendClient instance")
@@ -45,12 +46,15 @@ pub async fn handle_endgame(_message: proto::ToServerMessage, client: Arc<RwLock
             user_id,
             player_entity_id
         );
+        client.write().await.entity_id = None;
+        client.write().await.status = ClientStatus::Disconnected;
     } else if status == ClientStatus::Lobby {
         let mut lobby_client = backend_client::BACKEND_CLIENT_INSTANCE
             .get()
             .expect("Uninitialized BackendClient instance")
             .lobby
             .clone();
+        let client = client.clone();
 
         tokio::spawn(async move {
             let response = match lobby_client
@@ -69,6 +73,7 @@ pub async fn handle_endgame(_message: proto::ToServerMessage, client: Arc<RwLock
             } else {
                 log::warn!("Failed to end game for user_id: {}", user_id);
             }
+            client.write().await.status = ClientStatus::Disconnected;
         });
     }
 }

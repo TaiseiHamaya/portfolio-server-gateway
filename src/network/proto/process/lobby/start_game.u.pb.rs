@@ -681,6 +681,21 @@ impl<'msg> PayloadLobbyStartGameResponseView<'msg> {
     ::protobuf::IntoProxied::into_proxied(*self, ::protobuf::__internal::Private)
   }
 
+  // zone_id: optional uint64
+  pub fn zone_id(self) -> u64 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u64_at_index(
+        0, (0u64).into()
+      ).try_into().unwrap()
+    }
+  }
+
   // player_entity_id: optional uint64
   pub fn player_entity_id(self) -> u64 {
     unsafe {
@@ -691,7 +706,7 @@ impl<'msg> PayloadLobbyStartGameResponseView<'msg> {
       // i32->enum types, since even for closed enums we trust
       // upb to only return one of the named values).
       self.inner.ptr().get_u64_at_index(
-        0, (0u64).into()
+        1, (0u64).into()
       ).try_into().unwrap()
     }
   }
@@ -849,8 +864,8 @@ impl<'msg> PayloadLobbyStartGameResponseMut<'msg> {
     self.inner.arena()
   }
 
-  // player_entity_id: optional uint64
-  pub fn player_entity_id(&self) -> u64 {
+  // zone_id: optional uint64
+  pub fn zone_id(&self) -> u64 {
     unsafe {
       // TODO: b/361751487: This .into() and .try_into() is only
       // here for the enum<->i32 case, we should avoid it for
@@ -863,7 +878,7 @@ impl<'msg> PayloadLobbyStartGameResponseMut<'msg> {
       ).try_into().unwrap()
     }
   }
-  pub fn set_player_entity_id(&mut self, val: u64) {
+  pub fn set_zone_id(&mut self, val: u64) {
     unsafe {
       // TODO: b/361751487: This .into() is only here
       // here for the enum<->i32 case, we should avoid it for
@@ -871,6 +886,32 @@ impl<'msg> PayloadLobbyStartGameResponseMut<'msg> {
       //perfectly.
       self.inner.ptr_mut().set_base_field_u64_at_index(
         0, val.into()
+      )
+    }
+  }
+
+  // player_entity_id: optional uint64
+  pub fn player_entity_id(&self) -> u64 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u64_at_index(
+        1, (0u64).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_player_entity_id(&mut self, val: u64) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u64_at_index(
+        1, val.into()
       )
     }
   }
@@ -962,8 +1003,8 @@ impl PayloadLobbyStartGameResponse {
     PayloadLobbyStartGameResponseMut::new(::protobuf::__internal::Private, inner)
   }
 
-  // player_entity_id: optional uint64
-  pub fn player_entity_id(&self) -> u64 {
+  // zone_id: optional uint64
+  pub fn zone_id(&self) -> u64 {
     unsafe {
       // TODO: b/361751487: This .into() and .try_into() is only
       // here for the enum<->i32 case, we should avoid it for
@@ -976,7 +1017,7 @@ impl PayloadLobbyStartGameResponse {
       ).try_into().unwrap()
     }
   }
-  pub fn set_player_entity_id(&mut self, val: u64) {
+  pub fn set_zone_id(&mut self, val: u64) {
     unsafe {
       // TODO: b/361751487: This .into() is only here
       // here for the enum<->i32 case, we should avoid it for
@@ -984,6 +1025,32 @@ impl PayloadLobbyStartGameResponse {
       //perfectly.
       self.inner.ptr_mut().set_base_field_u64_at_index(
         0, val.into()
+      )
+    }
+  }
+
+  // player_entity_id: optional uint64
+  pub fn player_entity_id(&self) -> u64 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u64_at_index(
+        1, (0u64).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_player_entity_id(&mut self, val: u64) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u64_at_index(
+        1, val.into()
       )
     }
   }
@@ -1022,8 +1089,8 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadLobb
     ONCE_LOCK.get_or_init(|| unsafe {
       super::Proto__PayloadLobbyStartGameResponse_msg_init.0 =
           ::protobuf::__internal::runtime::upb_MiniTable_Build(
-              "$,P".as_ptr(),
-              3,
+              "$,P,P".as_ptr(),
+              5,
               ::protobuf::__internal::runtime::THREAD_LOCAL_ARENA.with(|a| a.raw()),
               ::std::ptr::null_mut());
       let submessages = [

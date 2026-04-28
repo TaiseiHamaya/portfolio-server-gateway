@@ -9,7 +9,7 @@ use crate::{
 };
 
 pub async fn forward_to_zone(packet: proto::ToServerMessage, client: Arc<RwLock<Client>>) {
-    let zone_id = match client.blocking_read().status {
+    let zone_id = match client.read().await.status {
         ClientStatus::Zone(zone_id) => zone_id,
         _ => {
             log::error!("Client is not in a zone");
@@ -17,13 +17,17 @@ pub async fn forward_to_zone(packet: proto::ToServerMessage, client: Arc<RwLock<
         }
     };
     let message_case = packet.message_case();
-    let Some(mut zone_sync_client) = backend_client::BACKEND_CLIENT_INSTANCE
+    let mut zone_sync_client = match backend_client::BACKEND_CLIENT_INSTANCE
         .get()
         .expect("Uninitialized BackendClient instance")
         .zone_mut(zone_id)
-    else {
-        log::error!("Failed to get zone client for zone_id {}.", zone_id);
-        return;
+        .await
+    {
+        Some(client) => client,
+        None => {
+            log::error!("Failed to get zone client for zone_id {}.", zone_id);
+            return;
+        }
     };
 
     tokio::spawn(async move {
@@ -47,6 +51,12 @@ pub async fn forward_to_zone(packet: proto::ToServerMessage, client: Arc<RwLock<
             }
             MessageCase::TransformSync => {
                 let transform_sync_view = packet.transform_sync();
+                log::info!(
+                    "Forwarding TransformSync to zone. id: {}, timestamp: {}, position: {:?}",
+                    transform_sync_view.id(),
+                    transform_sync_view.timestamp(),
+                    transform_sync_view.position()
+                );
                 match zone_sync_client
                     .sync_transform(PayloadTransformSync {
                         id: transform_sync_view.id(),

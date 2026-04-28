@@ -1,15 +1,16 @@
 use dashmap::DashMap;
-use etcd_client::{PutOptions, WatchOptions};
 use std::{
     env,
-    net::{Ipv4Addr, SocketAddr},
+    net::{IpAddr, Ipv4Addr, SocketAddr},
     sync::Arc,
 };
 use tokio::net::TcpListener;
-use tonic::transport::Server;
+use tonic::transport::{Endpoint, Server, channel};
 
 mod backend;
 mod client;
+mod ec2_helper;
+mod etcd_client_helper;
 mod generated;
 mod logger;
 mod network;
@@ -19,10 +20,7 @@ use backend::backend_client::BackendClient;
 
 use crate::{
     backend::backend_client::BACKEND_CLIENT_INSTANCE,
-    generated::{
-        proto_client::zone_sync_service_client::ZoneSyncServiceClient,
-        proto_server::zone_broadcast_service_server::ZoneBroadcastServiceServer,
-    },
+    generated::proto_server::zone_broadcast_service_server::ZoneBroadcastServiceServer,
     proto_server::zone_sync_service::ZoneBroadcastServiceImpl,
 };
 
@@ -33,11 +31,12 @@ async fn main() {
 
     dotenvy::dotenv().expect("Failed to load .env file");
 
-    let server_ip = env::var("SERVER_IP").unwrap_or_else(|_| Ipv4Addr::LOCALHOST.to_string());
+    let server_address = ec2_helper::get_local_ip().await;
     let port = env::var("PORT")
         .unwrap_or_else(|_| "50054".into())
         .parse()
         .unwrap_or(50054u16);
+    let server_endpoint = SocketAddr::new(IpAddr::V4(server_address), port);
 
     // bind
     let client_listener = TcpListener::bind((Ipv4Addr::UNSPECIFIED, 3215))
@@ -47,167 +46,140 @@ async fn main() {
     // initialize senders
     let senders = Arc::new(DashMap::new());
 
-    // connect to backend server
-    let backend_client = BackendClient::new().await;
-    BACKEND_CLIENT_INSTANCE
-        .set(backend_client)
-        .expect("Failed to set backend client instance");
-
-    // etcd client
+    // gRPCサーバーの起動
     let zone_broadcast_server =
         ZoneBroadcastServiceServer::new(ZoneBroadcastServiceImpl::new(senders.clone()));
-
-    // start gRPC server for zone broadcast
+    tokio::spawn(
+        Server::builder()
+            .add_service(zone_broadcast_server)
+            .serve(server_endpoint),
+    );
     log::info!(
         "Starting gRPC server for zone broadcast on port {}...",
         port
     );
-    let grpc_server_endpoint = SocketAddr::new(server_ip.parse().unwrap(), port);
-    tokio::spawn(
-        Server::builder()
-            .add_service(zone_broadcast_server)
-            .serve(grpc_server_endpoint),
-    );
 
-    // etcdにgatewayの情報を登録
-    let etcd_client = etcd_client::Client::connect(
-        [format!(
-            "{}:2379",
-            env::var("ETCD_ADDR").unwrap_or_else(|_| "localhost".into())
-        )],
-        None,
+    // etcd client
+    let etcd_client = etcd_client_helper::create_etcd_client().await;
+
+    // 各種エンドポイントをetcdから取得
+    let db_endpoint = // DB
+        etcd_client_helper::get_existing_service_endpoint(etcd_client.clone(), "db".to_string())
+            .await
+            .map(|kv| {
+                ["http://", &String::from_utf8_lossy(kv.value())].concat()
+            })
+            .and_then(|s| Endpoint::from_shared(s).ok())
+            .unwrap_or_else(|| Endpoint::from_shared("http://127.0.0.1:50050").expect("Invalid DB fallback URI"));
+    log::info!("Record DB Server endpoint: {:?}", db_endpoint);
+    let world_endpoint = // World
+        etcd_client_helper::get_existing_service_endpoint(etcd_client.clone(), "world".to_string())
+            .await
+            .map(|kv| {
+                ["http://", &String::from_utf8_lossy(kv.value())].concat()
+            })
+            .and_then(|s| Endpoint::from_shared(s).ok())
+            .unwrap_or_else(|| Endpoint::from_shared("http://127.0.0.1:50051").expect("Invalid World fallback URI"));
+    log::info!("World Server endpoint: {:?}", world_endpoint);
+    let lobby_endpoint = // Lobby
+        etcd_client_helper::get_existing_service_endpoint(etcd_client.clone(), "lobby".to_string())
+            .await
+            .map(|kv| {
+                ["http://", &String::from_utf8_lossy(kv.value())].concat()
+            })
+            .and_then(|s| Endpoint::from_shared(s).ok())
+            .unwrap_or_else(|| Endpoint::from_shared("http://127.0.0.1:50052").expect("Invalid Lobby fallback URI"));
+    log::info!("Lobby Server endpoint: {:?}", lobby_endpoint);
+
+    // connect
+    let backend_client = BackendClient::new(db_endpoint, world_endpoint, lobby_endpoint).await;
+    BACKEND_CLIENT_INSTANCE
+        .set(backend_client)
+        .expect("Failed to set backend client instance");
+
+    // etcdにgatewayの情報を登録し、定期的に更新するタスク
+    etcd_client_helper::register_service_endpoint(
+        etcd_client.clone(),
+        server_endpoint,
+        "gateways/00".to_string(),
     )
-    .await
-    .expect("Failed to connect to etcd server");
-    let mut etcd_client_checker = etcd_client.clone();
-    let mut etcd_client_keeper = etcd_client.clone();
-
-    // etcdにゾーンの情報を登録し、定期的に更新するタスク
-    tokio::spawn(async move {
-        let lease = etcd_client_keeper
-            .lease_grant(5, None)
-            .await
-            .expect("Failed to create etcd lease");
-        let options = PutOptions::new().with_lease(lease.id());
-        etcd_client_keeper
-            .put(
-                format!("gateways/{}", "zone"),
-                format!("{}:{}", server_ip, port),
-                Some(options),
-            )
-            .await
-            .expect("Failed to put zone info into etcd");
-
-        loop {
-            etcd_client_keeper
-                .lease_keep_alive(lease.id())
-                .await
-                .expect("Failed to keep alive etcd lease");
-            log::info!("Updated zone info in etcd with lease ID {}", lease.id());
-
-            tokio::time::sleep(tokio::time::Duration::from_secs(3)).await;
-        }
-    });
+    .await;
 
     // etcdからゾーンの情報を取得し、変更を監視するタスク
-    tokio::spawn(async move {
-        let prefix = "zones/";
-
-        // get existing zones
-        {
-            let response = etcd_client_checker
-                .get(prefix, Some(etcd_client::GetOptions::new().with_prefix()))
-                .await
-                .expect("Failed to get existing zones from etcd");
-            for kv in response.kvs() {
-                let zone_id = String::from_utf8_lossy(kv.key())
-                    .strip_prefix(prefix)
-                    .unwrap_or_default()
-                    .parse::<u64>()
-                    .unwrap_or_default();
-                let url = String::from_utf8_lossy(kv.value())
-                    .parse::<String>()
-                    .unwrap_or_default();
-
-                log::info!("Found existing zone in etcd: {} -> {}", zone_id, url);
-
-                let Ok(client) = ZoneSyncServiceClient::connect(format!("http://{}", url)).await
-                else {
-                    log::error!("Failed to connect to zone at {}", url);
-                    continue;
+    etcd_client_helper::watch_changes(etcd_client.clone(), "zones/".to_string(), |event| {
+        let Some(kv) = event.kv() else {
+            log::error!("Failed to get key-value from etcd event");
+            return;
+        };
+        let zone_id = String::from_utf8_lossy(kv.key())
+            .strip_prefix("zones/")
+            .unwrap_or_default()
+            .parse::<u64>()
+            .unwrap_or_default();
+        let url = String::from_utf8_lossy(kv.value())
+            .parse::<String>()
+            .unwrap_or_default();
+        match event.event_type() {
+            etcd_client::EventType::Put => {
+                let client = match channel::Endpoint::from_shared(format!("http://{}", url))
+                    .map(|endpoint| endpoint.connect_lazy())
+                {
+                    Ok(client) => client,
+                    Err(e) => {
+                        log::error!("Failed to create gRPC client for zone at {}: {}", url, e);
+                        return;
+                    }
                 };
 
                 BACKEND_CLIENT_INSTANCE
                     .get()
                     .expect("Failed to get backend client")
-                    .add_zone(zone_id, client)
-                    .await;
-
+                    .add_zone(zone_id, client);
                 log::info!("Added zone client: {} -> {}", zone_id, url);
             }
-        }
-        let config = WatchOptions::new().with_prefix();
-        let mut stream = etcd_client_checker
-            .watch(prefix, Some(config))
-            .await
-            .expect("Failed to watch etcd for zone changes");
-        loop {
-            match stream.message().await {
-                Ok(Some(response)) => {
-                    for event in response.events() {
-                        match event.event_type() {
-                            etcd_client::EventType::Put => {
-                                if let Some(kv) = event.kv() {
-                                    let zone_id = String::from_utf8_lossy(kv.key())
-                                        .strip_prefix(prefix)
-                                        .unwrap_or_default()
-                                        .parse::<u64>()
-                                        .unwrap_or_default();
-                                    let url = String::from_utf8_lossy(kv.value())
-                                        .parse::<String>()
-                                        .unwrap_or_default();
-
-                                    let Ok(client) =
-                                        ZoneSyncServiceClient::connect(format!("http://{}", url))
-                                            .await
-                                    else {
-                                        log::error!("Failed to connect to zone at {}", url);
-                                        continue;
-                                    };
-
-                                    BACKEND_CLIENT_INSTANCE
-                                        .get()
-                                        .expect("Failed to get backend client")
-                                        .add_zone(zone_id, client)
-                                        .await;
-
-                                    log::info!("Added zone client: {} -> {}", zone_id, url);
-                                }
-                            }
-                            etcd_client::EventType::Delete => {
-                                if let Some(kv) = event.kv() {
-                                    let zone_id = String::from_utf8_lossy(kv.key())
-                                        .strip_prefix(prefix)
-                                        .unwrap_or_default()
-                                        .parse::<u64>()
-                                        .unwrap_or_default();
-
-                                    BACKEND_CLIENT_INSTANCE
-                                        .get()
-                                        .expect("Failed to get backend client")
-                                        .remove_zone(zone_id);
-                                    log::info!("Removed zone client: {}", zone_id);
-                                }
-                            }
-                        }
-                    }
-                }
-                _ => {
-                    log::error!("Failed to receive etcd watch message");
-                }
+            etcd_client::EventType::Delete => {
+                BACKEND_CLIENT_INSTANCE
+                    .get()
+                    .expect("Failed to get backend client")
+                    .remove_zone(zone_id);
+                log::info!("Removed zone client: {}", zone_id);
             }
         }
-    });
+    })
+    .await;
+
+    etcd_client_helper::get_existing_service_endpoint_prefix(
+        etcd_client.clone(),
+        Some("zones/".to_string()),
+        |key, value| {
+            let zone_id = key
+                .strip_prefix("zones/")
+                .unwrap_or_default()
+                .parse::<u64>()
+                .unwrap_or_default();
+            let url = value;
+
+            log::info!("Found existing zone in etcd: {} -> {}", zone_id, url);
+
+            let client = match channel::Endpoint::from_shared(format!("http://{}", url))
+                .map(|endpoint| endpoint.connect_lazy())
+            {
+                Ok(client) => client,
+                Err(e) => {
+                    log::error!("Failed to create gRPC client for zone at {}: {}", url, e);
+                    return;
+                }
+            };
+
+            BACKEND_CLIENT_INSTANCE
+                .get()
+                .expect("Failed to get backend client")
+                .add_zone(zone_id, client);
+
+            log::info!("Added zone client: {} -> {}", zone_id, url);
+        },
+    )
+    .await;
 
     loop {
         // wait for an incoming connection

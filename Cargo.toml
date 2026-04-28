@@ -18,6 +18,7 @@ chrono = "0.4.44"
 dashmap = "6.1.0"
 dotenvy = "0.15.7"
 etcd-client = "0.18.0"
+aws-config = "1.8.16"
 
 [build-dependencies]
 tonic-prost-build = "0.14"

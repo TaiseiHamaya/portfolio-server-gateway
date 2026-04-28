@@ -28,14 +28,16 @@ pub async fn forward_to_lobby(message: proto::ToServerMessage, client: Arc<RwLoc
             let client_clone = client.clone();
 
             tokio::spawn(async move {
+                client_clone.write().await.status = ClientStatus::Routing;
                 let response = match lobby_client
                     .start_game(PayloadLobbyStartGameRequest { user_id })
                     .await
                 {
                     Ok(response) => {
                         log::info!(
-                            "Successfully started game for user_id {}: player_entity_id: {}",
+                            "Successfully started game for user_id {}: zone_id: {}, player_entity_id: {}",
                             user_id,
+                            response.get_ref().zone_id,
                             response.get_ref().player_entity_id
                         );
                         response
@@ -46,10 +48,16 @@ pub async fn forward_to_lobby(message: proto::ToServerMessage, client: Arc<RwLoc
                     }
                 };
 
+                let (zone_id, player_entity_id) = (
+                    response.get_ref().zone_id,
+                    response.get_ref().player_entity_id,
+                );
+
                 let mut message = proto::ToClientMessage::new();
                 message
                     .start_game_response_mut()
-                    .set_player_entity_id(response.into_inner().player_entity_id);
+                    .set_player_entity_id(player_entity_id);
+                message.start_game_response_mut().set_zone_id(zone_id);
                 client_clone
                     .write()
                     .await
