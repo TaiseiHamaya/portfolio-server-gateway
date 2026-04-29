@@ -94,9 +94,13 @@ async fn reader(
     loop {
         match frame_reader.next().await {
             Some(Ok(frame)) => match proto::ToServerMessage::parse(frame.chunk()) {
-                Ok(packet) => {
-                    log::info!("Received packet from {}: {:?}", addr, packet.message_case());
-                    handler.handle_message(packet, client.clone()).await;
+                Ok(message) => {
+                    log::info!(
+                        "Received packet from {}: {:?}",
+                        addr,
+                        message.message_case()
+                    );
+                    handler.handle_message(message, client.clone()).await;
                 }
                 Err(e) => log::error!("Failed to parse packet from {}: {}", addr, e),
             },
@@ -137,17 +141,17 @@ async fn writer(
     client: Arc<RwLock<Client>>,
 ) {
     let mut framed_write = FramedWrite::new(write_socket, LengthDelimitedCodec::new());
-    while let Some((server_type, packet)) = rx.recv().await {
+    while let Some((server_type, message)) = rx.recv().await {
         log::info!(
             "Received message to send to client: {:?}",
-            packet.message_case()
+            message.message_case()
         );
 
-        let message_case = packet.message_case();
+        let message_case = message.message_case();
         match message_case {
             to_client_message::MessageCase::LogoutResponse
             | to_client_message::MessageCase::SignupResponse => {
-                send_message_to_client(&mut framed_write, packet).await;
+                send_message_to_client(&mut framed_write, message).await;
             }
             to_client_message::MessageCase::EnemySpawn
             | to_client_message::MessageCase::EnemyDespawn
@@ -165,19 +169,19 @@ async fn writer(
                 // if the same zone, send directly
                 // otherwise, discard
                 if client.read().await.status == ClientStatus::Zone(zone_id) {
-                    send_message_to_client(&mut framed_write, packet).await;
+                    send_message_to_client(&mut framed_write, message).await;
                 }
             }
             to_client_message::MessageCase::LobbyEnterResponse => {
                 if client.read().await.status == ClientStatus::Lobby {
-                    send_message_to_client(&mut framed_write, packet).await;
+                    send_message_to_client(&mut framed_write, message).await;
                 }
             }
             to_client_message::MessageCase::StartGameResponse => {
                 if client.read().await.status == ClientStatus::Routing {
                     client.write().await.status =
-                        ClientStatus::Zone(packet.start_game_response().zone_id());
-                    send_message_to_client(&mut framed_write, packet).await;
+                        ClientStatus::Zone(message.start_game_response().zone_id());
+                    send_message_to_client(&mut framed_write, message).await;
                 }
             }
             _ => {}
