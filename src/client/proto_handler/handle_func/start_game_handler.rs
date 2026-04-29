@@ -5,10 +5,10 @@ use crate::{
     backend::backend_client,
     client::client_main::{BackendServerType, Client, ClientStatus},
     generated::proto_client::PayloadLobbyStartGameRequest,
-    network::proto::proto::{self, to_server_message::MessageCase},
+    network::proto::proto::{self, Vector3, to_server_message::MessageCase},
 };
 
-pub async fn forward_to_lobby(message: proto::ToServerMessage, client: Arc<RwLock<Client>>) {
+pub async fn start_game_handler(message: proto::ToServerMessage, client: Arc<RwLock<Client>>) {
     let message_case = message.message_case();
     if client.read().await.status != ClientStatus::Lobby {
         log::warn!("Received message is not match to client status.");
@@ -35,10 +35,11 @@ pub async fn forward_to_lobby(message: proto::ToServerMessage, client: Arc<RwLoc
                 {
                     Ok(response) => {
                         log::info!(
-                            "Successfully started game for user_id {}: zone_id: {}, player_entity_id: {}",
+                            "Successfully started game for user_id {}: zone_id: {}, player_entity_id: {}, position: {:?}",
                             user_id,
                             response.get_ref().zone_id,
-                            response.get_ref().player_entity_id
+                            response.get_ref().player_entity_id,
+                            response.get_ref().position
                         );
                         response
                     }
@@ -48,9 +49,10 @@ pub async fn forward_to_lobby(message: proto::ToServerMessage, client: Arc<RwLoc
                     }
                 };
 
-                let (zone_id, player_entity_id) = (
+                let (zone_id, player_entity_id, position) = (
                     response.get_ref().zone_id,
                     response.get_ref().player_entity_id,
+                    response.get_ref().position.clone(),
                 );
 
                 let mut message = proto::ToClientMessage::new();
@@ -58,6 +60,11 @@ pub async fn forward_to_lobby(message: proto::ToServerMessage, client: Arc<RwLoc
                     .start_game_response_mut()
                     .set_player_entity_id(player_entity_id);
                 message.start_game_response_mut().set_zone_id(zone_id);
+                if let Some(position) = position {
+                    message
+                        .start_game_response_mut()
+                        .set_position(Vector3::from(position));
+                }
                 client_clone
                     .write()
                     .await

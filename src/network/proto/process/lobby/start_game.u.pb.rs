@@ -711,6 +711,24 @@ impl<'msg> PayloadLobbyStartGameResponseView<'msg> {
     }
   }
 
+  // position: optional message Proto.Vector3
+  pub fn has_position(self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(2)
+    }
+  }
+  pub fn position_opt(self) -> ::protobuf::Optional<super::Vector3View<'msg>> {
+        ::protobuf::Optional::new(self.position(), self.has_position())
+  }
+  pub fn position(self) -> super::Vector3View<'msg> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(2)
+    };
+    let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
+    let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
+    super::Vector3View::new(::protobuf::__internal::Private, inner)
+  }
+
 }
 
 // SAFETY:
@@ -916,6 +934,60 @@ impl<'msg> PayloadLobbyStartGameResponseMut<'msg> {
     }
   }
 
+  // position: optional message Proto.Vector3
+  pub fn has_position(&self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(2)
+    }
+  }
+  pub fn clear_position(&mut self) {
+    unsafe {
+      self.inner.ptr().clear_field_at_index(
+        2
+      );
+    }
+  }
+  pub fn position_opt(&self) -> ::protobuf::Optional<super::Vector3View<'_>> {
+        ::protobuf::Optional::new(self.position(), self.has_position())
+  }
+  pub fn position(&self) -> super::Vector3View<'_> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(2)
+    };
+    let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
+    let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
+    super::Vector3View::new(::protobuf::__internal::Private, inner)
+  }
+  pub fn position_mut(&mut self) -> super::Vector3Mut<'_> {
+     let ptr = unsafe {
+       self.inner.ptr_mut().get_or_create_mutable_message_at_index(
+         2, self.arena()
+       ).unwrap()
+     };
+     super::Vector3Mut::from_parent(
+       ::protobuf::__internal::Private,
+       self.as_message_mut_inner(::protobuf::__internal::Private),
+       ptr.raw())
+  }
+  pub fn set_position(&mut self,
+    val: impl ::protobuf::IntoProxied<super::Vector3>) {
+
+    // The message and arena are dropped after the setter. The
+    // memory remains allocated as we fuse the arena with the
+    // parent message's arena.
+    let mut child = val.into_proxied(::protobuf::__internal::Private);
+    self.inner
+      .arena()
+      .fuse(::protobuf::__internal::runtime::UpbGetArena::get_arena(&mut child, ::protobuf::__internal::Private));
+
+    let child_ptr = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_ptr_mut(&mut child, ::protobuf::__internal::Private);
+    unsafe {
+      self.inner.ptr_mut().set_base_field_message_at_index(
+        2, child_ptr
+      );
+    }
+  }
+
 }
 
 // SAFETY:
@@ -1055,6 +1127,60 @@ impl PayloadLobbyStartGameResponse {
     }
   }
 
+  // position: optional message Proto.Vector3
+  pub fn has_position(&self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(2)
+    }
+  }
+  pub fn clear_position(&mut self) {
+    unsafe {
+      self.inner.ptr().clear_field_at_index(
+        2
+      );
+    }
+  }
+  pub fn position_opt(&self) -> ::protobuf::Optional<super::Vector3View<'_>> {
+        ::protobuf::Optional::new(self.position(), self.has_position())
+  }
+  pub fn position(&self) -> super::Vector3View<'_> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(2)
+    };
+    let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
+    let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
+    super::Vector3View::new(::protobuf::__internal::Private, inner)
+  }
+  pub fn position_mut(&mut self) -> super::Vector3Mut<'_> {
+     let ptr = unsafe {
+       self.inner.ptr_mut().get_or_create_mutable_message_at_index(
+         2, self.arena()
+       ).unwrap()
+     };
+     super::Vector3Mut::from_parent(
+       ::protobuf::__internal::Private,
+       self.as_message_mut_inner(::protobuf::__internal::Private),
+       ptr.raw())
+  }
+  pub fn set_position(&mut self,
+    val: impl ::protobuf::IntoProxied<super::Vector3>) {
+
+    // The message and arena are dropped after the setter. The
+    // memory remains allocated as we fuse the arena with the
+    // parent message's arena.
+    let mut child = val.into_proxied(::protobuf::__internal::Private);
+    self.inner
+      .arena()
+      .fuse(::protobuf::__internal::runtime::UpbGetArena::get_arena(&mut child, ::protobuf::__internal::Private));
+
+    let child_ptr = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_ptr_mut(&mut child, ::protobuf::__internal::Private);
+    unsafe {
+      self.inner.ptr_mut().set_base_field_message_at_index(
+        2, child_ptr
+      );
+    }
+  }
+
 }  // impl PayloadLobbyStartGameResponse
 
 impl ::std::ops::Drop for PayloadLobbyStartGameResponse {
@@ -1089,11 +1215,12 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadLobb
     ONCE_LOCK.get_or_init(|| unsafe {
       super::Proto__PayloadLobbyStartGameResponse_msg_init.0 =
           ::protobuf::__internal::runtime::upb_MiniTable_Build(
-              "$,P,P".as_ptr(),
-              5,
+              "$,P,P3".as_ptr(),
+              6,
               ::protobuf::__internal::runtime::THREAD_LOCAL_ARENA.with(|a| a.raw()),
               ::std::ptr::null_mut());
       let submessages = [
+        <super::Vector3 as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
       ];
       let subenums = [
       ];

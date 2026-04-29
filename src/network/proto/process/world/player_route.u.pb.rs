@@ -1866,27 +1866,22 @@ impl<'msg> PayloadPlayerZoneEnterCompleteResponseView<'msg> {
     ::protobuf::IntoProxied::into_proxied(*self, ::protobuf::__internal::Private)
   }
 
-  // player_entity_id: optional uint64
-  pub fn has_player_entity_id(self) -> bool {
+  // player_data: optional message Proto.RoutePlayerData
+  pub fn has_player_data(self) -> bool {
     unsafe {
       self.inner.ptr().has_field_at_index(0)
     }
   }
-  pub fn player_entity_id_opt(self) -> ::protobuf::Optional<u64> {
-        ::protobuf::Optional::new(self.player_entity_id(), self.has_player_entity_id())
+  pub fn player_data_opt(self) -> ::protobuf::Optional<super::RoutePlayerDataView<'msg>> {
+        ::protobuf::Optional::new(self.player_data(), self.has_player_data())
   }
-  pub fn player_entity_id(self) -> u64 {
-    unsafe {
-      // TODO: b/361751487: This .into() and .try_into() is only
-      // here for the enum<->i32 case, we should avoid it for
-      // other primitives where the types naturally match
-      // perfectly (and do an unchecked conversion for
-      // i32->enum types, since even for closed enums we trust
-      // upb to only return one of the named values).
-      self.inner.ptr().get_u64_at_index(
-        0, (0u64).into()
-      ).try_into().unwrap()
-    }
+  pub fn player_data(self) -> super::RoutePlayerDataView<'msg> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(0)
+    };
+    let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
+    let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
+    super::RoutePlayerDataView::new(::protobuf::__internal::Private, inner)
   }
 
 }
@@ -2042,44 +2037,57 @@ impl<'msg> PayloadPlayerZoneEnterCompleteResponseMut<'msg> {
     self.inner.arena()
   }
 
-  // player_entity_id: optional uint64
-  pub fn has_player_entity_id(&self) -> bool {
+  // player_data: optional message Proto.RoutePlayerData
+  pub fn has_player_data(&self) -> bool {
     unsafe {
       self.inner.ptr().has_field_at_index(0)
     }
   }
-  pub fn clear_player_entity_id(&mut self) {
+  pub fn clear_player_data(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
         0
       );
     }
   }
-  pub fn player_entity_id_opt(&self) -> ::protobuf::Optional<u64> {
-        ::protobuf::Optional::new(self.player_entity_id(), self.has_player_entity_id())
+  pub fn player_data_opt(&self) -> ::protobuf::Optional<super::RoutePlayerDataView<'_>> {
+        ::protobuf::Optional::new(self.player_data(), self.has_player_data())
   }
-  pub fn player_entity_id(&self) -> u64 {
-    unsafe {
-      // TODO: b/361751487: This .into() and .try_into() is only
-      // here for the enum<->i32 case, we should avoid it for
-      // other primitives where the types naturally match
-      // perfectly (and do an unchecked conversion for
-      // i32->enum types, since even for closed enums we trust
-      // upb to only return one of the named values).
-      self.inner.ptr().get_u64_at_index(
-        0, (0u64).into()
-      ).try_into().unwrap()
-    }
+  pub fn player_data(&self) -> super::RoutePlayerDataView<'_> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(0)
+    };
+    let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
+    let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
+    super::RoutePlayerDataView::new(::protobuf::__internal::Private, inner)
   }
-  pub fn set_player_entity_id(&mut self, val: u64) {
+  pub fn player_data_mut(&mut self) -> super::RoutePlayerDataMut<'_> {
+     let ptr = unsafe {
+       self.inner.ptr_mut().get_or_create_mutable_message_at_index(
+         0, self.arena()
+       ).unwrap()
+     };
+     super::RoutePlayerDataMut::from_parent(
+       ::protobuf::__internal::Private,
+       self.as_message_mut_inner(::protobuf::__internal::Private),
+       ptr.raw())
+  }
+  pub fn set_player_data(&mut self,
+    val: impl ::protobuf::IntoProxied<super::RoutePlayerData>) {
+
+    // The message and arena are dropped after the setter. The
+    // memory remains allocated as we fuse the arena with the
+    // parent message's arena.
+    let mut child = val.into_proxied(::protobuf::__internal::Private);
+    self.inner
+      .arena()
+      .fuse(::protobuf::__internal::runtime::UpbGetArena::get_arena(&mut child, ::protobuf::__internal::Private));
+
+    let child_ptr = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_ptr_mut(&mut child, ::protobuf::__internal::Private);
     unsafe {
-      // TODO: b/361751487: This .into() is only here
-      // here for the enum<->i32 case, we should avoid it for
-      // other primitives where the types naturally match
-      //perfectly.
-      self.inner.ptr_mut().set_base_field_u64_at_index(
-        0, val.into()
-      )
+      self.inner.ptr_mut().set_base_field_message_at_index(
+        0, child_ptr
+      );
     }
   }
 
@@ -2170,44 +2178,57 @@ impl PayloadPlayerZoneEnterCompleteResponse {
     PayloadPlayerZoneEnterCompleteResponseMut::new(::protobuf::__internal::Private, inner)
   }
 
-  // player_entity_id: optional uint64
-  pub fn has_player_entity_id(&self) -> bool {
+  // player_data: optional message Proto.RoutePlayerData
+  pub fn has_player_data(&self) -> bool {
     unsafe {
       self.inner.ptr().has_field_at_index(0)
     }
   }
-  pub fn clear_player_entity_id(&mut self) {
+  pub fn clear_player_data(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
         0
       );
     }
   }
-  pub fn player_entity_id_opt(&self) -> ::protobuf::Optional<u64> {
-        ::protobuf::Optional::new(self.player_entity_id(), self.has_player_entity_id())
+  pub fn player_data_opt(&self) -> ::protobuf::Optional<super::RoutePlayerDataView<'_>> {
+        ::protobuf::Optional::new(self.player_data(), self.has_player_data())
   }
-  pub fn player_entity_id(&self) -> u64 {
-    unsafe {
-      // TODO: b/361751487: This .into() and .try_into() is only
-      // here for the enum<->i32 case, we should avoid it for
-      // other primitives where the types naturally match
-      // perfectly (and do an unchecked conversion for
-      // i32->enum types, since even for closed enums we trust
-      // upb to only return one of the named values).
-      self.inner.ptr().get_u64_at_index(
-        0, (0u64).into()
-      ).try_into().unwrap()
-    }
+  pub fn player_data(&self) -> super::RoutePlayerDataView<'_> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(0)
+    };
+    let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
+    let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
+    super::RoutePlayerDataView::new(::protobuf::__internal::Private, inner)
   }
-  pub fn set_player_entity_id(&mut self, val: u64) {
+  pub fn player_data_mut(&mut self) -> super::RoutePlayerDataMut<'_> {
+     let ptr = unsafe {
+       self.inner.ptr_mut().get_or_create_mutable_message_at_index(
+         0, self.arena()
+       ).unwrap()
+     };
+     super::RoutePlayerDataMut::from_parent(
+       ::protobuf::__internal::Private,
+       self.as_message_mut_inner(::protobuf::__internal::Private),
+       ptr.raw())
+  }
+  pub fn set_player_data(&mut self,
+    val: impl ::protobuf::IntoProxied<super::RoutePlayerData>) {
+
+    // The message and arena are dropped after the setter. The
+    // memory remains allocated as we fuse the arena with the
+    // parent message's arena.
+    let mut child = val.into_proxied(::protobuf::__internal::Private);
+    self.inner
+      .arena()
+      .fuse(::protobuf::__internal::runtime::UpbGetArena::get_arena(&mut child, ::protobuf::__internal::Private));
+
+    let child_ptr = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_ptr_mut(&mut child, ::protobuf::__internal::Private);
     unsafe {
-      // TODO: b/361751487: This .into() is only here
-      // here for the enum<->i32 case, we should avoid it for
-      // other primitives where the types naturally match
-      //perfectly.
-      self.inner.ptr_mut().set_base_field_u64_at_index(
-        0, val.into()
-      )
+      self.inner.ptr_mut().set_base_field_message_at_index(
+        0, child_ptr
+      );
     }
   }
 
@@ -2245,11 +2266,12 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadPlay
     ONCE_LOCK.get_or_init(|| unsafe {
       super::Proto__PayloadPlayerZoneEnterCompleteResponse_msg_init.0 =
           ::protobuf::__internal::runtime::upb_MiniTable_Build(
-              "$,".as_ptr(),
+              "$3".as_ptr(),
               2,
               ::protobuf::__internal::runtime::THREAD_LOCAL_ARENA.with(|a| a.raw()),
               ::std::ptr::null_mut());
       let submessages = [
+        <super::RoutePlayerData as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
       ];
       let subenums = [
       ];

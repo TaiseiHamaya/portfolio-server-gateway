@@ -29,7 +29,9 @@ async fn main() {
     // log
     logger::init().expect("Failed to initialize logger.");
 
-    dotenvy::dotenv().expect("Failed to load .env file");
+    if dotenvy::dotenv().is_ok() {
+        log::info!(".env file loaded successfully.");
+    }
 
     let server_address = ec2_helper::get_local_ip().await;
     let port = env::var("PORT")

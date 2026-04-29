@@ -8,7 +8,7 @@ use crate::{
     network::proto::proto::{self},
 };
 
-pub async fn handle_endgame(_message: proto::ToServerMessage, client: Arc<RwLock<Client>>) {
+pub async fn endgame_handler(_message: proto::ToServerMessage, client: Arc<RwLock<Client>>) {
     let status = client.read().await.status;
     let user_id = match client.read().await.user_id {
         Some(id) => id,
@@ -40,11 +40,11 @@ pub async fn handle_endgame(_message: proto::ToServerMessage, client: Arc<RwLock
             }
         };
 
-        let player_entity_id = response.get_ref().player_entity_id;
+        let player_data = response.get_ref().player_data;
         log::info!(
-            "Zone route ended for user_id: {}, player_entity_id: {:?}",
+            "Zone route ended for user_id: {}, player_data: {:?}",
             user_id,
-            player_entity_id
+            player_data
         );
         client.write().await.entity_id = None;
         client.write().await.status = ClientStatus::Disconnected;

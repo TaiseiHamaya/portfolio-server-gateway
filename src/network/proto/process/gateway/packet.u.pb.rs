@@ -212,10 +212,28 @@ impl<'msg> ToServerMessageView<'msg> {
     super::PayloadLobbyEndGameRequestView::new(::protobuf::__internal::Private, inner)
   }
 
+  // client_initializer_request: optional message Proto.PayloadClientInitializerRequest
+  pub fn has_client_initializer_request(self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(5)
+    }
+  }
+  pub fn client_initializer_request_opt(self) -> ::protobuf::Optional<super::PayloadClientInitializerRequestView<'msg>> {
+        ::protobuf::Optional::new(self.client_initializer_request(), self.has_client_initializer_request())
+  }
+  pub fn client_initializer_request(self) -> super::PayloadClientInitializerRequestView<'msg> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(5)
+    };
+    let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
+    let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
+    super::PayloadClientInitializerRequestView::new(::protobuf::__internal::Private, inner)
+  }
+
   // transform_sync: optional message Proto.PayloadTransformSync
   pub fn has_transform_sync(self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(5)
+      self.inner.ptr().has_field_at_index(6)
     }
   }
   pub fn transform_sync_opt(self) -> ::protobuf::Optional<super::PayloadTransformSyncView<'msg>> {
@@ -223,7 +241,7 @@ impl<'msg> ToServerMessageView<'msg> {
   }
   pub fn transform_sync(self) -> super::PayloadTransformSyncView<'msg> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(5)
+      self.inner.ptr().get_message_at_index(6)
     };
     let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
     let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
@@ -233,7 +251,7 @@ impl<'msg> ToServerMessageView<'msg> {
   // play_action: optional message Proto.PayloadPlayAction
   pub fn has_play_action(self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(6)
+      self.inner.ptr().has_field_at_index(7)
     }
   }
   pub fn play_action_opt(self) -> ::protobuf::Optional<super::PayloadPlayActionView<'msg>> {
@@ -241,7 +259,7 @@ impl<'msg> ToServerMessageView<'msg> {
   }
   pub fn play_action(self) -> super::PayloadPlayActionView<'msg> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(6)
+      self.inner.ptr().get_message_at_index(7)
     };
     let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
     let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
@@ -251,7 +269,7 @@ impl<'msg> ToServerMessageView<'msg> {
   // text_message: optional message Proto.PayloadTextMessage
   pub fn has_text_message(self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(7)
+      self.inner.ptr().has_field_at_index(8)
     }
   }
   pub fn text_message_opt(self) -> ::protobuf::Optional<super::PayloadTextMessageView<'msg>> {
@@ -259,7 +277,7 @@ impl<'msg> ToServerMessageView<'msg> {
   }
   pub fn text_message(self) -> super::PayloadTextMessageView<'msg> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(7)
+      self.inner.ptr().get_message_at_index(8)
     };
     let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
     let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
@@ -278,6 +296,8 @@ impl<'msg> ToServerMessageView<'msg> {
           super::to_server_message::MessageOneof::StartGame(self.start_game()),
       super::to_server_message::MessageCase::EndGame =>
           super::to_server_message::MessageOneof::EndGame(self.end_game()),
+      super::to_server_message::MessageCase::ClientInitializerRequest =>
+          super::to_server_message::MessageOneof::ClientInitializerRequest(self.client_initializer_request()),
       super::to_server_message::MessageCase::TransformSync =>
           super::to_server_message::MessageOneof::TransformSync(self.transform_sync()),
       super::to_server_message::MessageCase::PlayAction =>
@@ -723,16 +743,70 @@ impl<'msg> ToServerMessageMut<'msg> {
     }
   }
 
+  // client_initializer_request: optional message Proto.PayloadClientInitializerRequest
+  pub fn has_client_initializer_request(&self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(5)
+    }
+  }
+  pub fn clear_client_initializer_request(&mut self) {
+    unsafe {
+      self.inner.ptr().clear_field_at_index(
+        5
+      );
+    }
+  }
+  pub fn client_initializer_request_opt(&self) -> ::protobuf::Optional<super::PayloadClientInitializerRequestView<'_>> {
+        ::protobuf::Optional::new(self.client_initializer_request(), self.has_client_initializer_request())
+  }
+  pub fn client_initializer_request(&self) -> super::PayloadClientInitializerRequestView<'_> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(5)
+    };
+    let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
+    let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
+    super::PayloadClientInitializerRequestView::new(::protobuf::__internal::Private, inner)
+  }
+  pub fn client_initializer_request_mut(&mut self) -> super::PayloadClientInitializerRequestMut<'_> {
+     let ptr = unsafe {
+       self.inner.ptr_mut().get_or_create_mutable_message_at_index(
+         5, self.arena()
+       ).unwrap()
+     };
+     super::PayloadClientInitializerRequestMut::from_parent(
+       ::protobuf::__internal::Private,
+       self.as_message_mut_inner(::protobuf::__internal::Private),
+       ptr.raw())
+  }
+  pub fn set_client_initializer_request(&mut self,
+    val: impl ::protobuf::IntoProxied<super::PayloadClientInitializerRequest>) {
+
+    // The message and arena are dropped after the setter. The
+    // memory remains allocated as we fuse the arena with the
+    // parent message's arena.
+    let mut child = val.into_proxied(::protobuf::__internal::Private);
+    self.inner
+      .arena()
+      .fuse(::protobuf::__internal::runtime::UpbGetArena::get_arena(&mut child, ::protobuf::__internal::Private));
+
+    let child_ptr = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_ptr_mut(&mut child, ::protobuf::__internal::Private);
+    unsafe {
+      self.inner.ptr_mut().set_base_field_message_at_index(
+        5, child_ptr
+      );
+    }
+  }
+
   // transform_sync: optional message Proto.PayloadTransformSync
   pub fn has_transform_sync(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(5)
+      self.inner.ptr().has_field_at_index(6)
     }
   }
   pub fn clear_transform_sync(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        5
+        6
       );
     }
   }
@@ -741,7 +815,7 @@ impl<'msg> ToServerMessageMut<'msg> {
   }
   pub fn transform_sync(&self) -> super::PayloadTransformSyncView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(5)
+      self.inner.ptr().get_message_at_index(6)
     };
     let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
     let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
@@ -750,7 +824,7 @@ impl<'msg> ToServerMessageMut<'msg> {
   pub fn transform_sync_mut(&mut self) -> super::PayloadTransformSyncMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         5, self.arena()
+         6, self.arena()
        ).unwrap()
      };
      super::PayloadTransformSyncMut::from_parent(
@@ -772,7 +846,7 @@ impl<'msg> ToServerMessageMut<'msg> {
     let child_ptr = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_ptr_mut(&mut child, ::protobuf::__internal::Private);
     unsafe {
       self.inner.ptr_mut().set_base_field_message_at_index(
-        5, child_ptr
+        6, child_ptr
       );
     }
   }
@@ -780,13 +854,13 @@ impl<'msg> ToServerMessageMut<'msg> {
   // play_action: optional message Proto.PayloadPlayAction
   pub fn has_play_action(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(6)
+      self.inner.ptr().has_field_at_index(7)
     }
   }
   pub fn clear_play_action(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        6
+        7
       );
     }
   }
@@ -795,7 +869,7 @@ impl<'msg> ToServerMessageMut<'msg> {
   }
   pub fn play_action(&self) -> super::PayloadPlayActionView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(6)
+      self.inner.ptr().get_message_at_index(7)
     };
     let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
     let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
@@ -804,7 +878,7 @@ impl<'msg> ToServerMessageMut<'msg> {
   pub fn play_action_mut(&mut self) -> super::PayloadPlayActionMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         6, self.arena()
+         7, self.arena()
        ).unwrap()
      };
      super::PayloadPlayActionMut::from_parent(
@@ -826,7 +900,7 @@ impl<'msg> ToServerMessageMut<'msg> {
     let child_ptr = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_ptr_mut(&mut child, ::protobuf::__internal::Private);
     unsafe {
       self.inner.ptr_mut().set_base_field_message_at_index(
-        6, child_ptr
+        7, child_ptr
       );
     }
   }
@@ -834,13 +908,13 @@ impl<'msg> ToServerMessageMut<'msg> {
   // text_message: optional message Proto.PayloadTextMessage
   pub fn has_text_message(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(7)
+      self.inner.ptr().has_field_at_index(8)
     }
   }
   pub fn clear_text_message(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        7
+        8
       );
     }
   }
@@ -849,7 +923,7 @@ impl<'msg> ToServerMessageMut<'msg> {
   }
   pub fn text_message(&self) -> super::PayloadTextMessageView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(7)
+      self.inner.ptr().get_message_at_index(8)
     };
     let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
     let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
@@ -858,7 +932,7 @@ impl<'msg> ToServerMessageMut<'msg> {
   pub fn text_message_mut(&mut self) -> super::PayloadTextMessageMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         7, self.arena()
+         8, self.arena()
        ).unwrap()
      };
      super::PayloadTextMessageMut::from_parent(
@@ -880,7 +954,7 @@ impl<'msg> ToServerMessageMut<'msg> {
     let child_ptr = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_ptr_mut(&mut child, ::protobuf::__internal::Private);
     unsafe {
       self.inner.ptr_mut().set_base_field_message_at_index(
-        7, child_ptr
+        8, child_ptr
       );
     }
   }
@@ -897,6 +971,8 @@ impl<'msg> ToServerMessageMut<'msg> {
           super::to_server_message::MessageOneof::StartGame(self.start_game()),
       super::to_server_message::MessageCase::EndGame =>
           super::to_server_message::MessageOneof::EndGame(self.end_game()),
+      super::to_server_message::MessageCase::ClientInitializerRequest =>
+          super::to_server_message::MessageOneof::ClientInitializerRequest(self.client_initializer_request()),
       super::to_server_message::MessageCase::TransformSync =>
           super::to_server_message::MessageOneof::TransformSync(self.transform_sync()),
       super::to_server_message::MessageCase::PlayAction =>
@@ -1276,16 +1352,70 @@ impl ToServerMessage {
     }
   }
 
+  // client_initializer_request: optional message Proto.PayloadClientInitializerRequest
+  pub fn has_client_initializer_request(&self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(5)
+    }
+  }
+  pub fn clear_client_initializer_request(&mut self) {
+    unsafe {
+      self.inner.ptr().clear_field_at_index(
+        5
+      );
+    }
+  }
+  pub fn client_initializer_request_opt(&self) -> ::protobuf::Optional<super::PayloadClientInitializerRequestView<'_>> {
+        ::protobuf::Optional::new(self.client_initializer_request(), self.has_client_initializer_request())
+  }
+  pub fn client_initializer_request(&self) -> super::PayloadClientInitializerRequestView<'_> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(5)
+    };
+    let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
+    let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
+    super::PayloadClientInitializerRequestView::new(::protobuf::__internal::Private, inner)
+  }
+  pub fn client_initializer_request_mut(&mut self) -> super::PayloadClientInitializerRequestMut<'_> {
+     let ptr = unsafe {
+       self.inner.ptr_mut().get_or_create_mutable_message_at_index(
+         5, self.arena()
+       ).unwrap()
+     };
+     super::PayloadClientInitializerRequestMut::from_parent(
+       ::protobuf::__internal::Private,
+       self.as_message_mut_inner(::protobuf::__internal::Private),
+       ptr.raw())
+  }
+  pub fn set_client_initializer_request(&mut self,
+    val: impl ::protobuf::IntoProxied<super::PayloadClientInitializerRequest>) {
+
+    // The message and arena are dropped after the setter. The
+    // memory remains allocated as we fuse the arena with the
+    // parent message's arena.
+    let mut child = val.into_proxied(::protobuf::__internal::Private);
+    self.inner
+      .arena()
+      .fuse(::protobuf::__internal::runtime::UpbGetArena::get_arena(&mut child, ::protobuf::__internal::Private));
+
+    let child_ptr = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_ptr_mut(&mut child, ::protobuf::__internal::Private);
+    unsafe {
+      self.inner.ptr_mut().set_base_field_message_at_index(
+        5, child_ptr
+      );
+    }
+  }
+
   // transform_sync: optional message Proto.PayloadTransformSync
   pub fn has_transform_sync(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(5)
+      self.inner.ptr().has_field_at_index(6)
     }
   }
   pub fn clear_transform_sync(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        5
+        6
       );
     }
   }
@@ -1294,7 +1424,7 @@ impl ToServerMessage {
   }
   pub fn transform_sync(&self) -> super::PayloadTransformSyncView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(5)
+      self.inner.ptr().get_message_at_index(6)
     };
     let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
     let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
@@ -1303,7 +1433,7 @@ impl ToServerMessage {
   pub fn transform_sync_mut(&mut self) -> super::PayloadTransformSyncMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         5, self.arena()
+         6, self.arena()
        ).unwrap()
      };
      super::PayloadTransformSyncMut::from_parent(
@@ -1325,7 +1455,7 @@ impl ToServerMessage {
     let child_ptr = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_ptr_mut(&mut child, ::protobuf::__internal::Private);
     unsafe {
       self.inner.ptr_mut().set_base_field_message_at_index(
-        5, child_ptr
+        6, child_ptr
       );
     }
   }
@@ -1333,13 +1463,13 @@ impl ToServerMessage {
   // play_action: optional message Proto.PayloadPlayAction
   pub fn has_play_action(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(6)
+      self.inner.ptr().has_field_at_index(7)
     }
   }
   pub fn clear_play_action(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        6
+        7
       );
     }
   }
@@ -1348,7 +1478,7 @@ impl ToServerMessage {
   }
   pub fn play_action(&self) -> super::PayloadPlayActionView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(6)
+      self.inner.ptr().get_message_at_index(7)
     };
     let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
     let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
@@ -1357,7 +1487,7 @@ impl ToServerMessage {
   pub fn play_action_mut(&mut self) -> super::PayloadPlayActionMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         6, self.arena()
+         7, self.arena()
        ).unwrap()
      };
      super::PayloadPlayActionMut::from_parent(
@@ -1379,7 +1509,7 @@ impl ToServerMessage {
     let child_ptr = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_ptr_mut(&mut child, ::protobuf::__internal::Private);
     unsafe {
       self.inner.ptr_mut().set_base_field_message_at_index(
-        6, child_ptr
+        7, child_ptr
       );
     }
   }
@@ -1387,13 +1517,13 @@ impl ToServerMessage {
   // text_message: optional message Proto.PayloadTextMessage
   pub fn has_text_message(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(7)
+      self.inner.ptr().has_field_at_index(8)
     }
   }
   pub fn clear_text_message(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        7
+        8
       );
     }
   }
@@ -1402,7 +1532,7 @@ impl ToServerMessage {
   }
   pub fn text_message(&self) -> super::PayloadTextMessageView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(7)
+      self.inner.ptr().get_message_at_index(8)
     };
     let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
     let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
@@ -1411,7 +1541,7 @@ impl ToServerMessage {
   pub fn text_message_mut(&mut self) -> super::PayloadTextMessageMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         7, self.arena()
+         8, self.arena()
        ).unwrap()
      };
      super::PayloadTextMessageMut::from_parent(
@@ -1433,7 +1563,7 @@ impl ToServerMessage {
     let child_ptr = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_ptr_mut(&mut child, ::protobuf::__internal::Private);
     unsafe {
       self.inner.ptr_mut().set_base_field_message_at_index(
-        7, child_ptr
+        8, child_ptr
       );
     }
   }
@@ -1450,6 +1580,8 @@ impl ToServerMessage {
           super::to_server_message::MessageOneof::StartGame(self.start_game()),
       super::to_server_message::MessageCase::EndGame =>
           super::to_server_message::MessageOneof::EndGame(self.end_game()),
+      super::to_server_message::MessageCase::ClientInitializerRequest =>
+          super::to_server_message::MessageOneof::ClientInitializerRequest(self.client_initializer_request()),
       super::to_server_message::MessageCase::TransformSync =>
           super::to_server_message::MessageOneof::TransformSync(self.transform_sync()),
       super::to_server_message::MessageCase::PlayAction =>
@@ -1506,8 +1638,8 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for ToServerMes
     ONCE_LOCK.get_or_init(|| unsafe {
       super::Proto__ToServerMessage_msg_init.0 =
           ::protobuf::__internal::runtime::upb_MiniTable_Build(
-              "$33333333^!|#|$|%|&|(|)|*".as_ptr(),
-              25,
+              "$333333a333^!|#|$|%|&|(|*|+|,".as_ptr(),
+              29,
               ::protobuf::__internal::runtime::THREAD_LOCAL_ARENA.with(|a| a.raw()),
               ::std::ptr::null_mut());
       let submessages = [
@@ -1516,6 +1648,7 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for ToServerMes
         <super::PayloadSignupRequest as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
         <super::PayloadLobbyStartGameRequest as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
         <super::PayloadLobbyEndGameRequest as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
+        <super::PayloadClientInitializerRequest as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
         <super::PayloadTransformSync as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
         <super::PayloadPlayAction as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
         <super::PayloadTextMessage as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
@@ -1598,9 +1731,10 @@ pub enum MessageOneof<'msg> {
   SignupRequest(::protobuf::View<'msg, super::super::PayloadSignupRequest>) = 3,
   StartGame(::protobuf::View<'msg, super::super::PayloadLobbyStartGameRequest>) = 4,
   EndGame(::protobuf::View<'msg, super::super::PayloadLobbyEndGameRequest>) = 5,
-  TransformSync(::protobuf::View<'msg, super::super::PayloadTransformSync>) = 6,
-  PlayAction(::protobuf::View<'msg, super::super::PayloadPlayAction>) = 7,
-  TextMessage(::protobuf::View<'msg, super::super::PayloadTextMessage>) = 8,
+  ClientInitializerRequest(::protobuf::View<'msg, super::super::PayloadClientInitializerRequest>) = 6,
+  TransformSync(::protobuf::View<'msg, super::super::PayloadTransformSync>) = 8,
+  PlayAction(::protobuf::View<'msg, super::super::PayloadPlayAction>) = 9,
+  TextMessage(::protobuf::View<'msg, super::super::PayloadTextMessage>) = 10,
 
   not_set(std::marker::PhantomData<&'msg ()>) = 0
 }
@@ -1614,9 +1748,10 @@ pub enum MessageCase {
   SignupRequest = 3,
   StartGame = 4,
   EndGame = 5,
-  TransformSync = 6,
-  PlayAction = 7,
-  TextMessage = 8,
+  ClientInitializerRequest = 6,
+  TransformSync = 8,
+  PlayAction = 9,
+  TextMessage = 10,
 
   not_set = 0
 }
@@ -1631,9 +1766,10 @@ impl MessageCase {
       3 => Some(MessageCase::SignupRequest),
       4 => Some(MessageCase::StartGame),
       5 => Some(MessageCase::EndGame),
-      6 => Some(MessageCase::TransformSync),
-      7 => Some(MessageCase::PlayAction),
-      8 => Some(MessageCase::TextMessage),
+      6 => Some(MessageCase::ClientInitializerRequest),
+      8 => Some(MessageCase::TransformSync),
+      9 => Some(MessageCase::PlayAction),
+      10 => Some(MessageCase::TextMessage),
       _ => None
     }
   }
@@ -1875,10 +2011,28 @@ impl<'msg> ToClientMessageView<'msg> {
     super::PayloadLobbyEndGameResponseView::new(::protobuf::__internal::Private, inner)
   }
 
+  // client_initializer_response: optional message Proto.PayloadClientInitializerResponse
+  pub fn has_client_initializer_response(self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(5)
+    }
+  }
+  pub fn client_initializer_response_opt(self) -> ::protobuf::Optional<super::PayloadClientInitializerResponseView<'msg>> {
+        ::protobuf::Optional::new(self.client_initializer_response(), self.has_client_initializer_response())
+  }
+  pub fn client_initializer_response(self) -> super::PayloadClientInitializerResponseView<'msg> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(5)
+    };
+    let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
+    let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
+    super::PayloadClientInitializerResponseView::new(::protobuf::__internal::Private, inner)
+  }
+
   // transform_sync: optional message Proto.PayloadTransformSync
   pub fn has_transform_sync(self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(5)
+      self.inner.ptr().has_field_at_index(6)
     }
   }
   pub fn transform_sync_opt(self) -> ::protobuf::Optional<super::PayloadTransformSyncView<'msg>> {
@@ -1886,7 +2040,7 @@ impl<'msg> ToClientMessageView<'msg> {
   }
   pub fn transform_sync(self) -> super::PayloadTransformSyncView<'msg> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(5)
+      self.inner.ptr().get_message_at_index(6)
     };
     let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
     let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
@@ -1896,7 +2050,7 @@ impl<'msg> ToClientMessageView<'msg> {
   // play_action: optional message Proto.PayloadPlayAction
   pub fn has_play_action(self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(6)
+      self.inner.ptr().has_field_at_index(7)
     }
   }
   pub fn play_action_opt(self) -> ::protobuf::Optional<super::PayloadPlayActionView<'msg>> {
@@ -1904,7 +2058,7 @@ impl<'msg> ToClientMessageView<'msg> {
   }
   pub fn play_action(self) -> super::PayloadPlayActionView<'msg> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(6)
+      self.inner.ptr().get_message_at_index(7)
     };
     let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
     let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
@@ -1914,7 +2068,7 @@ impl<'msg> ToClientMessageView<'msg> {
   // entity_damaged: optional message Proto.PayloadEntityDamaged
   pub fn has_entity_damaged(self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(7)
+      self.inner.ptr().has_field_at_index(8)
     }
   }
   pub fn entity_damaged_opt(self) -> ::protobuf::Optional<super::PayloadEntityDamagedView<'msg>> {
@@ -1922,7 +2076,7 @@ impl<'msg> ToClientMessageView<'msg> {
   }
   pub fn entity_damaged(self) -> super::PayloadEntityDamagedView<'msg> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(7)
+      self.inner.ptr().get_message_at_index(8)
     };
     let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
     let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
@@ -1932,7 +2086,7 @@ impl<'msg> ToClientMessageView<'msg> {
   // enemy_spawn: optional message Proto.PayloadEnemySpawn
   pub fn has_enemy_spawn(self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(8)
+      self.inner.ptr().has_field_at_index(9)
     }
   }
   pub fn enemy_spawn_opt(self) -> ::protobuf::Optional<super::PayloadEnemySpawnView<'msg>> {
@@ -1940,7 +2094,7 @@ impl<'msg> ToClientMessageView<'msg> {
   }
   pub fn enemy_spawn(self) -> super::PayloadEnemySpawnView<'msg> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(8)
+      self.inner.ptr().get_message_at_index(9)
     };
     let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
     let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
@@ -1950,7 +2104,7 @@ impl<'msg> ToClientMessageView<'msg> {
   // enemy_despawn: optional message Proto.PayloadEnemyDespawn
   pub fn has_enemy_despawn(self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(9)
+      self.inner.ptr().has_field_at_index(10)
     }
   }
   pub fn enemy_despawn_opt(self) -> ::protobuf::Optional<super::PayloadEnemyDespawnView<'msg>> {
@@ -1958,7 +2112,7 @@ impl<'msg> ToClientMessageView<'msg> {
   }
   pub fn enemy_despawn(self) -> super::PayloadEnemyDespawnView<'msg> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(9)
+      self.inner.ptr().get_message_at_index(10)
     };
     let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
     let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
@@ -1968,7 +2122,7 @@ impl<'msg> ToClientMessageView<'msg> {
   // zone_enter_notification: optional message Proto.PayloadZoneEnterNotification
   pub fn has_zone_enter_notification(self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(10)
+      self.inner.ptr().has_field_at_index(11)
     }
   }
   pub fn zone_enter_notification_opt(self) -> ::protobuf::Optional<super::PayloadZoneEnterNotificationView<'msg>> {
@@ -1976,7 +2130,7 @@ impl<'msg> ToClientMessageView<'msg> {
   }
   pub fn zone_enter_notification(self) -> super::PayloadZoneEnterNotificationView<'msg> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(10)
+      self.inner.ptr().get_message_at_index(11)
     };
     let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
     let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
@@ -1986,7 +2140,7 @@ impl<'msg> ToClientMessageView<'msg> {
   // zone_exit_notification: optional message Proto.PayloadZoneExitNotification
   pub fn has_zone_exit_notification(self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(11)
+      self.inner.ptr().has_field_at_index(12)
     }
   }
   pub fn zone_exit_notification_opt(self) -> ::protobuf::Optional<super::PayloadZoneExitNotificationView<'msg>> {
@@ -1994,7 +2148,7 @@ impl<'msg> ToClientMessageView<'msg> {
   }
   pub fn zone_exit_notification(self) -> super::PayloadZoneExitNotificationView<'msg> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(11)
+      self.inner.ptr().get_message_at_index(12)
     };
     let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
     let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
@@ -2004,7 +2158,7 @@ impl<'msg> ToClientMessageView<'msg> {
   // text_message: optional message Proto.PayloadTextMessage
   pub fn has_text_message(self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(12)
+      self.inner.ptr().has_field_at_index(13)
     }
   }
   pub fn text_message_opt(self) -> ::protobuf::Optional<super::PayloadTextMessageView<'msg>> {
@@ -2012,7 +2166,7 @@ impl<'msg> ToClientMessageView<'msg> {
   }
   pub fn text_message(self) -> super::PayloadTextMessageView<'msg> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(12)
+      self.inner.ptr().get_message_at_index(13)
     };
     let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
     let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
@@ -2031,6 +2185,8 @@ impl<'msg> ToClientMessageView<'msg> {
           super::to_client_message::MessageOneof::StartGameResponse(self.start_game_response()),
       super::to_client_message::MessageCase::EndGameResponse =>
           super::to_client_message::MessageOneof::EndGameResponse(self.end_game_response()),
+      super::to_client_message::MessageCase::ClientInitializerResponse =>
+          super::to_client_message::MessageOneof::ClientInitializerResponse(self.client_initializer_response()),
       super::to_client_message::MessageCase::TransformSync =>
           super::to_client_message::MessageOneof::TransformSync(self.transform_sync()),
       super::to_client_message::MessageCase::PlayAction =>
@@ -2486,16 +2642,70 @@ impl<'msg> ToClientMessageMut<'msg> {
     }
   }
 
+  // client_initializer_response: optional message Proto.PayloadClientInitializerResponse
+  pub fn has_client_initializer_response(&self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(5)
+    }
+  }
+  pub fn clear_client_initializer_response(&mut self) {
+    unsafe {
+      self.inner.ptr().clear_field_at_index(
+        5
+      );
+    }
+  }
+  pub fn client_initializer_response_opt(&self) -> ::protobuf::Optional<super::PayloadClientInitializerResponseView<'_>> {
+        ::protobuf::Optional::new(self.client_initializer_response(), self.has_client_initializer_response())
+  }
+  pub fn client_initializer_response(&self) -> super::PayloadClientInitializerResponseView<'_> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(5)
+    };
+    let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
+    let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
+    super::PayloadClientInitializerResponseView::new(::protobuf::__internal::Private, inner)
+  }
+  pub fn client_initializer_response_mut(&mut self) -> super::PayloadClientInitializerResponseMut<'_> {
+     let ptr = unsafe {
+       self.inner.ptr_mut().get_or_create_mutable_message_at_index(
+         5, self.arena()
+       ).unwrap()
+     };
+     super::PayloadClientInitializerResponseMut::from_parent(
+       ::protobuf::__internal::Private,
+       self.as_message_mut_inner(::protobuf::__internal::Private),
+       ptr.raw())
+  }
+  pub fn set_client_initializer_response(&mut self,
+    val: impl ::protobuf::IntoProxied<super::PayloadClientInitializerResponse>) {
+
+    // The message and arena are dropped after the setter. The
+    // memory remains allocated as we fuse the arena with the
+    // parent message's arena.
+    let mut child = val.into_proxied(::protobuf::__internal::Private);
+    self.inner
+      .arena()
+      .fuse(::protobuf::__internal::runtime::UpbGetArena::get_arena(&mut child, ::protobuf::__internal::Private));
+
+    let child_ptr = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_ptr_mut(&mut child, ::protobuf::__internal::Private);
+    unsafe {
+      self.inner.ptr_mut().set_base_field_message_at_index(
+        5, child_ptr
+      );
+    }
+  }
+
   // transform_sync: optional message Proto.PayloadTransformSync
   pub fn has_transform_sync(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(5)
+      self.inner.ptr().has_field_at_index(6)
     }
   }
   pub fn clear_transform_sync(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        5
+        6
       );
     }
   }
@@ -2504,7 +2714,7 @@ impl<'msg> ToClientMessageMut<'msg> {
   }
   pub fn transform_sync(&self) -> super::PayloadTransformSyncView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(5)
+      self.inner.ptr().get_message_at_index(6)
     };
     let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
     let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
@@ -2513,7 +2723,7 @@ impl<'msg> ToClientMessageMut<'msg> {
   pub fn transform_sync_mut(&mut self) -> super::PayloadTransformSyncMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         5, self.arena()
+         6, self.arena()
        ).unwrap()
      };
      super::PayloadTransformSyncMut::from_parent(
@@ -2535,7 +2745,7 @@ impl<'msg> ToClientMessageMut<'msg> {
     let child_ptr = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_ptr_mut(&mut child, ::protobuf::__internal::Private);
     unsafe {
       self.inner.ptr_mut().set_base_field_message_at_index(
-        5, child_ptr
+        6, child_ptr
       );
     }
   }
@@ -2543,13 +2753,13 @@ impl<'msg> ToClientMessageMut<'msg> {
   // play_action: optional message Proto.PayloadPlayAction
   pub fn has_play_action(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(6)
+      self.inner.ptr().has_field_at_index(7)
     }
   }
   pub fn clear_play_action(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        6
+        7
       );
     }
   }
@@ -2558,7 +2768,7 @@ impl<'msg> ToClientMessageMut<'msg> {
   }
   pub fn play_action(&self) -> super::PayloadPlayActionView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(6)
+      self.inner.ptr().get_message_at_index(7)
     };
     let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
     let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
@@ -2567,7 +2777,7 @@ impl<'msg> ToClientMessageMut<'msg> {
   pub fn play_action_mut(&mut self) -> super::PayloadPlayActionMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         6, self.arena()
+         7, self.arena()
        ).unwrap()
      };
      super::PayloadPlayActionMut::from_parent(
@@ -2589,7 +2799,7 @@ impl<'msg> ToClientMessageMut<'msg> {
     let child_ptr = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_ptr_mut(&mut child, ::protobuf::__internal::Private);
     unsafe {
       self.inner.ptr_mut().set_base_field_message_at_index(
-        6, child_ptr
+        7, child_ptr
       );
     }
   }
@@ -2597,13 +2807,13 @@ impl<'msg> ToClientMessageMut<'msg> {
   // entity_damaged: optional message Proto.PayloadEntityDamaged
   pub fn has_entity_damaged(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(7)
+      self.inner.ptr().has_field_at_index(8)
     }
   }
   pub fn clear_entity_damaged(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        7
+        8
       );
     }
   }
@@ -2612,7 +2822,7 @@ impl<'msg> ToClientMessageMut<'msg> {
   }
   pub fn entity_damaged(&self) -> super::PayloadEntityDamagedView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(7)
+      self.inner.ptr().get_message_at_index(8)
     };
     let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
     let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
@@ -2621,7 +2831,7 @@ impl<'msg> ToClientMessageMut<'msg> {
   pub fn entity_damaged_mut(&mut self) -> super::PayloadEntityDamagedMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         7, self.arena()
+         8, self.arena()
        ).unwrap()
      };
      super::PayloadEntityDamagedMut::from_parent(
@@ -2643,7 +2853,7 @@ impl<'msg> ToClientMessageMut<'msg> {
     let child_ptr = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_ptr_mut(&mut child, ::protobuf::__internal::Private);
     unsafe {
       self.inner.ptr_mut().set_base_field_message_at_index(
-        7, child_ptr
+        8, child_ptr
       );
     }
   }
@@ -2651,13 +2861,13 @@ impl<'msg> ToClientMessageMut<'msg> {
   // enemy_spawn: optional message Proto.PayloadEnemySpawn
   pub fn has_enemy_spawn(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(8)
+      self.inner.ptr().has_field_at_index(9)
     }
   }
   pub fn clear_enemy_spawn(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        8
+        9
       );
     }
   }
@@ -2666,7 +2876,7 @@ impl<'msg> ToClientMessageMut<'msg> {
   }
   pub fn enemy_spawn(&self) -> super::PayloadEnemySpawnView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(8)
+      self.inner.ptr().get_message_at_index(9)
     };
     let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
     let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
@@ -2675,7 +2885,7 @@ impl<'msg> ToClientMessageMut<'msg> {
   pub fn enemy_spawn_mut(&mut self) -> super::PayloadEnemySpawnMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         8, self.arena()
+         9, self.arena()
        ).unwrap()
      };
      super::PayloadEnemySpawnMut::from_parent(
@@ -2697,7 +2907,7 @@ impl<'msg> ToClientMessageMut<'msg> {
     let child_ptr = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_ptr_mut(&mut child, ::protobuf::__internal::Private);
     unsafe {
       self.inner.ptr_mut().set_base_field_message_at_index(
-        8, child_ptr
+        9, child_ptr
       );
     }
   }
@@ -2705,13 +2915,13 @@ impl<'msg> ToClientMessageMut<'msg> {
   // enemy_despawn: optional message Proto.PayloadEnemyDespawn
   pub fn has_enemy_despawn(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(9)
+      self.inner.ptr().has_field_at_index(10)
     }
   }
   pub fn clear_enemy_despawn(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        9
+        10
       );
     }
   }
@@ -2720,7 +2930,7 @@ impl<'msg> ToClientMessageMut<'msg> {
   }
   pub fn enemy_despawn(&self) -> super::PayloadEnemyDespawnView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(9)
+      self.inner.ptr().get_message_at_index(10)
     };
     let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
     let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
@@ -2729,7 +2939,7 @@ impl<'msg> ToClientMessageMut<'msg> {
   pub fn enemy_despawn_mut(&mut self) -> super::PayloadEnemyDespawnMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         9, self.arena()
+         10, self.arena()
        ).unwrap()
      };
      super::PayloadEnemyDespawnMut::from_parent(
@@ -2751,7 +2961,7 @@ impl<'msg> ToClientMessageMut<'msg> {
     let child_ptr = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_ptr_mut(&mut child, ::protobuf::__internal::Private);
     unsafe {
       self.inner.ptr_mut().set_base_field_message_at_index(
-        9, child_ptr
+        10, child_ptr
       );
     }
   }
@@ -2759,13 +2969,13 @@ impl<'msg> ToClientMessageMut<'msg> {
   // zone_enter_notification: optional message Proto.PayloadZoneEnterNotification
   pub fn has_zone_enter_notification(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(10)
+      self.inner.ptr().has_field_at_index(11)
     }
   }
   pub fn clear_zone_enter_notification(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        10
+        11
       );
     }
   }
@@ -2774,7 +2984,7 @@ impl<'msg> ToClientMessageMut<'msg> {
   }
   pub fn zone_enter_notification(&self) -> super::PayloadZoneEnterNotificationView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(10)
+      self.inner.ptr().get_message_at_index(11)
     };
     let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
     let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
@@ -2783,7 +2993,7 @@ impl<'msg> ToClientMessageMut<'msg> {
   pub fn zone_enter_notification_mut(&mut self) -> super::PayloadZoneEnterNotificationMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         10, self.arena()
+         11, self.arena()
        ).unwrap()
      };
      super::PayloadZoneEnterNotificationMut::from_parent(
@@ -2805,7 +3015,7 @@ impl<'msg> ToClientMessageMut<'msg> {
     let child_ptr = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_ptr_mut(&mut child, ::protobuf::__internal::Private);
     unsafe {
       self.inner.ptr_mut().set_base_field_message_at_index(
-        10, child_ptr
+        11, child_ptr
       );
     }
   }
@@ -2813,13 +3023,13 @@ impl<'msg> ToClientMessageMut<'msg> {
   // zone_exit_notification: optional message Proto.PayloadZoneExitNotification
   pub fn has_zone_exit_notification(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(11)
+      self.inner.ptr().has_field_at_index(12)
     }
   }
   pub fn clear_zone_exit_notification(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        11
+        12
       );
     }
   }
@@ -2828,7 +3038,7 @@ impl<'msg> ToClientMessageMut<'msg> {
   }
   pub fn zone_exit_notification(&self) -> super::PayloadZoneExitNotificationView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(11)
+      self.inner.ptr().get_message_at_index(12)
     };
     let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
     let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
@@ -2837,7 +3047,7 @@ impl<'msg> ToClientMessageMut<'msg> {
   pub fn zone_exit_notification_mut(&mut self) -> super::PayloadZoneExitNotificationMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         11, self.arena()
+         12, self.arena()
        ).unwrap()
      };
      super::PayloadZoneExitNotificationMut::from_parent(
@@ -2859,7 +3069,7 @@ impl<'msg> ToClientMessageMut<'msg> {
     let child_ptr = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_ptr_mut(&mut child, ::protobuf::__internal::Private);
     unsafe {
       self.inner.ptr_mut().set_base_field_message_at_index(
-        11, child_ptr
+        12, child_ptr
       );
     }
   }
@@ -2867,13 +3077,13 @@ impl<'msg> ToClientMessageMut<'msg> {
   // text_message: optional message Proto.PayloadTextMessage
   pub fn has_text_message(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(12)
+      self.inner.ptr().has_field_at_index(13)
     }
   }
   pub fn clear_text_message(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        12
+        13
       );
     }
   }
@@ -2882,7 +3092,7 @@ impl<'msg> ToClientMessageMut<'msg> {
   }
   pub fn text_message(&self) -> super::PayloadTextMessageView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(12)
+      self.inner.ptr().get_message_at_index(13)
     };
     let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
     let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
@@ -2891,7 +3101,7 @@ impl<'msg> ToClientMessageMut<'msg> {
   pub fn text_message_mut(&mut self) -> super::PayloadTextMessageMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         12, self.arena()
+         13, self.arena()
        ).unwrap()
      };
      super::PayloadTextMessageMut::from_parent(
@@ -2913,7 +3123,7 @@ impl<'msg> ToClientMessageMut<'msg> {
     let child_ptr = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_ptr_mut(&mut child, ::protobuf::__internal::Private);
     unsafe {
       self.inner.ptr_mut().set_base_field_message_at_index(
-        12, child_ptr
+        13, child_ptr
       );
     }
   }
@@ -2930,6 +3140,8 @@ impl<'msg> ToClientMessageMut<'msg> {
           super::to_client_message::MessageOneof::StartGameResponse(self.start_game_response()),
       super::to_client_message::MessageCase::EndGameResponse =>
           super::to_client_message::MessageOneof::EndGameResponse(self.end_game_response()),
+      super::to_client_message::MessageCase::ClientInitializerResponse =>
+          super::to_client_message::MessageOneof::ClientInitializerResponse(self.client_initializer_response()),
       super::to_client_message::MessageCase::TransformSync =>
           super::to_client_message::MessageOneof::TransformSync(self.transform_sync()),
       super::to_client_message::MessageCase::PlayAction =>
@@ -3319,16 +3531,70 @@ impl ToClientMessage {
     }
   }
 
+  // client_initializer_response: optional message Proto.PayloadClientInitializerResponse
+  pub fn has_client_initializer_response(&self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(5)
+    }
+  }
+  pub fn clear_client_initializer_response(&mut self) {
+    unsafe {
+      self.inner.ptr().clear_field_at_index(
+        5
+      );
+    }
+  }
+  pub fn client_initializer_response_opt(&self) -> ::protobuf::Optional<super::PayloadClientInitializerResponseView<'_>> {
+        ::protobuf::Optional::new(self.client_initializer_response(), self.has_client_initializer_response())
+  }
+  pub fn client_initializer_response(&self) -> super::PayloadClientInitializerResponseView<'_> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(5)
+    };
+    let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
+    let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
+    super::PayloadClientInitializerResponseView::new(::protobuf::__internal::Private, inner)
+  }
+  pub fn client_initializer_response_mut(&mut self) -> super::PayloadClientInitializerResponseMut<'_> {
+     let ptr = unsafe {
+       self.inner.ptr_mut().get_or_create_mutable_message_at_index(
+         5, self.arena()
+       ).unwrap()
+     };
+     super::PayloadClientInitializerResponseMut::from_parent(
+       ::protobuf::__internal::Private,
+       self.as_message_mut_inner(::protobuf::__internal::Private),
+       ptr.raw())
+  }
+  pub fn set_client_initializer_response(&mut self,
+    val: impl ::protobuf::IntoProxied<super::PayloadClientInitializerResponse>) {
+
+    // The message and arena are dropped after the setter. The
+    // memory remains allocated as we fuse the arena with the
+    // parent message's arena.
+    let mut child = val.into_proxied(::protobuf::__internal::Private);
+    self.inner
+      .arena()
+      .fuse(::protobuf::__internal::runtime::UpbGetArena::get_arena(&mut child, ::protobuf::__internal::Private));
+
+    let child_ptr = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_ptr_mut(&mut child, ::protobuf::__internal::Private);
+    unsafe {
+      self.inner.ptr_mut().set_base_field_message_at_index(
+        5, child_ptr
+      );
+    }
+  }
+
   // transform_sync: optional message Proto.PayloadTransformSync
   pub fn has_transform_sync(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(5)
+      self.inner.ptr().has_field_at_index(6)
     }
   }
   pub fn clear_transform_sync(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        5
+        6
       );
     }
   }
@@ -3337,7 +3603,7 @@ impl ToClientMessage {
   }
   pub fn transform_sync(&self) -> super::PayloadTransformSyncView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(5)
+      self.inner.ptr().get_message_at_index(6)
     };
     let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
     let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
@@ -3346,7 +3612,7 @@ impl ToClientMessage {
   pub fn transform_sync_mut(&mut self) -> super::PayloadTransformSyncMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         5, self.arena()
+         6, self.arena()
        ).unwrap()
      };
      super::PayloadTransformSyncMut::from_parent(
@@ -3368,7 +3634,7 @@ impl ToClientMessage {
     let child_ptr = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_ptr_mut(&mut child, ::protobuf::__internal::Private);
     unsafe {
       self.inner.ptr_mut().set_base_field_message_at_index(
-        5, child_ptr
+        6, child_ptr
       );
     }
   }
@@ -3376,13 +3642,13 @@ impl ToClientMessage {
   // play_action: optional message Proto.PayloadPlayAction
   pub fn has_play_action(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(6)
+      self.inner.ptr().has_field_at_index(7)
     }
   }
   pub fn clear_play_action(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        6
+        7
       );
     }
   }
@@ -3391,7 +3657,7 @@ impl ToClientMessage {
   }
   pub fn play_action(&self) -> super::PayloadPlayActionView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(6)
+      self.inner.ptr().get_message_at_index(7)
     };
     let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
     let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
@@ -3400,7 +3666,7 @@ impl ToClientMessage {
   pub fn play_action_mut(&mut self) -> super::PayloadPlayActionMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         6, self.arena()
+         7, self.arena()
        ).unwrap()
      };
      super::PayloadPlayActionMut::from_parent(
@@ -3422,7 +3688,7 @@ impl ToClientMessage {
     let child_ptr = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_ptr_mut(&mut child, ::protobuf::__internal::Private);
     unsafe {
       self.inner.ptr_mut().set_base_field_message_at_index(
-        6, child_ptr
+        7, child_ptr
       );
     }
   }
@@ -3430,13 +3696,13 @@ impl ToClientMessage {
   // entity_damaged: optional message Proto.PayloadEntityDamaged
   pub fn has_entity_damaged(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(7)
+      self.inner.ptr().has_field_at_index(8)
     }
   }
   pub fn clear_entity_damaged(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        7
+        8
       );
     }
   }
@@ -3445,7 +3711,7 @@ impl ToClientMessage {
   }
   pub fn entity_damaged(&self) -> super::PayloadEntityDamagedView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(7)
+      self.inner.ptr().get_message_at_index(8)
     };
     let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
     let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
@@ -3454,7 +3720,7 @@ impl ToClientMessage {
   pub fn entity_damaged_mut(&mut self) -> super::PayloadEntityDamagedMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         7, self.arena()
+         8, self.arena()
        ).unwrap()
      };
      super::PayloadEntityDamagedMut::from_parent(
@@ -3476,7 +3742,7 @@ impl ToClientMessage {
     let child_ptr = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_ptr_mut(&mut child, ::protobuf::__internal::Private);
     unsafe {
       self.inner.ptr_mut().set_base_field_message_at_index(
-        7, child_ptr
+        8, child_ptr
       );
     }
   }
@@ -3484,13 +3750,13 @@ impl ToClientMessage {
   // enemy_spawn: optional message Proto.PayloadEnemySpawn
   pub fn has_enemy_spawn(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(8)
+      self.inner.ptr().has_field_at_index(9)
     }
   }
   pub fn clear_enemy_spawn(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        8
+        9
       );
     }
   }
@@ -3499,7 +3765,7 @@ impl ToClientMessage {
   }
   pub fn enemy_spawn(&self) -> super::PayloadEnemySpawnView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(8)
+      self.inner.ptr().get_message_at_index(9)
     };
     let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
     let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
@@ -3508,7 +3774,7 @@ impl ToClientMessage {
   pub fn enemy_spawn_mut(&mut self) -> super::PayloadEnemySpawnMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         8, self.arena()
+         9, self.arena()
        ).unwrap()
      };
      super::PayloadEnemySpawnMut::from_parent(
@@ -3530,7 +3796,7 @@ impl ToClientMessage {
     let child_ptr = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_ptr_mut(&mut child, ::protobuf::__internal::Private);
     unsafe {
       self.inner.ptr_mut().set_base_field_message_at_index(
-        8, child_ptr
+        9, child_ptr
       );
     }
   }
@@ -3538,13 +3804,13 @@ impl ToClientMessage {
   // enemy_despawn: optional message Proto.PayloadEnemyDespawn
   pub fn has_enemy_despawn(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(9)
+      self.inner.ptr().has_field_at_index(10)
     }
   }
   pub fn clear_enemy_despawn(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        9
+        10
       );
     }
   }
@@ -3553,7 +3819,7 @@ impl ToClientMessage {
   }
   pub fn enemy_despawn(&self) -> super::PayloadEnemyDespawnView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(9)
+      self.inner.ptr().get_message_at_index(10)
     };
     let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
     let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
@@ -3562,7 +3828,7 @@ impl ToClientMessage {
   pub fn enemy_despawn_mut(&mut self) -> super::PayloadEnemyDespawnMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         9, self.arena()
+         10, self.arena()
        ).unwrap()
      };
      super::PayloadEnemyDespawnMut::from_parent(
@@ -3584,7 +3850,7 @@ impl ToClientMessage {
     let child_ptr = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_ptr_mut(&mut child, ::protobuf::__internal::Private);
     unsafe {
       self.inner.ptr_mut().set_base_field_message_at_index(
-        9, child_ptr
+        10, child_ptr
       );
     }
   }
@@ -3592,13 +3858,13 @@ impl ToClientMessage {
   // zone_enter_notification: optional message Proto.PayloadZoneEnterNotification
   pub fn has_zone_enter_notification(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(10)
+      self.inner.ptr().has_field_at_index(11)
     }
   }
   pub fn clear_zone_enter_notification(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        10
+        11
       );
     }
   }
@@ -3607,7 +3873,7 @@ impl ToClientMessage {
   }
   pub fn zone_enter_notification(&self) -> super::PayloadZoneEnterNotificationView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(10)
+      self.inner.ptr().get_message_at_index(11)
     };
     let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
     let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
@@ -3616,7 +3882,7 @@ impl ToClientMessage {
   pub fn zone_enter_notification_mut(&mut self) -> super::PayloadZoneEnterNotificationMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         10, self.arena()
+         11, self.arena()
        ).unwrap()
      };
      super::PayloadZoneEnterNotificationMut::from_parent(
@@ -3638,7 +3904,7 @@ impl ToClientMessage {
     let child_ptr = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_ptr_mut(&mut child, ::protobuf::__internal::Private);
     unsafe {
       self.inner.ptr_mut().set_base_field_message_at_index(
-        10, child_ptr
+        11, child_ptr
       );
     }
   }
@@ -3646,13 +3912,13 @@ impl ToClientMessage {
   // zone_exit_notification: optional message Proto.PayloadZoneExitNotification
   pub fn has_zone_exit_notification(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(11)
+      self.inner.ptr().has_field_at_index(12)
     }
   }
   pub fn clear_zone_exit_notification(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        11
+        12
       );
     }
   }
@@ -3661,7 +3927,7 @@ impl ToClientMessage {
   }
   pub fn zone_exit_notification(&self) -> super::PayloadZoneExitNotificationView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(11)
+      self.inner.ptr().get_message_at_index(12)
     };
     let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
     let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
@@ -3670,7 +3936,7 @@ impl ToClientMessage {
   pub fn zone_exit_notification_mut(&mut self) -> super::PayloadZoneExitNotificationMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         11, self.arena()
+         12, self.arena()
        ).unwrap()
      };
      super::PayloadZoneExitNotificationMut::from_parent(
@@ -3692,7 +3958,7 @@ impl ToClientMessage {
     let child_ptr = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_ptr_mut(&mut child, ::protobuf::__internal::Private);
     unsafe {
       self.inner.ptr_mut().set_base_field_message_at_index(
-        11, child_ptr
+        12, child_ptr
       );
     }
   }
@@ -3700,13 +3966,13 @@ impl ToClientMessage {
   // text_message: optional message Proto.PayloadTextMessage
   pub fn has_text_message(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(12)
+      self.inner.ptr().has_field_at_index(13)
     }
   }
   pub fn clear_text_message(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        12
+        13
       );
     }
   }
@@ -3715,7 +3981,7 @@ impl ToClientMessage {
   }
   pub fn text_message(&self) -> super::PayloadTextMessageView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(12)
+      self.inner.ptr().get_message_at_index(13)
     };
     let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
     let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
@@ -3724,7 +3990,7 @@ impl ToClientMessage {
   pub fn text_message_mut(&mut self) -> super::PayloadTextMessageMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         12, self.arena()
+         13, self.arena()
        ).unwrap()
      };
      super::PayloadTextMessageMut::from_parent(
@@ -3746,7 +4012,7 @@ impl ToClientMessage {
     let child_ptr = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_ptr_mut(&mut child, ::protobuf::__internal::Private);
     unsafe {
       self.inner.ptr_mut().set_base_field_message_at_index(
-        12, child_ptr
+        13, child_ptr
       );
     }
   }
@@ -3763,6 +4029,8 @@ impl ToClientMessage {
           super::to_client_message::MessageOneof::StartGameResponse(self.start_game_response()),
       super::to_client_message::MessageCase::EndGameResponse =>
           super::to_client_message::MessageOneof::EndGameResponse(self.end_game_response()),
+      super::to_client_message::MessageCase::ClientInitializerResponse =>
+          super::to_client_message::MessageOneof::ClientInitializerResponse(self.client_initializer_response()),
       super::to_client_message::MessageCase::TransformSync =>
           super::to_client_message::MessageOneof::TransformSync(self.transform_sync()),
       super::to_client_message::MessageCase::PlayAction =>
@@ -3829,8 +4097,8 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for ToClientMes
     ONCE_LOCK.get_or_init(|| unsafe {
       super::Proto__ToClientMessage_msg_init.0 =
           ::protobuf::__internal::runtime::upb_MiniTable_Build(
-              "$a3333333333333^#|$|%|&|(|)|*|+|,|-|.|/|0".as_ptr(),
-              41,
+              "$a33333333333333^#|$|%|&|(|)|*|+|,|-|.|/|0|1".as_ptr(),
+              44,
               ::protobuf::__internal::runtime::THREAD_LOCAL_ARENA.with(|a| a.raw()),
               ::std::ptr::null_mut());
       let submessages = [
@@ -3839,6 +4107,7 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for ToClientMes
         <super::PayloadLobbyEnterResponse as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
         <super::PayloadLobbyStartGameResponse as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
         <super::PayloadLobbyEndGameResponse as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
+        <super::PayloadClientInitializerResponse as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
         <super::PayloadTransformSync as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
         <super::PayloadPlayAction as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
         <super::PayloadEntityDamaged as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
@@ -3926,14 +4195,15 @@ pub enum MessageOneof<'msg> {
   LobbyEnterResponse(::protobuf::View<'msg, super::super::PayloadLobbyEnterResponse>) = 4,
   StartGameResponse(::protobuf::View<'msg, super::super::PayloadLobbyStartGameResponse>) = 5,
   EndGameResponse(::protobuf::View<'msg, super::super::PayloadLobbyEndGameResponse>) = 6,
-  TransformSync(::protobuf::View<'msg, super::super::PayloadTransformSync>) = 7,
-  PlayAction(::protobuf::View<'msg, super::super::PayloadPlayAction>) = 8,
-  EntityDamaged(::protobuf::View<'msg, super::super::PayloadEntityDamaged>) = 9,
-  EnemySpawn(::protobuf::View<'msg, super::super::PayloadEnemySpawn>) = 10,
-  EnemyDespawn(::protobuf::View<'msg, super::super::PayloadEnemyDespawn>) = 11,
-  ZoneEnterNotification(::protobuf::View<'msg, super::super::PayloadZoneEnterNotification>) = 12,
-  ZoneExitNotification(::protobuf::View<'msg, super::super::PayloadZoneExitNotification>) = 13,
-  TextMessage(::protobuf::View<'msg, super::super::PayloadTextMessage>) = 14,
+  ClientInitializerResponse(::protobuf::View<'msg, super::super::PayloadClientInitializerResponse>) = 7,
+  TransformSync(::protobuf::View<'msg, super::super::PayloadTransformSync>) = 8,
+  PlayAction(::protobuf::View<'msg, super::super::PayloadPlayAction>) = 9,
+  EntityDamaged(::protobuf::View<'msg, super::super::PayloadEntityDamaged>) = 10,
+  EnemySpawn(::protobuf::View<'msg, super::super::PayloadEnemySpawn>) = 11,
+  EnemyDespawn(::protobuf::View<'msg, super::super::PayloadEnemyDespawn>) = 12,
+  ZoneEnterNotification(::protobuf::View<'msg, super::super::PayloadZoneEnterNotification>) = 13,
+  ZoneExitNotification(::protobuf::View<'msg, super::super::PayloadZoneExitNotification>) = 14,
+  TextMessage(::protobuf::View<'msg, super::super::PayloadTextMessage>) = 15,
 
   not_set(std::marker::PhantomData<&'msg ()>) = 0
 }
@@ -3947,14 +4217,15 @@ pub enum MessageCase {
   LobbyEnterResponse = 4,
   StartGameResponse = 5,
   EndGameResponse = 6,
-  TransformSync = 7,
-  PlayAction = 8,
-  EntityDamaged = 9,
-  EnemySpawn = 10,
-  EnemyDespawn = 11,
-  ZoneEnterNotification = 12,
-  ZoneExitNotification = 13,
-  TextMessage = 14,
+  ClientInitializerResponse = 7,
+  TransformSync = 8,
+  PlayAction = 9,
+  EntityDamaged = 10,
+  EnemySpawn = 11,
+  EnemyDespawn = 12,
+  ZoneEnterNotification = 13,
+  ZoneExitNotification = 14,
+  TextMessage = 15,
 
   not_set = 0
 }
@@ -3969,14 +4240,15 @@ impl MessageCase {
       4 => Some(MessageCase::LobbyEnterResponse),
       5 => Some(MessageCase::StartGameResponse),
       6 => Some(MessageCase::EndGameResponse),
-      7 => Some(MessageCase::TransformSync),
-      8 => Some(MessageCase::PlayAction),
-      9 => Some(MessageCase::EntityDamaged),
-      10 => Some(MessageCase::EnemySpawn),
-      11 => Some(MessageCase::EnemyDespawn),
-      12 => Some(MessageCase::ZoneEnterNotification),
-      13 => Some(MessageCase::ZoneExitNotification),
-      14 => Some(MessageCase::TextMessage),
+      7 => Some(MessageCase::ClientInitializerResponse),
+      8 => Some(MessageCase::TransformSync),
+      9 => Some(MessageCase::PlayAction),
+      10 => Some(MessageCase::EntityDamaged),
+      11 => Some(MessageCase::EnemySpawn),
+      12 => Some(MessageCase::EnemyDespawn),
+      13 => Some(MessageCase::ZoneEnterNotification),
+      14 => Some(MessageCase::ZoneExitNotification),
+      15 => Some(MessageCase::TextMessage),
       _ => None
     }
   }
