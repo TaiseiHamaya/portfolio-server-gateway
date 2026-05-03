@@ -10,7 +10,7 @@ use crate::{
 
 pub async fn start_game_handler(message: proto::ToServerMessage, client: Arc<RwLock<Client>>) {
     let message_case = message.message_case();
-    let Some(user_id) = client.read().await.user_id else {
+    let Some(user_id) = client.read().await.user_id.clone() else {
         log::warn!("User ID is not set for the client.");
         return;
     };
@@ -109,7 +109,8 @@ pub async fn start_game_handler(message: proto::ToServerMessage, client: Arc<RwL
             });
         }
         MessageCase::PlayerZoneEnterComplete => {
-            if let ClientStatus::WaitEnter(zone_id) = client.read().await.status {
+            let current_status = client.read().await.status;
+            if let ClientStatus::WaitEnter(zone_id) = current_status {
                 log::info!(
                     "Received PlayerZoneEnterComplete from user_id {} for zone_id {}",
                     user_id,
@@ -144,7 +145,7 @@ pub async fn start_game_handler(message: proto::ToServerMessage, client: Arc<RwL
                 log::warn!(
                     "Received message is not match to client status. message:{:?}, status:{:?}",
                     message_case,
-                    client.read().await.status,
+                    current_status,
                 );
                 return;
             }
