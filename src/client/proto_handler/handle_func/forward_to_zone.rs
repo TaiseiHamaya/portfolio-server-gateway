@@ -9,7 +9,8 @@ use crate::{
 };
 
 pub async fn forward_to_zone(packet: proto::ToServerMessage, client: Arc<RwLock<Client>>) {
-    let zone_id = match client.read().await.status {
+    let status = client.read().await.status;
+    let zone_id = match status {
         ClientStatus::Zone(zone_id) => zone_id,
         _ => {
             log::error!("Client is not in a zone");
@@ -20,7 +21,8 @@ pub async fn forward_to_zone(packet: proto::ToServerMessage, client: Arc<RwLock<
     let mut zone_sync_client = match backend_client::BACKEND_CLIENT_INSTANCE
         .get()
         .expect("Uninitialized BackendClient instance")
-        .zone_mut(zone_id)
+        .zone_clients
+        .sync_zone_mut(zone_id)
         .await
     {
         Some(client) => client,

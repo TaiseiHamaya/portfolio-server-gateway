@@ -7,11 +7,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     fs::create_dir_all("src/generated/server/")?;
     fs::create_dir_all("src/generated/client/")?;
 
-    tonic_prost_build::configure()
-        .build_client(false)
-        .build_server(true)
-        .out_dir("src/generated/server/")
-        .compile_protos(&["process/zone/event_sync.proto"], &["portfolio-proto"])?;
+    // tonic_prost_build::configure()
+    //     .build_client(false)
+    //     .build_server(true)
+    //     .out_dir("src/generated/server/")
+    //     .compile_protos(&[], &["portfolio-proto"])?;
 
     tonic_prost_build::configure()
         .build_client(true)
@@ -19,6 +19,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .out_dir("src/generated/client/")
         .compile_protos(
             &[
+                "process/zone/event_sync.proto",
                 "process/zone/command_sync.proto",
                 "process/world/command_zone.proto",
                 "process/lobby/service_lobby.proto",

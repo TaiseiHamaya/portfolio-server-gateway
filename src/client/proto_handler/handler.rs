@@ -39,6 +39,7 @@ impl ClientMessageHandler {
         result.register_handler(MessageCase::SignupRequest, forward_to_session);
 
         result.register_handler(MessageCase::StartGame, start_game_handler);
+        result.register_handler(MessageCase::PlayerZoneEnterComplete, start_game_handler);
 
         result.register_handler(MessageCase::EndGame, endgame_handler);
 
@@ -65,6 +66,8 @@ impl ClientMessageHandler {
 
         if let Some(handler) = self.handlers.get(&message_case) {
             handler(message, client.clone()).await;
+        } else {
+            log::warn!("No handler registered for message case: {:?}", message_case);
         }
     }
 }

@@ -1,4 +1,3 @@
-use dashmap::DashMap;
 use futures::SinkExt;
 use std::sync::Arc;
 
@@ -12,7 +11,9 @@ use tokio_util::{
 };
 
 use super::proto_handler::handler;
-use crate::network::proto::proto::{ToServerMessage, to_client_message};
+use crate::network::proto::proto::{
+    PayloadLobbyEndGameRequest, ToServerMessage, to_client_message,
+};
 use crate::network::proto::*;
 
 #[allow(dead_code)]
@@ -31,8 +32,9 @@ pub enum ClientStatus {
     Connected,
     Authenticated,
     Lobby,
-    Routing,
-    Zone(u64), // zone_id
+    Routing(Option<u64>), // Option<zone_id>
+    WaitEnter(u64),       // zone_id
+    Zone(u64),            // zone_id
     Disconnected,
 }
 
@@ -44,13 +46,7 @@ pub struct Client {
     pub tx: mpsc::Sender<(BackendServerType, proto::ToClientMessage)>,
 }
 
-pub fn client_main(
-    socket: tokio::net::TcpStream,
-    addr: std::net::SocketAddr,
-    senders: Arc<
-        DashMap<std::net::SocketAddr, mpsc::Sender<(BackendServerType, proto::ToClientMessage)>>,
-    >,
-) -> mpsc::Sender<(BackendServerType, proto::ToClientMessage)> {
+pub fn client_main(socket: tokio::net::TcpStream, addr: std::net::SocketAddr) {
     log::info!("New connection from {}", addr);
     let (read_socket, write_socket) = socket.into_split();
 
@@ -63,18 +59,10 @@ pub fn client_main(
         tx: tx.clone(),
     }));
 
-    tokio::spawn(reader(
-        read_socket,
-        addr,
-        client.clone(),
-        tx.clone(),
-        senders,
-    ));
+    tokio::spawn(reader(read_socket, addr, client.clone(), tx.clone()));
     tokio::spawn(writer(write_socket, rx, client.clone()));
 
     log::info!("Spawned reader and writer tasks for {}", addr);
-
-    return tx;
 }
 
 async fn reader(
@@ -82,9 +70,6 @@ async fn reader(
     addr: std::net::SocketAddr,
     client: Arc<RwLock<Client>>,
     tx: mpsc::Sender<(BackendServerType, proto::ToClientMessage)>,
-    senders: Arc<
-        DashMap<std::net::SocketAddr, mpsc::Sender<(BackendServerType, proto::ToClientMessage)>>,
-    >,
 ) {
     // デフォルトのヘッダ
     // 32bitのメッセージ長ヘッダ
@@ -96,13 +81,13 @@ async fn reader(
             Some(Ok(frame)) => match proto::ToServerMessage::parse(frame.chunk()) {
                 Ok(message) => {
                     log::info!(
-                        "Received packet from {}: {:?}",
+                        "Received ToServerMessage from {}: {:?}",
                         addr,
                         message.message_case()
                     );
                     handler.handle_message(message, client.clone()).await;
                 }
-                Err(e) => log::error!("Failed to parse packet from {}: {}", addr, e),
+                Err(e) => log::error!("Failed to parse message from {}: {}", addr, e),
             },
             Some(Err(e)) => log::error!("Failed to read frame from {}: {}", addr, e),
             None => break, // connection closed
@@ -110,13 +95,15 @@ async fn reader(
     }
 
     drop(tx); // close channel
-    senders.remove(&addr);
 
     log::info!("Connection from {} closed", addr);
 
-    let mut message = ToServerMessage::default();
-    message.clear_end_game();
-    handler.handle_message(message, client.clone()).await;
+    let current_status = client.read().await.status;
+    if current_status != ClientStatus::Disconnected {
+        let mut message = ToServerMessage::default();
+        message.set_end_game(PayloadLobbyEndGameRequest::default());
+        handler.handle_message(message, client.clone()).await;
+    }
 }
 
 async fn send_message_to_client(
@@ -142,49 +129,90 @@ async fn writer(
 ) {
     let mut framed_write = FramedWrite::new(write_socket, LengthDelimitedCodec::new());
     while let Some((server_type, message)) = rx.recv().await {
-        log::info!(
-            "Received message to send to client: {:?}",
-            message.message_case()
-        );
-
         let message_case = message.message_case();
         match message_case {
             to_client_message::MessageCase::LogoutResponse
             | to_client_message::MessageCase::SignupResponse => {
+                log::info!(
+                    "Received message to send to client: {:?}",
+                    message.message_case()
+                );
                 send_message_to_client(&mut framed_write, message).await;
+            }
+
+            to_client_message::MessageCase::ClientInitializerData => {
+                log::info!(
+                    "Received message to send to client: {:?}",
+                    message.message_case()
+                );
+                let current_status = client.read().await.status;
+                if let ClientStatus::WaitEnter(zone_id) = current_status {
+                    if server_type == BackendServerType::Zone(zone_id) {
+                        send_message_to_client(&mut framed_write, message).await;
+                        client.write().await.status = ClientStatus::Zone(zone_id);
+                        log::info!("Client status updated to Zone for zone_id {}", zone_id);
+                    }
+                }
             }
             to_client_message::MessageCase::EnemySpawn
             | to_client_message::MessageCase::EnemyDespawn
             | to_client_message::MessageCase::TransformSync
             | to_client_message::MessageCase::PlayAction
             | to_client_message::MessageCase::EntityDamaged
+            | to_client_message::MessageCase::ZoneEnterNotification
+            | to_client_message::MessageCase::ZoneExitNotification
             | to_client_message::MessageCase::TextMessage => {
                 let zone_id = match server_type {
                     BackendServerType::Zone(id) => id,
                     _ => {
-                        // skip if not zone message
+                        log::warn!(
+                            "Received message for non-zone server type: {:?}, message_case: {:?}",
+                            server_type,
+                            message_case
+                        );
                         continue;
                     }
                 };
                 // if the same zone, send directly
                 // otherwise, discard
-                if client.read().await.status == ClientStatus::Zone(zone_id) {
+                let reading = client.read().await;
+                if reading.status == ClientStatus::Zone(zone_id) {
+                    log::info!(
+                        "Received message to send to client: {:?}",
+                        message.message_case()
+                    );
                     send_message_to_client(&mut framed_write, message).await;
                 }
             }
             to_client_message::MessageCase::LobbyEnterResponse => {
+                log::info!(
+                    "Received message to send to client: {:?}",
+                    message.message_case()
+                );
                 if client.read().await.status == ClientStatus::Lobby {
                     send_message_to_client(&mut framed_write, message).await;
                 }
             }
             to_client_message::MessageCase::StartGameResponse => {
-                if client.read().await.status == ClientStatus::Routing {
-                    client.write().await.status =
-                        ClientStatus::Zone(message.start_game_response().zone_id());
+                log::info!(
+                    "Received message to send to client: {:?}",
+                    message.message_case()
+                );
+                let current_status = client.read().await.status;
+                if let ClientStatus::Routing(Some(zone_id)) = current_status {
+                    client.write().await.status = ClientStatus::WaitEnter(zone_id);
+                    log::info!("Client status updated to WaitEnter({}).", zone_id);
                     send_message_to_client(&mut framed_write, message).await;
+                } else {
+                    log::warn!(
+                        "StartGameResponse dropped! Status is not Routing(Some), it is: {:?}",
+                        current_status
+                    );
                 }
             }
-            _ => {}
+            _ => {
+                log::warn!("Received unexpected message: {:?}", message.message_case());
+            }
         }
     }
 }

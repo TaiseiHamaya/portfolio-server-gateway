@@ -81,6 +81,7 @@ pub async fn forward_to_session(packet: proto::ToServerMessage, client: Arc<RwLo
                     );
 
                     client.write().await.status = ClientStatus::Lobby;
+                    log::info!("Client status updated to Lobby for user_id {}", user_id);
                     let locked_client = client.read().await;
 
                     let mut response = proto::ToClientMessage::new();

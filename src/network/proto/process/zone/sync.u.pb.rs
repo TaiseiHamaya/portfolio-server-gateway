@@ -1665,6 +1665,21 @@ impl<'msg> PayloadEntityDamagedView<'msg> {
     }
   }
 
+  // current_hp: optional int32
+  pub fn current_hp(self) -> i32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_i32_at_index(
+        2, (0i32).into()
+      ).try_into().unwrap()
+    }
+  }
+
 }
 
 // SAFETY:
@@ -1870,6 +1885,32 @@ impl<'msg> PayloadEntityDamagedMut<'msg> {
     }
   }
 
+  // current_hp: optional int32
+  pub fn current_hp(&self) -> i32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_i32_at_index(
+        2, (0i32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_current_hp(&mut self, val: i32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_i32_at_index(
+        2, val.into()
+      )
+    }
+  }
+
 }
 
 // SAFETY:
@@ -2009,6 +2050,32 @@ impl PayloadEntityDamaged {
     }
   }
 
+  // current_hp: optional int32
+  pub fn current_hp(&self) -> i32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_i32_at_index(
+        2, (0i32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_current_hp(&mut self, val: i32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_i32_at_index(
+        2, val.into()
+      )
+    }
+  }
+
 }  // impl PayloadEntityDamaged
 
 impl ::std::ops::Drop for PayloadEntityDamaged {
@@ -2043,8 +2110,8 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadEnti
     ONCE_LOCK.get_or_init(|| unsafe {
       super::Proto__PayloadEntityDamaged_msg_init.0 =
           ::protobuf::__internal::runtime::upb_MiniTable_Build(
-              "$a,P(P".as_ptr(),
-              6,
+              "$,P(P(P".as_ptr(),
+              7,
               ::protobuf::__internal::runtime::THREAD_LOCAL_ARENA.with(|a| a.raw()),
               ::std::ptr::null_mut());
       let submessages = [

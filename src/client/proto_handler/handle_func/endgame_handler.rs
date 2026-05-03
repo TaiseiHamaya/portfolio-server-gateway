@@ -18,7 +18,12 @@ pub async fn endgame_handler(_message: proto::ToServerMessage, client: Arc<RwLoc
         }
     };
     if let ClientStatus::Zone(zone_id) = status {
-        client.write().await.status = ClientStatus::Routing;
+        client.write().await.status = ClientStatus::Routing(None);
+        log::info!(
+            "Client status updated to Routing(None) for user_id {}",
+            user_id
+        );
+
         let mut world_route_client = backend_client::BACKEND_CLIENT_INSTANCE
             .get()
             .expect("Uninitialized BackendClient instance")
@@ -40,6 +45,12 @@ pub async fn endgame_handler(_message: proto::ToServerMessage, client: Arc<RwLoc
             }
         };
 
+        backend_client::BACKEND_CLIENT_INSTANCE
+            .get()
+            .expect("Uninitialized BackendClient instance")
+            .zone_clients
+            .unregister_user_from_zone(zone_id, user_id);
+
         let player_data = response.get_ref().player_data;
         log::info!(
             "Zone route ended for user_id: {}, player_data: {:?}",
@@ -48,6 +59,10 @@ pub async fn endgame_handler(_message: proto::ToServerMessage, client: Arc<RwLoc
         );
         client.write().await.entity_id = None;
         client.write().await.status = ClientStatus::Disconnected;
+        log::info!(
+            "Client status updated to Disconnected for user_id {}",
+            user_id
+        );
     } else if status == ClientStatus::Lobby {
         let mut lobby_client = backend_client::BACKEND_CLIENT_INSTANCE
             .get()
@@ -74,6 +89,11 @@ pub async fn endgame_handler(_message: proto::ToServerMessage, client: Arc<RwLoc
                 log::warn!("Failed to end game for user_id: {}", user_id);
             }
             client.write().await.status = ClientStatus::Disconnected;
+            log::info!(
+                "Client status updated to Disconnected for user_id {}",
+                user_id
+            );
         });
     }
+    // TODO: ルーティング中に切断された場合の処理
 }

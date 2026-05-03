@@ -1,498 +1,6 @@
 const _: () = ::protobuf::__internal::assert_compatible_gencode_version("4.32.1-release");
 // This variable must not be referenced except by protobuf generated
 // code.
-pub(crate) static mut Proto__PayloadClientInitializerRequest_msg_init: ::protobuf::__internal::runtime::MiniTablePtr =
-    ::protobuf::__internal::runtime::MiniTablePtr(::std::ptr::null_mut());
-#[allow(non_camel_case_types)]
-pub struct PayloadClientInitializerRequest {
-  inner: ::protobuf::__internal::runtime::OwnedMessageInner<PayloadClientInitializerRequest>
-}
-
-impl ::protobuf::Message for PayloadClientInitializerRequest {}
-
-impl ::std::default::Default for PayloadClientInitializerRequest {
-  fn default() -> Self {
-    Self::new()
-  }
-}
-
-impl ::protobuf::Parse for PayloadClientInitializerRequest {
-  fn parse(serialized: &[u8]) -> ::std::result::Result<Self, ::protobuf::ParseError> {
-    Self::parse(serialized)
-  }
-
-  fn parse_dont_enforce_required(serialized: &[u8]) -> ::std::result::Result<Self, ::protobuf::ParseError> {
-    Self::parse_dont_enforce_required(serialized)
-  }
-}
-
-impl ::std::fmt::Debug for PayloadClientInitializerRequest {
-  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-    let string = unsafe {
-      ::protobuf::__internal::runtime::debug_string(
-        self.raw_msg(),
-        <Self as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table()
-      )
-    };
-    write!(f, "{}", string)
-  }
-}
-
-impl ::protobuf::Serialize for PayloadClientInitializerRequest {
-  fn serialize(&self) -> ::std::result::Result<Vec<u8>, ::protobuf::SerializeError> {
-    ::protobuf::AsView::as_view(self).serialize()
-  }
-}
-
-// SAFETY:
-// - `PayloadClientInitializerRequest` is `Sync` because it does not implement interior mutability.
-//    Neither does `PayloadClientInitializerRequestMut`.
-unsafe impl Sync for PayloadClientInitializerRequest {}
-
-// SAFETY:
-// - `PayloadClientInitializerRequest` is `Send` because it uniquely owns its arena and does
-//   not use thread-local data.
-unsafe impl Send for PayloadClientInitializerRequest {}
-
-impl ::protobuf::Proxied for PayloadClientInitializerRequest {
-  type View<'msg> = PayloadClientInitializerRequestView<'msg>;
-}
-
-impl ::protobuf::__internal::SealedInternal for PayloadClientInitializerRequest {}
-
-impl ::protobuf::MutProxied for PayloadClientInitializerRequest {
-  type Mut<'msg> = PayloadClientInitializerRequestMut<'msg>;
-}
-
-#[derive(Copy, Clone)]
-#[allow(dead_code)]
-pub struct PayloadClientInitializerRequestView<'msg> {
-  inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, PayloadClientInitializerRequest>,
-  _phantom: ::std::marker::PhantomData<&'msg ()>,
-}
-
-impl<'msg> ::protobuf::__internal::SealedInternal for PayloadClientInitializerRequestView<'msg> {}
-
-impl<'msg> ::protobuf::MessageView<'msg> for PayloadClientInitializerRequestView<'msg> {
-  type Message = PayloadClientInitializerRequest;
-}
-
-impl ::std::fmt::Debug for PayloadClientInitializerRequestView<'_> {
-  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-    let string = unsafe {
-      ::protobuf::__internal::runtime::debug_string(
-        self.raw_msg(),
-        <Self as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table()
-      )
-    };
-    write!(f, "{}", string)
-  }
-}
-
-impl ::protobuf::Serialize for PayloadClientInitializerRequestView<'_> {
-  fn serialize(&self) -> ::std::result::Result<Vec<u8>, ::protobuf::SerializeError> {
-    // SAFETY: `MINI_TABLE` is the one associated with `self.raw_msg()`.
-    let encoded = unsafe {
-      ::protobuf::__internal::runtime::wire::encode(self.raw_msg(),
-          <Self as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table())
-    };
-    encoded.map_err(|_| ::protobuf::SerializeError)
-  }
-}
-
-impl ::std::default::Default for PayloadClientInitializerRequestView<'_> {
-  fn default() -> PayloadClientInitializerRequestView<'static> {
-    let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(::protobuf::__internal::runtime::ScratchSpace::zeroed_block()) };
-    PayloadClientInitializerRequestView::new(::protobuf::__internal::Private, inner)
-  }
-}
-
-#[allow(dead_code)]
-impl<'msg> PayloadClientInitializerRequestView<'msg> {
-  #[doc(hidden)]
-  pub fn new(_private: ::protobuf::__internal::Private, inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, PayloadClientInitializerRequest>) -> Self {
-    Self { inner, _phantom: ::std::marker::PhantomData }
-  }
-
-  fn raw_msg(&self) -> ::protobuf::__internal::runtime::RawMessage {
-    self.inner.raw()
-  }
-
-  pub fn to_owned(&self) -> PayloadClientInitializerRequest {
-    ::protobuf::IntoProxied::into_proxied(*self, ::protobuf::__internal::Private)
-  }
-
-}
-
-// SAFETY:
-// - `PayloadClientInitializerRequestView` is `Sync` because it does not support mutation.
-unsafe impl Sync for PayloadClientInitializerRequestView<'_> {}
-
-// SAFETY:
-// - `PayloadClientInitializerRequestView` is `Send` because while its alive a `PayloadClientInitializerRequestMut` cannot.
-// - `PayloadClientInitializerRequestView` does not use thread-local data.
-unsafe impl Send for PayloadClientInitializerRequestView<'_> {}
-
-impl<'msg> ::protobuf::Proxy<'msg> for PayloadClientInitializerRequestView<'msg> {}
-impl<'msg> ::protobuf::ViewProxy<'msg> for PayloadClientInitializerRequestView<'msg> {}
-
-impl<'msg> ::protobuf::AsView for PayloadClientInitializerRequestView<'msg> {
-  type Proxied = PayloadClientInitializerRequest;
-  fn as_view(&self) -> ::protobuf::View<'msg, PayloadClientInitializerRequest> {
-    *self
-  }
-}
-
-impl<'msg> ::protobuf::IntoView<'msg> for PayloadClientInitializerRequestView<'msg> {
-  fn into_view<'shorter>(self) -> PayloadClientInitializerRequestView<'shorter>
-  where
-      'msg: 'shorter {
-    self
-  }
-}
-
-impl<'msg> ::protobuf::IntoProxied<PayloadClientInitializerRequest> for PayloadClientInitializerRequestView<'msg> {
-  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> PayloadClientInitializerRequest {
-    let mut dst = PayloadClientInitializerRequest::new();
-    let dst_raw = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_raw_message_mut(&mut dst, ::protobuf::__internal::Private);
-    let dst_arena = ::protobuf::__internal::runtime::UpbGetArena::get_arena(&mut dst, ::protobuf::__internal::Private);
-    let src_raw = ::protobuf::__internal::runtime::UpbGetMessagePtr::get_raw_message(&self, ::protobuf::__internal::Private);
-
-    unsafe { ::protobuf::__internal::runtime::upb_Message_DeepCopy(
-      dst_raw,
-      src_raw,
-      <Self as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
-      dst_arena.raw(),
-    ) };
-    dst
-  }
-}
-
-impl<'msg> ::protobuf::IntoProxied<PayloadClientInitializerRequest> for PayloadClientInitializerRequestMut<'msg> {
-  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> PayloadClientInitializerRequest {
-    ::protobuf::IntoProxied::into_proxied(::protobuf::IntoView::into_view(self), _private)
-  }
-}
-
-impl ::protobuf::__internal::runtime::UpbTypeConversions for PayloadClientInitializerRequest {
-    fn upb_type() -> ::protobuf::__internal::runtime::CType {
-        ::protobuf::__internal::runtime::CType::Message
-    }
-
-    fn to_message_value(
-        val: ::protobuf::View<'_, Self>) -> ::protobuf::__internal::runtime::upb_MessageValue {
-        ::protobuf::__internal::runtime::upb_MessageValue { msg_val: Some(val.raw_msg()) }
-    }
-
-    unsafe fn into_message_value_fuse_if_required(
-      raw_parent_arena: ::protobuf::__internal::runtime::RawArena,
-      mut val: Self) -> ::protobuf::__internal::runtime::upb_MessageValue {
-      // SAFETY: The arena memory is not freed due to `ManuallyDrop`.
-      let parent_arena = ::std::mem::ManuallyDrop::new(
-          unsafe { ::protobuf::__internal::runtime::Arena::from_raw(raw_parent_arena) });
-
-      parent_arena.fuse(val.as_message_mut_inner(::protobuf::__internal::Private).arena());
-      ::protobuf::__internal::runtime::upb_MessageValue { msg_val: Some(val.raw_msg()) }
-    }
-
-    unsafe fn from_message_value<'msg>(msg: ::protobuf::__internal::runtime::upb_MessageValue)
-        -> ::protobuf::View<'msg, Self> {
-        let raw = unsafe { msg.msg_val }.expect("expected present message value in map");
-        let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
-        PayloadClientInitializerRequestView::new(::protobuf::__internal::Private, inner)
-    }
-
-    unsafe fn from_message_mut<'msg>(msg: ::protobuf::__internal::runtime::RawMessage, arena: &'msg ::protobuf::__internal::runtime::Arena)
-        -> PayloadClientInitializerRequestMut<'msg> {
-        let inner = unsafe { ::protobuf::__internal::runtime::MessageMutInner::<'msg, PayloadClientInitializerRequest>::wrap_raw(msg, arena) };
-        PayloadClientInitializerRequestMut::new(::protobuf::__internal::Private, inner)
-    }
-}
-
-#[allow(dead_code)]
-#[allow(non_camel_case_types)]
-pub struct PayloadClientInitializerRequestMut<'msg> {
-  inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, PayloadClientInitializerRequest>,
-}
-
-impl<'msg> ::protobuf::__internal::SealedInternal for PayloadClientInitializerRequestMut<'msg> {}
-
-impl<'msg> ::protobuf::MessageMut<'msg> for PayloadClientInitializerRequestMut<'msg> {
-  type Message = PayloadClientInitializerRequest;
-}
-
-impl ::std::fmt::Debug for PayloadClientInitializerRequestMut<'_> {
-  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-    let string = unsafe {
-      ::protobuf::__internal::runtime::debug_string(
-        self.raw_msg(),
-        <Self as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table()
-      )
-    };
-    write!(f, "{}", string)
-  }
-}
-
-impl ::protobuf::Serialize for PayloadClientInitializerRequestMut<'_> {
-  fn serialize(&self) -> ::std::result::Result<Vec<u8>, ::protobuf::SerializeError> {
-    ::protobuf::AsView::as_view(self).serialize()
-  }
-}
-
-#[allow(dead_code)]
-impl<'msg> PayloadClientInitializerRequestMut<'msg> {
-  #[doc(hidden)]
-  pub fn from_parent<ParentT: ::protobuf::Message>(
-             _private: ::protobuf::__internal::Private,
-             parent: ::protobuf::__internal::runtime::MessageMutInner<'msg, ParentT>,
-             msg: ::protobuf::__internal::runtime::RawMessage)
-    -> Self {
-    Self {
-      inner: ::protobuf::__internal::runtime::MessageMutInner::from_parent(parent, msg)
-    }
-  }
-
-  #[doc(hidden)]
-  pub fn new(_private: ::protobuf::__internal::Private, inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, PayloadClientInitializerRequest>) -> Self {
-    Self { inner }
-  }
-
-  fn raw_msg(&self) -> ::protobuf::__internal::runtime::RawMessage {
-    self.inner.raw()
-  }
-
-  #[doc(hidden)]
-  pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
-    -> ::protobuf::__internal::runtime::MessageMutInner<'msg, PayloadClientInitializerRequest> {
-    self.inner
-  }
-
-  pub fn to_owned(&self) -> PayloadClientInitializerRequest {
-    ::protobuf::AsView::as_view(self).to_owned()
-  }
-
-  fn arena(&mut self) -> &::protobuf::__internal::runtime::Arena {
-    self.inner.arena()
-  }
-
-}
-
-// SAFETY:
-// - `PayloadClientInitializerRequestMut` does not perform any shared mutation.
-// - `PayloadClientInitializerRequestMut` is not `Send`, and so even in the presence of mutator
-//   splitting, synchronous access of an arena is impossible.
-unsafe impl Sync for PayloadClientInitializerRequestMut<'_> {}
-
-impl<'msg> ::protobuf::Proxy<'msg> for PayloadClientInitializerRequestMut<'msg> {}
-impl<'msg> ::protobuf::MutProxy<'msg> for PayloadClientInitializerRequestMut<'msg> {}
-
-impl<'msg> ::protobuf::AsView for PayloadClientInitializerRequestMut<'msg> {
-  type Proxied = PayloadClientInitializerRequest;
-  fn as_view(&self) -> ::protobuf::View<'_, PayloadClientInitializerRequest> {
-    PayloadClientInitializerRequestView {
-      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner.clone()),
-      _phantom: ::std::marker::PhantomData
-    }
-  }
-}
-
-impl<'msg> ::protobuf::IntoView<'msg> for PayloadClientInitializerRequestMut<'msg> {
-  fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, PayloadClientInitializerRequest>
-  where
-      'msg: 'shorter {
-    PayloadClientInitializerRequestView {
-      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner.clone()),
-      _phantom: ::std::marker::PhantomData
-    }
-  }
-}
-
-impl<'msg> ::protobuf::AsMut for PayloadClientInitializerRequestMut<'msg> {
-  type MutProxied = PayloadClientInitializerRequest;
-  fn as_mut(&mut self) -> PayloadClientInitializerRequestMut<'msg> {
-    PayloadClientInitializerRequestMut { inner: self.inner }
-  }
-}
-
-impl<'msg> ::protobuf::IntoMut<'msg> for PayloadClientInitializerRequestMut<'msg> {
-  fn into_mut<'shorter>(self) -> PayloadClientInitializerRequestMut<'shorter>
-  where
-      'msg: 'shorter {
-    self
-  }
-}
-
-#[allow(dead_code)]
-impl PayloadClientInitializerRequest {
-  pub fn new() -> Self {
-    Self { inner: ::protobuf::__internal::runtime::OwnedMessageInner::<Self>::new() }
-  }
-
-  fn raw_msg(&self) -> ::protobuf::__internal::runtime::RawMessage {
-    self.inner.raw()
-  }
-
-  #[doc(hidden)]
-  pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessageMutInner<'_, PayloadClientInitializerRequest> {
-    ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner)
-  }
-
-  fn arena(&mut self) -> &::protobuf::__internal::runtime::Arena {
-    self.inner.arena()
-  }
-
-  pub fn parse(data: &[u8]) -> ::std::result::Result<Self, ::protobuf::ParseError> {
-    let mut msg = Self::new();
-    ::protobuf::ClearAndParse::clear_and_parse(&mut msg, data).map(|_| msg)
-  }
-
-  pub fn parse_dont_enforce_required(data: &[u8]) -> ::std::result::Result<Self, ::protobuf::ParseError> {
-    let mut msg = Self::new();
-    ::protobuf::ClearAndParse::clear_and_parse_dont_enforce_required(&mut msg, data).map(|_| msg)
-  }
-
-  pub fn as_view(&self) -> PayloadClientInitializerRequestView {
-    PayloadClientInitializerRequestView::new(
-        ::protobuf::__internal::Private,
-        ::protobuf::__internal::runtime::MessageViewInner::view_of_owned(&self.inner))
-  }
-
-  pub fn as_mut(&mut self) -> PayloadClientInitializerRequestMut {
-    let inner = ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner);
-    PayloadClientInitializerRequestMut::new(::protobuf::__internal::Private, inner)
-  }
-
-}  // impl PayloadClientInitializerRequest
-
-impl ::std::ops::Drop for PayloadClientInitializerRequest {
-  fn drop(&mut self) {
-  }
-}
-
-impl ::std::clone::Clone for PayloadClientInitializerRequest {
-  fn clone(&self) -> Self {
-    self.as_view().to_owned()
-  }
-}
-
-impl ::protobuf::AsView for PayloadClientInitializerRequest {
-  type Proxied = Self;
-  fn as_view(&self) -> PayloadClientInitializerRequestView {
-    self.as_view()
-  }
-}
-
-impl ::protobuf::AsMut for PayloadClientInitializerRequest {
-  type MutProxied = Self;
-  fn as_mut(&mut self) -> PayloadClientInitializerRequestMut {
-    self.as_mut()
-  }
-}
-
-unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadClientInitializerRequest {
-  fn mini_table() -> *const ::protobuf::__internal::runtime::upb_MiniTable {
-    static ONCE_LOCK: ::std::sync::OnceLock<::protobuf::__internal::runtime::MiniTablePtr> =
-        ::std::sync::OnceLock::new();
-    ONCE_LOCK.get_or_init(|| unsafe {
-      super::Proto__PayloadClientInitializerRequest_msg_init.0 =
-          ::protobuf::__internal::runtime::upb_MiniTable_Build(
-              "$".as_ptr(),
-              1,
-              ::protobuf::__internal::runtime::THREAD_LOCAL_ARENA.with(|a| a.raw()),
-              ::std::ptr::null_mut());
-      let submessages = [
-      ];
-      let subenums = [
-      ];
-      assert!(::protobuf::__internal::runtime::upb_MiniTable_Link(
-          super::Proto__PayloadClientInitializerRequest_msg_init.0,
-          submessages.as_ptr() as *const *const ::protobuf::__internal::runtime::upb_MiniTable,
-          submessages.len(), subenums.as_ptr(), subenums.len()));
-      ::protobuf::__internal::runtime::MiniTablePtr(super::Proto__PayloadClientInitializerRequest_msg_init.0)
-    }).0
-  }
-}
-unsafe impl ::protobuf::__internal::runtime::UpbGetArena for PayloadClientInitializerRequest {
-  fn get_arena(&mut self, _private: ::protobuf::__internal::Private) -> &::protobuf::__internal::runtime::Arena {
-    self.inner.arena()
-  }
-}
-
-unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadClientInitializerRequestView<'_> {
-  #[inline(always)]
-  fn mini_table() -> *const ::protobuf::__internal::runtime::upb_MiniTable {
-    <PayloadClientInitializerRequest as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table()
-  }
-}
-
-unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadClientInitializerRequestMut<'_> {
-  #[inline(always)]
-  fn mini_table() -> *const ::protobuf::__internal::runtime::upb_MiniTable {
-    <PayloadClientInitializerRequest as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table()
-  }
-}
-unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for PayloadClientInitializerRequest {
-  type Msg = PayloadClientInitializerRequest;
-  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadClientInitializerRequest> {
-    self.inner.ptr_mut()
-  }
-}
-unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for PayloadClientInitializerRequest {
-  type Msg = PayloadClientInitializerRequest;
-  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadClientInitializerRequest> {
-    self.inner.ptr()
-  }
-}
-unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for PayloadClientInitializerRequestMut<'_> {
-  type Msg = PayloadClientInitializerRequest;
-  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadClientInitializerRequest> {
-    self.inner.ptr_mut()
-  }
-}
-unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for PayloadClientInitializerRequestMut<'_> {
-  type Msg = PayloadClientInitializerRequest;
-  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadClientInitializerRequest> {
-    self.inner.ptr()
-  }
-}
-unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for PayloadClientInitializerRequestView<'_> {
-  type Msg = PayloadClientInitializerRequest;
-  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadClientInitializerRequest> {
-    self.inner.ptr()
-  }
-}
-
-unsafe impl ::protobuf::__internal::runtime::UpbGetArena for PayloadClientInitializerRequestMut<'_> {
-  fn get_arena(&mut self, _private: ::protobuf::__internal::Private) -> &::protobuf::__internal::runtime::Arena {
-    self.inner.arena()
-  }
-}
-
-
-// upb kernel doesn't support any owned message or message mut interop.
-impl ::protobuf::OwnedMessageInterop for PayloadClientInitializerRequest {}
-impl<'a> ::protobuf::MessageMutInterop<'a> for PayloadClientInitializerRequestMut<'a> {}
-
-impl<'a> ::protobuf::MessageViewInterop<'a> for PayloadClientInitializerRequestView<'a> {
-  unsafe fn __unstable_wrap_raw_message(
-    msg: &'a *const ::std::ffi::c_void) -> Self {
-    let raw = ::protobuf::__internal::runtime::RawMessage::new(*msg as *mut _).unwrap();
-    let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
-    Self::new(::protobuf::__internal::Private, inner)
-  }
-  unsafe fn __unstable_wrap_raw_message_unchecked_lifetime(
-    msg: *const ::std::ffi::c_void) -> Self {
-    let raw = ::protobuf::__internal::runtime::RawMessage::new(msg as *mut _).unwrap();
-    let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
-    Self::new(::protobuf::__internal::Private, inner)
-  }
-  fn __unstable_as_raw_message(&self) -> *const ::std::ffi::c_void {
-    self.inner.raw().as_ptr() as *const _
-  }
-}
-
-// This variable must not be referenced except by protobuf generated
-// code.
 pub(crate) static mut Proto__EntityData_msg_init: ::protobuf::__internal::runtime::MiniTablePtr =
     ::protobuf::__internal::runtime::MiniTablePtr(::std::ptr::null_mut());
 #[allow(non_camel_case_types)]
@@ -2614,22 +2122,22 @@ impl<'a> ::protobuf::MessageViewInterop<'a> for EnemyDataView<'a> {
 
 // This variable must not be referenced except by protobuf generated
 // code.
-pub(crate) static mut Proto__PayloadClientInitializerResponse_msg_init: ::protobuf::__internal::runtime::MiniTablePtr =
+pub(crate) static mut Proto__PayloadClientInitializerData_msg_init: ::protobuf::__internal::runtime::MiniTablePtr =
     ::protobuf::__internal::runtime::MiniTablePtr(::std::ptr::null_mut());
 #[allow(non_camel_case_types)]
-pub struct PayloadClientInitializerResponse {
-  inner: ::protobuf::__internal::runtime::OwnedMessageInner<PayloadClientInitializerResponse>
+pub struct PayloadClientInitializerData {
+  inner: ::protobuf::__internal::runtime::OwnedMessageInner<PayloadClientInitializerData>
 }
 
-impl ::protobuf::Message for PayloadClientInitializerResponse {}
+impl ::protobuf::Message for PayloadClientInitializerData {}
 
-impl ::std::default::Default for PayloadClientInitializerResponse {
+impl ::std::default::Default for PayloadClientInitializerData {
   fn default() -> Self {
     Self::new()
   }
 }
 
-impl ::protobuf::Parse for PayloadClientInitializerResponse {
+impl ::protobuf::Parse for PayloadClientInitializerData {
   fn parse(serialized: &[u8]) -> ::std::result::Result<Self, ::protobuf::ParseError> {
     Self::parse(serialized)
   }
@@ -2639,7 +2147,7 @@ impl ::protobuf::Parse for PayloadClientInitializerResponse {
   }
 }
 
-impl ::std::fmt::Debug for PayloadClientInitializerResponse {
+impl ::std::fmt::Debug for PayloadClientInitializerData {
   fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
     let string = unsafe {
       ::protobuf::__internal::runtime::debug_string(
@@ -2651,46 +2159,46 @@ impl ::std::fmt::Debug for PayloadClientInitializerResponse {
   }
 }
 
-impl ::protobuf::Serialize for PayloadClientInitializerResponse {
+impl ::protobuf::Serialize for PayloadClientInitializerData {
   fn serialize(&self) -> ::std::result::Result<Vec<u8>, ::protobuf::SerializeError> {
     ::protobuf::AsView::as_view(self).serialize()
   }
 }
 
 // SAFETY:
-// - `PayloadClientInitializerResponse` is `Sync` because it does not implement interior mutability.
-//    Neither does `PayloadClientInitializerResponseMut`.
-unsafe impl Sync for PayloadClientInitializerResponse {}
+// - `PayloadClientInitializerData` is `Sync` because it does not implement interior mutability.
+//    Neither does `PayloadClientInitializerDataMut`.
+unsafe impl Sync for PayloadClientInitializerData {}
 
 // SAFETY:
-// - `PayloadClientInitializerResponse` is `Send` because it uniquely owns its arena and does
+// - `PayloadClientInitializerData` is `Send` because it uniquely owns its arena and does
 //   not use thread-local data.
-unsafe impl Send for PayloadClientInitializerResponse {}
+unsafe impl Send for PayloadClientInitializerData {}
 
-impl ::protobuf::Proxied for PayloadClientInitializerResponse {
-  type View<'msg> = PayloadClientInitializerResponseView<'msg>;
+impl ::protobuf::Proxied for PayloadClientInitializerData {
+  type View<'msg> = PayloadClientInitializerDataView<'msg>;
 }
 
-impl ::protobuf::__internal::SealedInternal for PayloadClientInitializerResponse {}
+impl ::protobuf::__internal::SealedInternal for PayloadClientInitializerData {}
 
-impl ::protobuf::MutProxied for PayloadClientInitializerResponse {
-  type Mut<'msg> = PayloadClientInitializerResponseMut<'msg>;
+impl ::protobuf::MutProxied for PayloadClientInitializerData {
+  type Mut<'msg> = PayloadClientInitializerDataMut<'msg>;
 }
 
 #[derive(Copy, Clone)]
 #[allow(dead_code)]
-pub struct PayloadClientInitializerResponseView<'msg> {
-  inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, PayloadClientInitializerResponse>,
+pub struct PayloadClientInitializerDataView<'msg> {
+  inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, PayloadClientInitializerData>,
   _phantom: ::std::marker::PhantomData<&'msg ()>,
 }
 
-impl<'msg> ::protobuf::__internal::SealedInternal for PayloadClientInitializerResponseView<'msg> {}
+impl<'msg> ::protobuf::__internal::SealedInternal for PayloadClientInitializerDataView<'msg> {}
 
-impl<'msg> ::protobuf::MessageView<'msg> for PayloadClientInitializerResponseView<'msg> {
-  type Message = PayloadClientInitializerResponse;
+impl<'msg> ::protobuf::MessageView<'msg> for PayloadClientInitializerDataView<'msg> {
+  type Message = PayloadClientInitializerData;
 }
 
-impl ::std::fmt::Debug for PayloadClientInitializerResponseView<'_> {
+impl ::std::fmt::Debug for PayloadClientInitializerDataView<'_> {
   fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
     let string = unsafe {
       ::protobuf::__internal::runtime::debug_string(
@@ -2702,7 +2210,7 @@ impl ::std::fmt::Debug for PayloadClientInitializerResponseView<'_> {
   }
 }
 
-impl ::protobuf::Serialize for PayloadClientInitializerResponseView<'_> {
+impl ::protobuf::Serialize for PayloadClientInitializerDataView<'_> {
   fn serialize(&self) -> ::std::result::Result<Vec<u8>, ::protobuf::SerializeError> {
     // SAFETY: `MINI_TABLE` is the one associated with `self.raw_msg()`.
     let encoded = unsafe {
@@ -2713,17 +2221,17 @@ impl ::protobuf::Serialize for PayloadClientInitializerResponseView<'_> {
   }
 }
 
-impl ::std::default::Default for PayloadClientInitializerResponseView<'_> {
-  fn default() -> PayloadClientInitializerResponseView<'static> {
+impl ::std::default::Default for PayloadClientInitializerDataView<'_> {
+  fn default() -> PayloadClientInitializerDataView<'static> {
     let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(::protobuf::__internal::runtime::ScratchSpace::zeroed_block()) };
-    PayloadClientInitializerResponseView::new(::protobuf::__internal::Private, inner)
+    PayloadClientInitializerDataView::new(::protobuf::__internal::Private, inner)
   }
 }
 
 #[allow(dead_code)]
-impl<'msg> PayloadClientInitializerResponseView<'msg> {
+impl<'msg> PayloadClientInitializerDataView<'msg> {
   #[doc(hidden)]
-  pub fn new(_private: ::protobuf::__internal::Private, inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, PayloadClientInitializerResponse>) -> Self {
+  pub fn new(_private: ::protobuf::__internal::Private, inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, PayloadClientInitializerData>) -> Self {
     Self { inner, _phantom: ::std::marker::PhantomData }
   }
 
@@ -2731,7 +2239,7 @@ impl<'msg> PayloadClientInitializerResponseView<'msg> {
     self.inner.raw()
   }
 
-  pub fn to_owned(&self) -> PayloadClientInitializerResponse {
+  pub fn to_owned(&self) -> PayloadClientInitializerData {
     ::protobuf::IntoProxied::into_proxied(*self, ::protobuf::__internal::Private)
   }
 
@@ -2766,35 +2274,35 @@ impl<'msg> PayloadClientInitializerResponseView<'msg> {
 }
 
 // SAFETY:
-// - `PayloadClientInitializerResponseView` is `Sync` because it does not support mutation.
-unsafe impl Sync for PayloadClientInitializerResponseView<'_> {}
+// - `PayloadClientInitializerDataView` is `Sync` because it does not support mutation.
+unsafe impl Sync for PayloadClientInitializerDataView<'_> {}
 
 // SAFETY:
-// - `PayloadClientInitializerResponseView` is `Send` because while its alive a `PayloadClientInitializerResponseMut` cannot.
-// - `PayloadClientInitializerResponseView` does not use thread-local data.
-unsafe impl Send for PayloadClientInitializerResponseView<'_> {}
+// - `PayloadClientInitializerDataView` is `Send` because while its alive a `PayloadClientInitializerDataMut` cannot.
+// - `PayloadClientInitializerDataView` does not use thread-local data.
+unsafe impl Send for PayloadClientInitializerDataView<'_> {}
 
-impl<'msg> ::protobuf::Proxy<'msg> for PayloadClientInitializerResponseView<'msg> {}
-impl<'msg> ::protobuf::ViewProxy<'msg> for PayloadClientInitializerResponseView<'msg> {}
+impl<'msg> ::protobuf::Proxy<'msg> for PayloadClientInitializerDataView<'msg> {}
+impl<'msg> ::protobuf::ViewProxy<'msg> for PayloadClientInitializerDataView<'msg> {}
 
-impl<'msg> ::protobuf::AsView for PayloadClientInitializerResponseView<'msg> {
-  type Proxied = PayloadClientInitializerResponse;
-  fn as_view(&self) -> ::protobuf::View<'msg, PayloadClientInitializerResponse> {
+impl<'msg> ::protobuf::AsView for PayloadClientInitializerDataView<'msg> {
+  type Proxied = PayloadClientInitializerData;
+  fn as_view(&self) -> ::protobuf::View<'msg, PayloadClientInitializerData> {
     *self
   }
 }
 
-impl<'msg> ::protobuf::IntoView<'msg> for PayloadClientInitializerResponseView<'msg> {
-  fn into_view<'shorter>(self) -> PayloadClientInitializerResponseView<'shorter>
+impl<'msg> ::protobuf::IntoView<'msg> for PayloadClientInitializerDataView<'msg> {
+  fn into_view<'shorter>(self) -> PayloadClientInitializerDataView<'shorter>
   where
       'msg: 'shorter {
     self
   }
 }
 
-impl<'msg> ::protobuf::IntoProxied<PayloadClientInitializerResponse> for PayloadClientInitializerResponseView<'msg> {
-  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> PayloadClientInitializerResponse {
-    let mut dst = PayloadClientInitializerResponse::new();
+impl<'msg> ::protobuf::IntoProxied<PayloadClientInitializerData> for PayloadClientInitializerDataView<'msg> {
+  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> PayloadClientInitializerData {
+    let mut dst = PayloadClientInitializerData::new();
     let dst_raw = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_raw_message_mut(&mut dst, ::protobuf::__internal::Private);
     let dst_arena = ::protobuf::__internal::runtime::UpbGetArena::get_arena(&mut dst, ::protobuf::__internal::Private);
     let src_raw = ::protobuf::__internal::runtime::UpbGetMessagePtr::get_raw_message(&self, ::protobuf::__internal::Private);
@@ -2809,13 +2317,13 @@ impl<'msg> ::protobuf::IntoProxied<PayloadClientInitializerResponse> for Payload
   }
 }
 
-impl<'msg> ::protobuf::IntoProxied<PayloadClientInitializerResponse> for PayloadClientInitializerResponseMut<'msg> {
-  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> PayloadClientInitializerResponse {
+impl<'msg> ::protobuf::IntoProxied<PayloadClientInitializerData> for PayloadClientInitializerDataMut<'msg> {
+  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> PayloadClientInitializerData {
     ::protobuf::IntoProxied::into_proxied(::protobuf::IntoView::into_view(self), _private)
   }
 }
 
-impl ::protobuf::__internal::runtime::UpbTypeConversions for PayloadClientInitializerResponse {
+impl ::protobuf::__internal::runtime::UpbTypeConversions for PayloadClientInitializerData {
     fn upb_type() -> ::protobuf::__internal::runtime::CType {
         ::protobuf::__internal::runtime::CType::Message
     }
@@ -2840,29 +2348,29 @@ impl ::protobuf::__internal::runtime::UpbTypeConversions for PayloadClientInitia
         -> ::protobuf::View<'msg, Self> {
         let raw = unsafe { msg.msg_val }.expect("expected present message value in map");
         let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
-        PayloadClientInitializerResponseView::new(::protobuf::__internal::Private, inner)
+        PayloadClientInitializerDataView::new(::protobuf::__internal::Private, inner)
     }
 
     unsafe fn from_message_mut<'msg>(msg: ::protobuf::__internal::runtime::RawMessage, arena: &'msg ::protobuf::__internal::runtime::Arena)
-        -> PayloadClientInitializerResponseMut<'msg> {
-        let inner = unsafe { ::protobuf::__internal::runtime::MessageMutInner::<'msg, PayloadClientInitializerResponse>::wrap_raw(msg, arena) };
-        PayloadClientInitializerResponseMut::new(::protobuf::__internal::Private, inner)
+        -> PayloadClientInitializerDataMut<'msg> {
+        let inner = unsafe { ::protobuf::__internal::runtime::MessageMutInner::<'msg, PayloadClientInitializerData>::wrap_raw(msg, arena) };
+        PayloadClientInitializerDataMut::new(::protobuf::__internal::Private, inner)
     }
 }
 
 #[allow(dead_code)]
 #[allow(non_camel_case_types)]
-pub struct PayloadClientInitializerResponseMut<'msg> {
-  inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, PayloadClientInitializerResponse>,
+pub struct PayloadClientInitializerDataMut<'msg> {
+  inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, PayloadClientInitializerData>,
 }
 
-impl<'msg> ::protobuf::__internal::SealedInternal for PayloadClientInitializerResponseMut<'msg> {}
+impl<'msg> ::protobuf::__internal::SealedInternal for PayloadClientInitializerDataMut<'msg> {}
 
-impl<'msg> ::protobuf::MessageMut<'msg> for PayloadClientInitializerResponseMut<'msg> {
-  type Message = PayloadClientInitializerResponse;
+impl<'msg> ::protobuf::MessageMut<'msg> for PayloadClientInitializerDataMut<'msg> {
+  type Message = PayloadClientInitializerData;
 }
 
-impl ::std::fmt::Debug for PayloadClientInitializerResponseMut<'_> {
+impl ::std::fmt::Debug for PayloadClientInitializerDataMut<'_> {
   fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
     let string = unsafe {
       ::protobuf::__internal::runtime::debug_string(
@@ -2874,14 +2382,14 @@ impl ::std::fmt::Debug for PayloadClientInitializerResponseMut<'_> {
   }
 }
 
-impl ::protobuf::Serialize for PayloadClientInitializerResponseMut<'_> {
+impl ::protobuf::Serialize for PayloadClientInitializerDataMut<'_> {
   fn serialize(&self) -> ::std::result::Result<Vec<u8>, ::protobuf::SerializeError> {
     ::protobuf::AsView::as_view(self).serialize()
   }
 }
 
 #[allow(dead_code)]
-impl<'msg> PayloadClientInitializerResponseMut<'msg> {
+impl<'msg> PayloadClientInitializerDataMut<'msg> {
   #[doc(hidden)]
   pub fn from_parent<ParentT: ::protobuf::Message>(
              _private: ::protobuf::__internal::Private,
@@ -2894,7 +2402,7 @@ impl<'msg> PayloadClientInitializerResponseMut<'msg> {
   }
 
   #[doc(hidden)]
-  pub fn new(_private: ::protobuf::__internal::Private, inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, PayloadClientInitializerResponse>) -> Self {
+  pub fn new(_private: ::protobuf::__internal::Private, inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, PayloadClientInitializerData>) -> Self {
     Self { inner }
   }
 
@@ -2904,11 +2412,11 @@ impl<'msg> PayloadClientInitializerResponseMut<'msg> {
 
   #[doc(hidden)]
   pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
-    -> ::protobuf::__internal::runtime::MessageMutInner<'msg, PayloadClientInitializerResponse> {
+    -> ::protobuf::__internal::runtime::MessageMutInner<'msg, PayloadClientInitializerData> {
     self.inner
   }
 
-  pub fn to_owned(&self) -> PayloadClientInitializerResponse {
+  pub fn to_owned(&self) -> PayloadClientInitializerData {
     ::protobuf::AsView::as_view(self).to_owned()
   }
 
@@ -3013,44 +2521,44 @@ impl<'msg> PayloadClientInitializerResponseMut<'msg> {
 }
 
 // SAFETY:
-// - `PayloadClientInitializerResponseMut` does not perform any shared mutation.
-// - `PayloadClientInitializerResponseMut` is not `Send`, and so even in the presence of mutator
+// - `PayloadClientInitializerDataMut` does not perform any shared mutation.
+// - `PayloadClientInitializerDataMut` is not `Send`, and so even in the presence of mutator
 //   splitting, synchronous access of an arena is impossible.
-unsafe impl Sync for PayloadClientInitializerResponseMut<'_> {}
+unsafe impl Sync for PayloadClientInitializerDataMut<'_> {}
 
-impl<'msg> ::protobuf::Proxy<'msg> for PayloadClientInitializerResponseMut<'msg> {}
-impl<'msg> ::protobuf::MutProxy<'msg> for PayloadClientInitializerResponseMut<'msg> {}
+impl<'msg> ::protobuf::Proxy<'msg> for PayloadClientInitializerDataMut<'msg> {}
+impl<'msg> ::protobuf::MutProxy<'msg> for PayloadClientInitializerDataMut<'msg> {}
 
-impl<'msg> ::protobuf::AsView for PayloadClientInitializerResponseMut<'msg> {
-  type Proxied = PayloadClientInitializerResponse;
-  fn as_view(&self) -> ::protobuf::View<'_, PayloadClientInitializerResponse> {
-    PayloadClientInitializerResponseView {
+impl<'msg> ::protobuf::AsView for PayloadClientInitializerDataMut<'msg> {
+  type Proxied = PayloadClientInitializerData;
+  fn as_view(&self) -> ::protobuf::View<'_, PayloadClientInitializerData> {
+    PayloadClientInitializerDataView {
       inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner.clone()),
       _phantom: ::std::marker::PhantomData
     }
   }
 }
 
-impl<'msg> ::protobuf::IntoView<'msg> for PayloadClientInitializerResponseMut<'msg> {
-  fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, PayloadClientInitializerResponse>
+impl<'msg> ::protobuf::IntoView<'msg> for PayloadClientInitializerDataMut<'msg> {
+  fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, PayloadClientInitializerData>
   where
       'msg: 'shorter {
-    PayloadClientInitializerResponseView {
+    PayloadClientInitializerDataView {
       inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner.clone()),
       _phantom: ::std::marker::PhantomData
     }
   }
 }
 
-impl<'msg> ::protobuf::AsMut for PayloadClientInitializerResponseMut<'msg> {
-  type MutProxied = PayloadClientInitializerResponse;
-  fn as_mut(&mut self) -> PayloadClientInitializerResponseMut<'msg> {
-    PayloadClientInitializerResponseMut { inner: self.inner }
+impl<'msg> ::protobuf::AsMut for PayloadClientInitializerDataMut<'msg> {
+  type MutProxied = PayloadClientInitializerData;
+  fn as_mut(&mut self) -> PayloadClientInitializerDataMut<'msg> {
+    PayloadClientInitializerDataMut { inner: self.inner }
   }
 }
 
-impl<'msg> ::protobuf::IntoMut<'msg> for PayloadClientInitializerResponseMut<'msg> {
-  fn into_mut<'shorter>(self) -> PayloadClientInitializerResponseMut<'shorter>
+impl<'msg> ::protobuf::IntoMut<'msg> for PayloadClientInitializerDataMut<'msg> {
+  fn into_mut<'shorter>(self) -> PayloadClientInitializerDataMut<'shorter>
   where
       'msg: 'shorter {
     self
@@ -3058,7 +2566,7 @@ impl<'msg> ::protobuf::IntoMut<'msg> for PayloadClientInitializerResponseMut<'ms
 }
 
 #[allow(dead_code)]
-impl PayloadClientInitializerResponse {
+impl PayloadClientInitializerData {
   pub fn new() -> Self {
     Self { inner: ::protobuf::__internal::runtime::OwnedMessageInner::<Self>::new() }
   }
@@ -3068,7 +2576,7 @@ impl PayloadClientInitializerResponse {
   }
 
   #[doc(hidden)]
-  pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessageMutInner<'_, PayloadClientInitializerResponse> {
+  pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessageMutInner<'_, PayloadClientInitializerData> {
     ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner)
   }
 
@@ -3086,15 +2594,15 @@ impl PayloadClientInitializerResponse {
     ::protobuf::ClearAndParse::clear_and_parse_dont_enforce_required(&mut msg, data).map(|_| msg)
   }
 
-  pub fn as_view(&self) -> PayloadClientInitializerResponseView {
-    PayloadClientInitializerResponseView::new(
+  pub fn as_view(&self) -> PayloadClientInitializerDataView {
+    PayloadClientInitializerDataView::new(
         ::protobuf::__internal::Private,
         ::protobuf::__internal::runtime::MessageViewInner::view_of_owned(&self.inner))
   }
 
-  pub fn as_mut(&mut self) -> PayloadClientInitializerResponseMut {
+  pub fn as_mut(&mut self) -> PayloadClientInitializerDataMut {
     let inner = ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner);
-    PayloadClientInitializerResponseMut::new(::protobuf::__internal::Private, inner)
+    PayloadClientInitializerDataMut::new(::protobuf::__internal::Private, inner)
   }
 
   // players: repeated message Proto.PlayerData
@@ -3191,39 +2699,39 @@ impl PayloadClientInitializerResponse {
     }
   }
 
-}  // impl PayloadClientInitializerResponse
+}  // impl PayloadClientInitializerData
 
-impl ::std::ops::Drop for PayloadClientInitializerResponse {
+impl ::std::ops::Drop for PayloadClientInitializerData {
   fn drop(&mut self) {
   }
 }
 
-impl ::std::clone::Clone for PayloadClientInitializerResponse {
+impl ::std::clone::Clone for PayloadClientInitializerData {
   fn clone(&self) -> Self {
     self.as_view().to_owned()
   }
 }
 
-impl ::protobuf::AsView for PayloadClientInitializerResponse {
+impl ::protobuf::AsView for PayloadClientInitializerData {
   type Proxied = Self;
-  fn as_view(&self) -> PayloadClientInitializerResponseView {
+  fn as_view(&self) -> PayloadClientInitializerDataView {
     self.as_view()
   }
 }
 
-impl ::protobuf::AsMut for PayloadClientInitializerResponse {
+impl ::protobuf::AsMut for PayloadClientInitializerData {
   type MutProxied = Self;
-  fn as_mut(&mut self) -> PayloadClientInitializerResponseMut {
+  fn as_mut(&mut self) -> PayloadClientInitializerDataMut {
     self.as_mut()
   }
 }
 
-unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadClientInitializerResponse {
+unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadClientInitializerData {
   fn mini_table() -> *const ::protobuf::__internal::runtime::upb_MiniTable {
     static ONCE_LOCK: ::std::sync::OnceLock<::protobuf::__internal::runtime::MiniTablePtr> =
         ::std::sync::OnceLock::new();
     ONCE_LOCK.get_or_init(|| unsafe {
-      super::Proto__PayloadClientInitializerResponse_msg_init.0 =
+      super::Proto__PayloadClientInitializerData_msg_init.0 =
           ::protobuf::__internal::runtime::upb_MiniTable_Build(
               "$GG".as_ptr(),
               3,
@@ -3236,64 +2744,64 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadClie
       let subenums = [
       ];
       assert!(::protobuf::__internal::runtime::upb_MiniTable_Link(
-          super::Proto__PayloadClientInitializerResponse_msg_init.0,
+          super::Proto__PayloadClientInitializerData_msg_init.0,
           submessages.as_ptr() as *const *const ::protobuf::__internal::runtime::upb_MiniTable,
           submessages.len(), subenums.as_ptr(), subenums.len()));
-      ::protobuf::__internal::runtime::MiniTablePtr(super::Proto__PayloadClientInitializerResponse_msg_init.0)
+      ::protobuf::__internal::runtime::MiniTablePtr(super::Proto__PayloadClientInitializerData_msg_init.0)
     }).0
   }
 }
-unsafe impl ::protobuf::__internal::runtime::UpbGetArena for PayloadClientInitializerResponse {
+unsafe impl ::protobuf::__internal::runtime::UpbGetArena for PayloadClientInitializerData {
   fn get_arena(&mut self, _private: ::protobuf::__internal::Private) -> &::protobuf::__internal::runtime::Arena {
     self.inner.arena()
   }
 }
 
-unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadClientInitializerResponseView<'_> {
+unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadClientInitializerDataView<'_> {
   #[inline(always)]
   fn mini_table() -> *const ::protobuf::__internal::runtime::upb_MiniTable {
-    <PayloadClientInitializerResponse as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table()
+    <PayloadClientInitializerData as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table()
   }
 }
 
-unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadClientInitializerResponseMut<'_> {
+unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadClientInitializerDataMut<'_> {
   #[inline(always)]
   fn mini_table() -> *const ::protobuf::__internal::runtime::upb_MiniTable {
-    <PayloadClientInitializerResponse as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table()
+    <PayloadClientInitializerData as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table()
   }
 }
-unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for PayloadClientInitializerResponse {
-  type Msg = PayloadClientInitializerResponse;
-  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadClientInitializerResponse> {
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for PayloadClientInitializerData {
+  type Msg = PayloadClientInitializerData;
+  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadClientInitializerData> {
     self.inner.ptr_mut()
   }
 }
-unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for PayloadClientInitializerResponse {
-  type Msg = PayloadClientInitializerResponse;
-  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadClientInitializerResponse> {
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for PayloadClientInitializerData {
+  type Msg = PayloadClientInitializerData;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadClientInitializerData> {
     self.inner.ptr()
   }
 }
-unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for PayloadClientInitializerResponseMut<'_> {
-  type Msg = PayloadClientInitializerResponse;
-  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadClientInitializerResponse> {
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for PayloadClientInitializerDataMut<'_> {
+  type Msg = PayloadClientInitializerData;
+  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadClientInitializerData> {
     self.inner.ptr_mut()
   }
 }
-unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for PayloadClientInitializerResponseMut<'_> {
-  type Msg = PayloadClientInitializerResponse;
-  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadClientInitializerResponse> {
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for PayloadClientInitializerDataMut<'_> {
+  type Msg = PayloadClientInitializerData;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadClientInitializerData> {
     self.inner.ptr()
   }
 }
-unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for PayloadClientInitializerResponseView<'_> {
-  type Msg = PayloadClientInitializerResponse;
-  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadClientInitializerResponse> {
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for PayloadClientInitializerDataView<'_> {
+  type Msg = PayloadClientInitializerData;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadClientInitializerData> {
     self.inner.ptr()
   }
 }
 
-unsafe impl ::protobuf::__internal::runtime::UpbGetArena for PayloadClientInitializerResponseMut<'_> {
+unsafe impl ::protobuf::__internal::runtime::UpbGetArena for PayloadClientInitializerDataMut<'_> {
   fn get_arena(&mut self, _private: ::protobuf::__internal::Private) -> &::protobuf::__internal::runtime::Arena {
     self.inner.arena()
   }
@@ -3301,10 +2809,10 @@ unsafe impl ::protobuf::__internal::runtime::UpbGetArena for PayloadClientInitia
 
 
 // upb kernel doesn't support any owned message or message mut interop.
-impl ::protobuf::OwnedMessageInterop for PayloadClientInitializerResponse {}
-impl<'a> ::protobuf::MessageMutInterop<'a> for PayloadClientInitializerResponseMut<'a> {}
+impl ::protobuf::OwnedMessageInterop for PayloadClientInitializerData {}
+impl<'a> ::protobuf::MessageMutInterop<'a> for PayloadClientInitializerDataMut<'a> {}
 
-impl<'a> ::protobuf::MessageViewInterop<'a> for PayloadClientInitializerResponseView<'a> {
+impl<'a> ::protobuf::MessageViewInterop<'a> for PayloadClientInitializerDataView<'a> {
   unsafe fn __unstable_wrap_raw_message(
     msg: &'a *const ::std::ffi::c_void) -> Self {
     let raw = ::protobuf::__internal::runtime::RawMessage::new(*msg as *mut _).unwrap();

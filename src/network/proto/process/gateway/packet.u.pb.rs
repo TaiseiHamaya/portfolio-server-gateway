@@ -212,22 +212,22 @@ impl<'msg> ToServerMessageView<'msg> {
     super::PayloadLobbyEndGameRequestView::new(::protobuf::__internal::Private, inner)
   }
 
-  // client_initializer_request: optional message Proto.PayloadClientInitializerRequest
-  pub fn has_client_initializer_request(self) -> bool {
+  // player_zone_enter_complete: optional message Proto.PayloadPlayerZoneEnterComplete
+  pub fn has_player_zone_enter_complete(self) -> bool {
     unsafe {
       self.inner.ptr().has_field_at_index(5)
     }
   }
-  pub fn client_initializer_request_opt(self) -> ::protobuf::Optional<super::PayloadClientInitializerRequestView<'msg>> {
-        ::protobuf::Optional::new(self.client_initializer_request(), self.has_client_initializer_request())
+  pub fn player_zone_enter_complete_opt(self) -> ::protobuf::Optional<super::PayloadPlayerZoneEnterCompleteView<'msg>> {
+        ::protobuf::Optional::new(self.player_zone_enter_complete(), self.has_player_zone_enter_complete())
   }
-  pub fn client_initializer_request(self) -> super::PayloadClientInitializerRequestView<'msg> {
+  pub fn player_zone_enter_complete(self) -> super::PayloadPlayerZoneEnterCompleteView<'msg> {
     let submsg = unsafe {
       self.inner.ptr().get_message_at_index(5)
     };
     let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
     let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
-    super::PayloadClientInitializerRequestView::new(::protobuf::__internal::Private, inner)
+    super::PayloadPlayerZoneEnterCompleteView::new(::protobuf::__internal::Private, inner)
   }
 
   // transform_sync: optional message Proto.PayloadTransformSync
@@ -296,8 +296,8 @@ impl<'msg> ToServerMessageView<'msg> {
           super::to_server_message::MessageOneof::StartGame(self.start_game()),
       super::to_server_message::MessageCase::EndGame =>
           super::to_server_message::MessageOneof::EndGame(self.end_game()),
-      super::to_server_message::MessageCase::ClientInitializerRequest =>
-          super::to_server_message::MessageOneof::ClientInitializerRequest(self.client_initializer_request()),
+      super::to_server_message::MessageCase::PlayerZoneEnterComplete =>
+          super::to_server_message::MessageOneof::PlayerZoneEnterComplete(self.player_zone_enter_complete()),
       super::to_server_message::MessageCase::TransformSync =>
           super::to_server_message::MessageOneof::TransformSync(self.transform_sync()),
       super::to_server_message::MessageCase::PlayAction =>
@@ -743,43 +743,43 @@ impl<'msg> ToServerMessageMut<'msg> {
     }
   }
 
-  // client_initializer_request: optional message Proto.PayloadClientInitializerRequest
-  pub fn has_client_initializer_request(&self) -> bool {
+  // player_zone_enter_complete: optional message Proto.PayloadPlayerZoneEnterComplete
+  pub fn has_player_zone_enter_complete(&self) -> bool {
     unsafe {
       self.inner.ptr().has_field_at_index(5)
     }
   }
-  pub fn clear_client_initializer_request(&mut self) {
+  pub fn clear_player_zone_enter_complete(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
         5
       );
     }
   }
-  pub fn client_initializer_request_opt(&self) -> ::protobuf::Optional<super::PayloadClientInitializerRequestView<'_>> {
-        ::protobuf::Optional::new(self.client_initializer_request(), self.has_client_initializer_request())
+  pub fn player_zone_enter_complete_opt(&self) -> ::protobuf::Optional<super::PayloadPlayerZoneEnterCompleteView<'_>> {
+        ::protobuf::Optional::new(self.player_zone_enter_complete(), self.has_player_zone_enter_complete())
   }
-  pub fn client_initializer_request(&self) -> super::PayloadClientInitializerRequestView<'_> {
+  pub fn player_zone_enter_complete(&self) -> super::PayloadPlayerZoneEnterCompleteView<'_> {
     let submsg = unsafe {
       self.inner.ptr().get_message_at_index(5)
     };
     let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
     let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
-    super::PayloadClientInitializerRequestView::new(::protobuf::__internal::Private, inner)
+    super::PayloadPlayerZoneEnterCompleteView::new(::protobuf::__internal::Private, inner)
   }
-  pub fn client_initializer_request_mut(&mut self) -> super::PayloadClientInitializerRequestMut<'_> {
+  pub fn player_zone_enter_complete_mut(&mut self) -> super::PayloadPlayerZoneEnterCompleteMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
          5, self.arena()
        ).unwrap()
      };
-     super::PayloadClientInitializerRequestMut::from_parent(
+     super::PayloadPlayerZoneEnterCompleteMut::from_parent(
        ::protobuf::__internal::Private,
        self.as_message_mut_inner(::protobuf::__internal::Private),
        ptr.raw())
   }
-  pub fn set_client_initializer_request(&mut self,
-    val: impl ::protobuf::IntoProxied<super::PayloadClientInitializerRequest>) {
+  pub fn set_player_zone_enter_complete(&mut self,
+    val: impl ::protobuf::IntoProxied<super::PayloadPlayerZoneEnterComplete>) {
 
     // The message and arena are dropped after the setter. The
     // memory remains allocated as we fuse the arena with the
@@ -971,8 +971,8 @@ impl<'msg> ToServerMessageMut<'msg> {
           super::to_server_message::MessageOneof::StartGame(self.start_game()),
       super::to_server_message::MessageCase::EndGame =>
           super::to_server_message::MessageOneof::EndGame(self.end_game()),
-      super::to_server_message::MessageCase::ClientInitializerRequest =>
-          super::to_server_message::MessageOneof::ClientInitializerRequest(self.client_initializer_request()),
+      super::to_server_message::MessageCase::PlayerZoneEnterComplete =>
+          super::to_server_message::MessageOneof::PlayerZoneEnterComplete(self.player_zone_enter_complete()),
       super::to_server_message::MessageCase::TransformSync =>
           super::to_server_message::MessageOneof::TransformSync(self.transform_sync()),
       super::to_server_message::MessageCase::PlayAction =>
@@ -1352,43 +1352,43 @@ impl ToServerMessage {
     }
   }
 
-  // client_initializer_request: optional message Proto.PayloadClientInitializerRequest
-  pub fn has_client_initializer_request(&self) -> bool {
+  // player_zone_enter_complete: optional message Proto.PayloadPlayerZoneEnterComplete
+  pub fn has_player_zone_enter_complete(&self) -> bool {
     unsafe {
       self.inner.ptr().has_field_at_index(5)
     }
   }
-  pub fn clear_client_initializer_request(&mut self) {
+  pub fn clear_player_zone_enter_complete(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
         5
       );
     }
   }
-  pub fn client_initializer_request_opt(&self) -> ::protobuf::Optional<super::PayloadClientInitializerRequestView<'_>> {
-        ::protobuf::Optional::new(self.client_initializer_request(), self.has_client_initializer_request())
+  pub fn player_zone_enter_complete_opt(&self) -> ::protobuf::Optional<super::PayloadPlayerZoneEnterCompleteView<'_>> {
+        ::protobuf::Optional::new(self.player_zone_enter_complete(), self.has_player_zone_enter_complete())
   }
-  pub fn client_initializer_request(&self) -> super::PayloadClientInitializerRequestView<'_> {
+  pub fn player_zone_enter_complete(&self) -> super::PayloadPlayerZoneEnterCompleteView<'_> {
     let submsg = unsafe {
       self.inner.ptr().get_message_at_index(5)
     };
     let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
     let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
-    super::PayloadClientInitializerRequestView::new(::protobuf::__internal::Private, inner)
+    super::PayloadPlayerZoneEnterCompleteView::new(::protobuf::__internal::Private, inner)
   }
-  pub fn client_initializer_request_mut(&mut self) -> super::PayloadClientInitializerRequestMut<'_> {
+  pub fn player_zone_enter_complete_mut(&mut self) -> super::PayloadPlayerZoneEnterCompleteMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
          5, self.arena()
        ).unwrap()
      };
-     super::PayloadClientInitializerRequestMut::from_parent(
+     super::PayloadPlayerZoneEnterCompleteMut::from_parent(
        ::protobuf::__internal::Private,
        self.as_message_mut_inner(::protobuf::__internal::Private),
        ptr.raw())
   }
-  pub fn set_client_initializer_request(&mut self,
-    val: impl ::protobuf::IntoProxied<super::PayloadClientInitializerRequest>) {
+  pub fn set_player_zone_enter_complete(&mut self,
+    val: impl ::protobuf::IntoProxied<super::PayloadPlayerZoneEnterComplete>) {
 
     // The message and arena are dropped after the setter. The
     // memory remains allocated as we fuse the arena with the
@@ -1580,8 +1580,8 @@ impl ToServerMessage {
           super::to_server_message::MessageOneof::StartGame(self.start_game()),
       super::to_server_message::MessageCase::EndGame =>
           super::to_server_message::MessageOneof::EndGame(self.end_game()),
-      super::to_server_message::MessageCase::ClientInitializerRequest =>
-          super::to_server_message::MessageOneof::ClientInitializerRequest(self.client_initializer_request()),
+      super::to_server_message::MessageCase::PlayerZoneEnterComplete =>
+          super::to_server_message::MessageOneof::PlayerZoneEnterComplete(self.player_zone_enter_complete()),
       super::to_server_message::MessageCase::TransformSync =>
           super::to_server_message::MessageOneof::TransformSync(self.transform_sync()),
       super::to_server_message::MessageCase::PlayAction =>
@@ -1638,8 +1638,8 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for ToServerMes
     ONCE_LOCK.get_or_init(|| unsafe {
       super::Proto__ToServerMessage_msg_init.0 =
           ::protobuf::__internal::runtime::upb_MiniTable_Build(
-              "$333333a333^!|#|$|%|&|(|*|+|,".as_ptr(),
-              29,
+              "$333333333^!|#|$|%|&|(|)|*|+".as_ptr(),
+              28,
               ::protobuf::__internal::runtime::THREAD_LOCAL_ARENA.with(|a| a.raw()),
               ::std::ptr::null_mut());
       let submessages = [
@@ -1648,7 +1648,7 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for ToServerMes
         <super::PayloadSignupRequest as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
         <super::PayloadLobbyStartGameRequest as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
         <super::PayloadLobbyEndGameRequest as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
-        <super::PayloadClientInitializerRequest as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
+        <super::PayloadPlayerZoneEnterComplete as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
         <super::PayloadTransformSync as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
         <super::PayloadPlayAction as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
         <super::PayloadTextMessage as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
@@ -1731,10 +1731,10 @@ pub enum MessageOneof<'msg> {
   SignupRequest(::protobuf::View<'msg, super::super::PayloadSignupRequest>) = 3,
   StartGame(::protobuf::View<'msg, super::super::PayloadLobbyStartGameRequest>) = 4,
   EndGame(::protobuf::View<'msg, super::super::PayloadLobbyEndGameRequest>) = 5,
-  ClientInitializerRequest(::protobuf::View<'msg, super::super::PayloadClientInitializerRequest>) = 6,
-  TransformSync(::protobuf::View<'msg, super::super::PayloadTransformSync>) = 8,
-  PlayAction(::protobuf::View<'msg, super::super::PayloadPlayAction>) = 9,
-  TextMessage(::protobuf::View<'msg, super::super::PayloadTextMessage>) = 10,
+  PlayerZoneEnterComplete(::protobuf::View<'msg, super::super::PayloadPlayerZoneEnterComplete>) = 6,
+  TransformSync(::protobuf::View<'msg, super::super::PayloadTransformSync>) = 7,
+  PlayAction(::protobuf::View<'msg, super::super::PayloadPlayAction>) = 8,
+  TextMessage(::protobuf::View<'msg, super::super::PayloadTextMessage>) = 9,
 
   not_set(std::marker::PhantomData<&'msg ()>) = 0
 }
@@ -1748,10 +1748,10 @@ pub enum MessageCase {
   SignupRequest = 3,
   StartGame = 4,
   EndGame = 5,
-  ClientInitializerRequest = 6,
-  TransformSync = 8,
-  PlayAction = 9,
-  TextMessage = 10,
+  PlayerZoneEnterComplete = 6,
+  TransformSync = 7,
+  PlayAction = 8,
+  TextMessage = 9,
 
   not_set = 0
 }
@@ -1766,10 +1766,10 @@ impl MessageCase {
       3 => Some(MessageCase::SignupRequest),
       4 => Some(MessageCase::StartGame),
       5 => Some(MessageCase::EndGame),
-      6 => Some(MessageCase::ClientInitializerRequest),
-      8 => Some(MessageCase::TransformSync),
-      9 => Some(MessageCase::PlayAction),
-      10 => Some(MessageCase::TextMessage),
+      6 => Some(MessageCase::PlayerZoneEnterComplete),
+      7 => Some(MessageCase::TransformSync),
+      8 => Some(MessageCase::PlayAction),
+      9 => Some(MessageCase::TextMessage),
       _ => None
     }
   }
@@ -2011,22 +2011,22 @@ impl<'msg> ToClientMessageView<'msg> {
     super::PayloadLobbyEndGameResponseView::new(::protobuf::__internal::Private, inner)
   }
 
-  // client_initializer_response: optional message Proto.PayloadClientInitializerResponse
-  pub fn has_client_initializer_response(self) -> bool {
+  // client_initializer_data: optional message Proto.PayloadClientInitializerData
+  pub fn has_client_initializer_data(self) -> bool {
     unsafe {
       self.inner.ptr().has_field_at_index(5)
     }
   }
-  pub fn client_initializer_response_opt(self) -> ::protobuf::Optional<super::PayloadClientInitializerResponseView<'msg>> {
-        ::protobuf::Optional::new(self.client_initializer_response(), self.has_client_initializer_response())
+  pub fn client_initializer_data_opt(self) -> ::protobuf::Optional<super::PayloadClientInitializerDataView<'msg>> {
+        ::protobuf::Optional::new(self.client_initializer_data(), self.has_client_initializer_data())
   }
-  pub fn client_initializer_response(self) -> super::PayloadClientInitializerResponseView<'msg> {
+  pub fn client_initializer_data(self) -> super::PayloadClientInitializerDataView<'msg> {
     let submsg = unsafe {
       self.inner.ptr().get_message_at_index(5)
     };
     let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
     let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
-    super::PayloadClientInitializerResponseView::new(::protobuf::__internal::Private, inner)
+    super::PayloadClientInitializerDataView::new(::protobuf::__internal::Private, inner)
   }
 
   // transform_sync: optional message Proto.PayloadTransformSync
@@ -2185,8 +2185,8 @@ impl<'msg> ToClientMessageView<'msg> {
           super::to_client_message::MessageOneof::StartGameResponse(self.start_game_response()),
       super::to_client_message::MessageCase::EndGameResponse =>
           super::to_client_message::MessageOneof::EndGameResponse(self.end_game_response()),
-      super::to_client_message::MessageCase::ClientInitializerResponse =>
-          super::to_client_message::MessageOneof::ClientInitializerResponse(self.client_initializer_response()),
+      super::to_client_message::MessageCase::ClientInitializerData =>
+          super::to_client_message::MessageOneof::ClientInitializerData(self.client_initializer_data()),
       super::to_client_message::MessageCase::TransformSync =>
           super::to_client_message::MessageOneof::TransformSync(self.transform_sync()),
       super::to_client_message::MessageCase::PlayAction =>
@@ -2642,43 +2642,43 @@ impl<'msg> ToClientMessageMut<'msg> {
     }
   }
 
-  // client_initializer_response: optional message Proto.PayloadClientInitializerResponse
-  pub fn has_client_initializer_response(&self) -> bool {
+  // client_initializer_data: optional message Proto.PayloadClientInitializerData
+  pub fn has_client_initializer_data(&self) -> bool {
     unsafe {
       self.inner.ptr().has_field_at_index(5)
     }
   }
-  pub fn clear_client_initializer_response(&mut self) {
+  pub fn clear_client_initializer_data(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
         5
       );
     }
   }
-  pub fn client_initializer_response_opt(&self) -> ::protobuf::Optional<super::PayloadClientInitializerResponseView<'_>> {
-        ::protobuf::Optional::new(self.client_initializer_response(), self.has_client_initializer_response())
+  pub fn client_initializer_data_opt(&self) -> ::protobuf::Optional<super::PayloadClientInitializerDataView<'_>> {
+        ::protobuf::Optional::new(self.client_initializer_data(), self.has_client_initializer_data())
   }
-  pub fn client_initializer_response(&self) -> super::PayloadClientInitializerResponseView<'_> {
+  pub fn client_initializer_data(&self) -> super::PayloadClientInitializerDataView<'_> {
     let submsg = unsafe {
       self.inner.ptr().get_message_at_index(5)
     };
     let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
     let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
-    super::PayloadClientInitializerResponseView::new(::protobuf::__internal::Private, inner)
+    super::PayloadClientInitializerDataView::new(::protobuf::__internal::Private, inner)
   }
-  pub fn client_initializer_response_mut(&mut self) -> super::PayloadClientInitializerResponseMut<'_> {
+  pub fn client_initializer_data_mut(&mut self) -> super::PayloadClientInitializerDataMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
          5, self.arena()
        ).unwrap()
      };
-     super::PayloadClientInitializerResponseMut::from_parent(
+     super::PayloadClientInitializerDataMut::from_parent(
        ::protobuf::__internal::Private,
        self.as_message_mut_inner(::protobuf::__internal::Private),
        ptr.raw())
   }
-  pub fn set_client_initializer_response(&mut self,
-    val: impl ::protobuf::IntoProxied<super::PayloadClientInitializerResponse>) {
+  pub fn set_client_initializer_data(&mut self,
+    val: impl ::protobuf::IntoProxied<super::PayloadClientInitializerData>) {
 
     // The message and arena are dropped after the setter. The
     // memory remains allocated as we fuse the arena with the
@@ -3140,8 +3140,8 @@ impl<'msg> ToClientMessageMut<'msg> {
           super::to_client_message::MessageOneof::StartGameResponse(self.start_game_response()),
       super::to_client_message::MessageCase::EndGameResponse =>
           super::to_client_message::MessageOneof::EndGameResponse(self.end_game_response()),
-      super::to_client_message::MessageCase::ClientInitializerResponse =>
-          super::to_client_message::MessageOneof::ClientInitializerResponse(self.client_initializer_response()),
+      super::to_client_message::MessageCase::ClientInitializerData =>
+          super::to_client_message::MessageOneof::ClientInitializerData(self.client_initializer_data()),
       super::to_client_message::MessageCase::TransformSync =>
           super::to_client_message::MessageOneof::TransformSync(self.transform_sync()),
       super::to_client_message::MessageCase::PlayAction =>
@@ -3531,43 +3531,43 @@ impl ToClientMessage {
     }
   }
 
-  // client_initializer_response: optional message Proto.PayloadClientInitializerResponse
-  pub fn has_client_initializer_response(&self) -> bool {
+  // client_initializer_data: optional message Proto.PayloadClientInitializerData
+  pub fn has_client_initializer_data(&self) -> bool {
     unsafe {
       self.inner.ptr().has_field_at_index(5)
     }
   }
-  pub fn clear_client_initializer_response(&mut self) {
+  pub fn clear_client_initializer_data(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
         5
       );
     }
   }
-  pub fn client_initializer_response_opt(&self) -> ::protobuf::Optional<super::PayloadClientInitializerResponseView<'_>> {
-        ::protobuf::Optional::new(self.client_initializer_response(), self.has_client_initializer_response())
+  pub fn client_initializer_data_opt(&self) -> ::protobuf::Optional<super::PayloadClientInitializerDataView<'_>> {
+        ::protobuf::Optional::new(self.client_initializer_data(), self.has_client_initializer_data())
   }
-  pub fn client_initializer_response(&self) -> super::PayloadClientInitializerResponseView<'_> {
+  pub fn client_initializer_data(&self) -> super::PayloadClientInitializerDataView<'_> {
     let submsg = unsafe {
       self.inner.ptr().get_message_at_index(5)
     };
     let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
     let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
-    super::PayloadClientInitializerResponseView::new(::protobuf::__internal::Private, inner)
+    super::PayloadClientInitializerDataView::new(::protobuf::__internal::Private, inner)
   }
-  pub fn client_initializer_response_mut(&mut self) -> super::PayloadClientInitializerResponseMut<'_> {
+  pub fn client_initializer_data_mut(&mut self) -> super::PayloadClientInitializerDataMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
          5, self.arena()
        ).unwrap()
      };
-     super::PayloadClientInitializerResponseMut::from_parent(
+     super::PayloadClientInitializerDataMut::from_parent(
        ::protobuf::__internal::Private,
        self.as_message_mut_inner(::protobuf::__internal::Private),
        ptr.raw())
   }
-  pub fn set_client_initializer_response(&mut self,
-    val: impl ::protobuf::IntoProxied<super::PayloadClientInitializerResponse>) {
+  pub fn set_client_initializer_data(&mut self,
+    val: impl ::protobuf::IntoProxied<super::PayloadClientInitializerData>) {
 
     // The message and arena are dropped after the setter. The
     // memory remains allocated as we fuse the arena with the
@@ -4029,8 +4029,8 @@ impl ToClientMessage {
           super::to_client_message::MessageOneof::StartGameResponse(self.start_game_response()),
       super::to_client_message::MessageCase::EndGameResponse =>
           super::to_client_message::MessageOneof::EndGameResponse(self.end_game_response()),
-      super::to_client_message::MessageCase::ClientInitializerResponse =>
-          super::to_client_message::MessageOneof::ClientInitializerResponse(self.client_initializer_response()),
+      super::to_client_message::MessageCase::ClientInitializerData =>
+          super::to_client_message::MessageOneof::ClientInitializerData(self.client_initializer_data()),
       super::to_client_message::MessageCase::TransformSync =>
           super::to_client_message::MessageOneof::TransformSync(self.transform_sync()),
       super::to_client_message::MessageCase::PlayAction =>
@@ -4107,7 +4107,7 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for ToClientMes
         <super::PayloadLobbyEnterResponse as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
         <super::PayloadLobbyStartGameResponse as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
         <super::PayloadLobbyEndGameResponse as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
-        <super::PayloadClientInitializerResponse as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
+        <super::PayloadClientInitializerData as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
         <super::PayloadTransformSync as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
         <super::PayloadPlayAction as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
         <super::PayloadEntityDamaged as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
@@ -4195,7 +4195,7 @@ pub enum MessageOneof<'msg> {
   LobbyEnterResponse(::protobuf::View<'msg, super::super::PayloadLobbyEnterResponse>) = 4,
   StartGameResponse(::protobuf::View<'msg, super::super::PayloadLobbyStartGameResponse>) = 5,
   EndGameResponse(::protobuf::View<'msg, super::super::PayloadLobbyEndGameResponse>) = 6,
-  ClientInitializerResponse(::protobuf::View<'msg, super::super::PayloadClientInitializerResponse>) = 7,
+  ClientInitializerData(::protobuf::View<'msg, super::super::PayloadClientInitializerData>) = 7,
   TransformSync(::protobuf::View<'msg, super::super::PayloadTransformSync>) = 8,
   PlayAction(::protobuf::View<'msg, super::super::PayloadPlayAction>) = 9,
   EntityDamaged(::protobuf::View<'msg, super::super::PayloadEntityDamaged>) = 10,
@@ -4217,7 +4217,7 @@ pub enum MessageCase {
   LobbyEnterResponse = 4,
   StartGameResponse = 5,
   EndGameResponse = 6,
-  ClientInitializerResponse = 7,
+  ClientInitializerData = 7,
   TransformSync = 8,
   PlayAction = 9,
   EntityDamaged = 10,
@@ -4240,7 +4240,7 @@ impl MessageCase {
       4 => Some(MessageCase::LobbyEnterResponse),
       5 => Some(MessageCase::StartGameResponse),
       6 => Some(MessageCase::EndGameResponse),
-      7 => Some(MessageCase::ClientInitializerResponse),
+      7 => Some(MessageCase::ClientInitializerData),
       8 => Some(MessageCase::TransformSync),
       9 => Some(MessageCase::PlayAction),
       10 => Some(MessageCase::EntityDamaged),

@@ -1,11 +1,9 @@
-use dashmap::DashMap;
 use std::{
     env,
     net::{IpAddr, Ipv4Addr, SocketAddr},
-    sync::Arc,
 };
 use tokio::net::TcpListener;
-use tonic::transport::{Endpoint, Server, channel};
+use tonic::transport::{Endpoint, channel};
 
 mod backend;
 mod client;
@@ -14,15 +12,12 @@ mod etcd_client_helper;
 mod generated;
 mod logger;
 mod network;
+mod proto_converter;
 mod proto_server;
 
 use backend::backend_client::BackendClient;
 
-use crate::{
-    backend::backend_client::BACKEND_CLIENT_INSTANCE,
-    generated::proto_server::zone_broadcast_service_server::ZoneBroadcastServiceServer,
-    proto_server::zone_sync_service::ZoneBroadcastServiceImpl,
-};
+use crate::backend::backend_client::BACKEND_CLIENT_INSTANCE;
 
 #[tokio::main]
 async fn main() {
@@ -44,22 +39,6 @@ async fn main() {
     let client_listener = TcpListener::bind((Ipv4Addr::UNSPECIFIED, 3215))
         .await
         .expect("Failed to bind client listener.");
-
-    // initialize senders
-    let senders = Arc::new(DashMap::new());
-
-    // gRPCサーバーの起動
-    let zone_broadcast_server =
-        ZoneBroadcastServiceServer::new(ZoneBroadcastServiceImpl::new(senders.clone()));
-    tokio::spawn(
-        Server::builder()
-            .add_service(zone_broadcast_server)
-            .serve(server_endpoint),
-    );
-    log::info!(
-        "Starting gRPC server for zone broadcast on port {}...",
-        port
-    );
 
     // etcd client
     let etcd_client = etcd_client_helper::create_etcd_client().await;
@@ -136,14 +115,16 @@ async fn main() {
                 BACKEND_CLIENT_INSTANCE
                     .get()
                     .expect("Failed to get backend client")
-                    .add_zone(zone_id, client);
+                    .zone_clients
+                    .add_channel(zone_id, client);
                 log::info!("Added zone client: {} -> {}", zone_id, url);
             }
             etcd_client::EventType::Delete => {
                 BACKEND_CLIENT_INSTANCE
                     .get()
                     .expect("Failed to get backend client")
-                    .remove_zone(zone_id);
+                    .zone_clients
+                    .remove_channel(zone_id);
                 log::info!("Removed zone client: {}", zone_id);
             }
         }
@@ -176,7 +157,8 @@ async fn main() {
             BACKEND_CLIENT_INSTANCE
                 .get()
                 .expect("Failed to get backend client")
-                .add_zone(zone_id, client);
+                .zone_clients
+                .add_channel(zone_id, client);
 
             log::info!("Added zone client: {} -> {}", zone_id, url);
         },
@@ -188,8 +170,7 @@ async fn main() {
         log::info!("Waiting for client connections...");
         match client_listener.accept().await {
             Ok((socket, addr)) => {
-                let packet_sender = client::client_main::client_main(socket, addr, senders.clone());
-                senders.insert(addr, packet_sender);
+                client::client_main::client_main(socket, addr);
             }
             Err(e) => {
                 eprintln!("Failed to accept client connection: {}", e);

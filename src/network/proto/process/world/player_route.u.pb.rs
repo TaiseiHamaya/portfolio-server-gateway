@@ -1745,22 +1745,22 @@ impl<'a> ::protobuf::MessageViewInterop<'a> for PayloadPlayerZoneEnterCompleteVi
 
 // This variable must not be referenced except by protobuf generated
 // code.
-pub(crate) static mut Proto__PayloadPlayerZoneEnterCompleteResponse_msg_init: ::protobuf::__internal::runtime::MiniTablePtr =
+pub(crate) static mut Proto__PayloadPlayerZoneEnterReadyResponse_msg_init: ::protobuf::__internal::runtime::MiniTablePtr =
     ::protobuf::__internal::runtime::MiniTablePtr(::std::ptr::null_mut());
 #[allow(non_camel_case_types)]
-pub struct PayloadPlayerZoneEnterCompleteResponse {
-  inner: ::protobuf::__internal::runtime::OwnedMessageInner<PayloadPlayerZoneEnterCompleteResponse>
+pub struct PayloadPlayerZoneEnterReadyResponse {
+  inner: ::protobuf::__internal::runtime::OwnedMessageInner<PayloadPlayerZoneEnterReadyResponse>
 }
 
-impl ::protobuf::Message for PayloadPlayerZoneEnterCompleteResponse {}
+impl ::protobuf::Message for PayloadPlayerZoneEnterReadyResponse {}
 
-impl ::std::default::Default for PayloadPlayerZoneEnterCompleteResponse {
+impl ::std::default::Default for PayloadPlayerZoneEnterReadyResponse {
   fn default() -> Self {
     Self::new()
   }
 }
 
-impl ::protobuf::Parse for PayloadPlayerZoneEnterCompleteResponse {
+impl ::protobuf::Parse for PayloadPlayerZoneEnterReadyResponse {
   fn parse(serialized: &[u8]) -> ::std::result::Result<Self, ::protobuf::ParseError> {
     Self::parse(serialized)
   }
@@ -1770,7 +1770,7 @@ impl ::protobuf::Parse for PayloadPlayerZoneEnterCompleteResponse {
   }
 }
 
-impl ::std::fmt::Debug for PayloadPlayerZoneEnterCompleteResponse {
+impl ::std::fmt::Debug for PayloadPlayerZoneEnterReadyResponse {
   fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
     let string = unsafe {
       ::protobuf::__internal::runtime::debug_string(
@@ -1782,46 +1782,46 @@ impl ::std::fmt::Debug for PayloadPlayerZoneEnterCompleteResponse {
   }
 }
 
-impl ::protobuf::Serialize for PayloadPlayerZoneEnterCompleteResponse {
+impl ::protobuf::Serialize for PayloadPlayerZoneEnterReadyResponse {
   fn serialize(&self) -> ::std::result::Result<Vec<u8>, ::protobuf::SerializeError> {
     ::protobuf::AsView::as_view(self).serialize()
   }
 }
 
 // SAFETY:
-// - `PayloadPlayerZoneEnterCompleteResponse` is `Sync` because it does not implement interior mutability.
-//    Neither does `PayloadPlayerZoneEnterCompleteResponseMut`.
-unsafe impl Sync for PayloadPlayerZoneEnterCompleteResponse {}
+// - `PayloadPlayerZoneEnterReadyResponse` is `Sync` because it does not implement interior mutability.
+//    Neither does `PayloadPlayerZoneEnterReadyResponseMut`.
+unsafe impl Sync for PayloadPlayerZoneEnterReadyResponse {}
 
 // SAFETY:
-// - `PayloadPlayerZoneEnterCompleteResponse` is `Send` because it uniquely owns its arena and does
+// - `PayloadPlayerZoneEnterReadyResponse` is `Send` because it uniquely owns its arena and does
 //   not use thread-local data.
-unsafe impl Send for PayloadPlayerZoneEnterCompleteResponse {}
+unsafe impl Send for PayloadPlayerZoneEnterReadyResponse {}
 
-impl ::protobuf::Proxied for PayloadPlayerZoneEnterCompleteResponse {
-  type View<'msg> = PayloadPlayerZoneEnterCompleteResponseView<'msg>;
+impl ::protobuf::Proxied for PayloadPlayerZoneEnterReadyResponse {
+  type View<'msg> = PayloadPlayerZoneEnterReadyResponseView<'msg>;
 }
 
-impl ::protobuf::__internal::SealedInternal for PayloadPlayerZoneEnterCompleteResponse {}
+impl ::protobuf::__internal::SealedInternal for PayloadPlayerZoneEnterReadyResponse {}
 
-impl ::protobuf::MutProxied for PayloadPlayerZoneEnterCompleteResponse {
-  type Mut<'msg> = PayloadPlayerZoneEnterCompleteResponseMut<'msg>;
+impl ::protobuf::MutProxied for PayloadPlayerZoneEnterReadyResponse {
+  type Mut<'msg> = PayloadPlayerZoneEnterReadyResponseMut<'msg>;
 }
 
 #[derive(Copy, Clone)]
 #[allow(dead_code)]
-pub struct PayloadPlayerZoneEnterCompleteResponseView<'msg> {
-  inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, PayloadPlayerZoneEnterCompleteResponse>,
+pub struct PayloadPlayerZoneEnterReadyResponseView<'msg> {
+  inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, PayloadPlayerZoneEnterReadyResponse>,
   _phantom: ::std::marker::PhantomData<&'msg ()>,
 }
 
-impl<'msg> ::protobuf::__internal::SealedInternal for PayloadPlayerZoneEnterCompleteResponseView<'msg> {}
+impl<'msg> ::protobuf::__internal::SealedInternal for PayloadPlayerZoneEnterReadyResponseView<'msg> {}
 
-impl<'msg> ::protobuf::MessageView<'msg> for PayloadPlayerZoneEnterCompleteResponseView<'msg> {
-  type Message = PayloadPlayerZoneEnterCompleteResponse;
+impl<'msg> ::protobuf::MessageView<'msg> for PayloadPlayerZoneEnterReadyResponseView<'msg> {
+  type Message = PayloadPlayerZoneEnterReadyResponse;
 }
 
-impl ::std::fmt::Debug for PayloadPlayerZoneEnterCompleteResponseView<'_> {
+impl ::std::fmt::Debug for PayloadPlayerZoneEnterReadyResponseView<'_> {
   fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
     let string = unsafe {
       ::protobuf::__internal::runtime::debug_string(
@@ -1833,7 +1833,7 @@ impl ::std::fmt::Debug for PayloadPlayerZoneEnterCompleteResponseView<'_> {
   }
 }
 
-impl ::protobuf::Serialize for PayloadPlayerZoneEnterCompleteResponseView<'_> {
+impl ::protobuf::Serialize for PayloadPlayerZoneEnterReadyResponseView<'_> {
   fn serialize(&self) -> ::std::result::Result<Vec<u8>, ::protobuf::SerializeError> {
     // SAFETY: `MINI_TABLE` is the one associated with `self.raw_msg()`.
     let encoded = unsafe {
@@ -1844,17 +1844,17 @@ impl ::protobuf::Serialize for PayloadPlayerZoneEnterCompleteResponseView<'_> {
   }
 }
 
-impl ::std::default::Default for PayloadPlayerZoneEnterCompleteResponseView<'_> {
-  fn default() -> PayloadPlayerZoneEnterCompleteResponseView<'static> {
+impl ::std::default::Default for PayloadPlayerZoneEnterReadyResponseView<'_> {
+  fn default() -> PayloadPlayerZoneEnterReadyResponseView<'static> {
     let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(::protobuf::__internal::runtime::ScratchSpace::zeroed_block()) };
-    PayloadPlayerZoneEnterCompleteResponseView::new(::protobuf::__internal::Private, inner)
+    PayloadPlayerZoneEnterReadyResponseView::new(::protobuf::__internal::Private, inner)
   }
 }
 
 #[allow(dead_code)]
-impl<'msg> PayloadPlayerZoneEnterCompleteResponseView<'msg> {
+impl<'msg> PayloadPlayerZoneEnterReadyResponseView<'msg> {
   #[doc(hidden)]
-  pub fn new(_private: ::protobuf::__internal::Private, inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, PayloadPlayerZoneEnterCompleteResponse>) -> Self {
+  pub fn new(_private: ::protobuf::__internal::Private, inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, PayloadPlayerZoneEnterReadyResponse>) -> Self {
     Self { inner, _phantom: ::std::marker::PhantomData }
   }
 
@@ -1862,7 +1862,7 @@ impl<'msg> PayloadPlayerZoneEnterCompleteResponseView<'msg> {
     self.inner.raw()
   }
 
-  pub fn to_owned(&self) -> PayloadPlayerZoneEnterCompleteResponse {
+  pub fn to_owned(&self) -> PayloadPlayerZoneEnterReadyResponse {
     ::protobuf::IntoProxied::into_proxied(*self, ::protobuf::__internal::Private)
   }
 
@@ -1887,35 +1887,35 @@ impl<'msg> PayloadPlayerZoneEnterCompleteResponseView<'msg> {
 }
 
 // SAFETY:
-// - `PayloadPlayerZoneEnterCompleteResponseView` is `Sync` because it does not support mutation.
-unsafe impl Sync for PayloadPlayerZoneEnterCompleteResponseView<'_> {}
+// - `PayloadPlayerZoneEnterReadyResponseView` is `Sync` because it does not support mutation.
+unsafe impl Sync for PayloadPlayerZoneEnterReadyResponseView<'_> {}
 
 // SAFETY:
-// - `PayloadPlayerZoneEnterCompleteResponseView` is `Send` because while its alive a `PayloadPlayerZoneEnterCompleteResponseMut` cannot.
-// - `PayloadPlayerZoneEnterCompleteResponseView` does not use thread-local data.
-unsafe impl Send for PayloadPlayerZoneEnterCompleteResponseView<'_> {}
+// - `PayloadPlayerZoneEnterReadyResponseView` is `Send` because while its alive a `PayloadPlayerZoneEnterReadyResponseMut` cannot.
+// - `PayloadPlayerZoneEnterReadyResponseView` does not use thread-local data.
+unsafe impl Send for PayloadPlayerZoneEnterReadyResponseView<'_> {}
 
-impl<'msg> ::protobuf::Proxy<'msg> for PayloadPlayerZoneEnterCompleteResponseView<'msg> {}
-impl<'msg> ::protobuf::ViewProxy<'msg> for PayloadPlayerZoneEnterCompleteResponseView<'msg> {}
+impl<'msg> ::protobuf::Proxy<'msg> for PayloadPlayerZoneEnterReadyResponseView<'msg> {}
+impl<'msg> ::protobuf::ViewProxy<'msg> for PayloadPlayerZoneEnterReadyResponseView<'msg> {}
 
-impl<'msg> ::protobuf::AsView for PayloadPlayerZoneEnterCompleteResponseView<'msg> {
-  type Proxied = PayloadPlayerZoneEnterCompleteResponse;
-  fn as_view(&self) -> ::protobuf::View<'msg, PayloadPlayerZoneEnterCompleteResponse> {
+impl<'msg> ::protobuf::AsView for PayloadPlayerZoneEnterReadyResponseView<'msg> {
+  type Proxied = PayloadPlayerZoneEnterReadyResponse;
+  fn as_view(&self) -> ::protobuf::View<'msg, PayloadPlayerZoneEnterReadyResponse> {
     *self
   }
 }
 
-impl<'msg> ::protobuf::IntoView<'msg> for PayloadPlayerZoneEnterCompleteResponseView<'msg> {
-  fn into_view<'shorter>(self) -> PayloadPlayerZoneEnterCompleteResponseView<'shorter>
+impl<'msg> ::protobuf::IntoView<'msg> for PayloadPlayerZoneEnterReadyResponseView<'msg> {
+  fn into_view<'shorter>(self) -> PayloadPlayerZoneEnterReadyResponseView<'shorter>
   where
       'msg: 'shorter {
     self
   }
 }
 
-impl<'msg> ::protobuf::IntoProxied<PayloadPlayerZoneEnterCompleteResponse> for PayloadPlayerZoneEnterCompleteResponseView<'msg> {
-  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> PayloadPlayerZoneEnterCompleteResponse {
-    let mut dst = PayloadPlayerZoneEnterCompleteResponse::new();
+impl<'msg> ::protobuf::IntoProxied<PayloadPlayerZoneEnterReadyResponse> for PayloadPlayerZoneEnterReadyResponseView<'msg> {
+  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> PayloadPlayerZoneEnterReadyResponse {
+    let mut dst = PayloadPlayerZoneEnterReadyResponse::new();
     let dst_raw = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_raw_message_mut(&mut dst, ::protobuf::__internal::Private);
     let dst_arena = ::protobuf::__internal::runtime::UpbGetArena::get_arena(&mut dst, ::protobuf::__internal::Private);
     let src_raw = ::protobuf::__internal::runtime::UpbGetMessagePtr::get_raw_message(&self, ::protobuf::__internal::Private);
@@ -1930,13 +1930,13 @@ impl<'msg> ::protobuf::IntoProxied<PayloadPlayerZoneEnterCompleteResponse> for P
   }
 }
 
-impl<'msg> ::protobuf::IntoProxied<PayloadPlayerZoneEnterCompleteResponse> for PayloadPlayerZoneEnterCompleteResponseMut<'msg> {
-  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> PayloadPlayerZoneEnterCompleteResponse {
+impl<'msg> ::protobuf::IntoProxied<PayloadPlayerZoneEnterReadyResponse> for PayloadPlayerZoneEnterReadyResponseMut<'msg> {
+  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> PayloadPlayerZoneEnterReadyResponse {
     ::protobuf::IntoProxied::into_proxied(::protobuf::IntoView::into_view(self), _private)
   }
 }
 
-impl ::protobuf::__internal::runtime::UpbTypeConversions for PayloadPlayerZoneEnterCompleteResponse {
+impl ::protobuf::__internal::runtime::UpbTypeConversions for PayloadPlayerZoneEnterReadyResponse {
     fn upb_type() -> ::protobuf::__internal::runtime::CType {
         ::protobuf::__internal::runtime::CType::Message
     }
@@ -1961,29 +1961,29 @@ impl ::protobuf::__internal::runtime::UpbTypeConversions for PayloadPlayerZoneEn
         -> ::protobuf::View<'msg, Self> {
         let raw = unsafe { msg.msg_val }.expect("expected present message value in map");
         let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
-        PayloadPlayerZoneEnterCompleteResponseView::new(::protobuf::__internal::Private, inner)
+        PayloadPlayerZoneEnterReadyResponseView::new(::protobuf::__internal::Private, inner)
     }
 
     unsafe fn from_message_mut<'msg>(msg: ::protobuf::__internal::runtime::RawMessage, arena: &'msg ::protobuf::__internal::runtime::Arena)
-        -> PayloadPlayerZoneEnterCompleteResponseMut<'msg> {
-        let inner = unsafe { ::protobuf::__internal::runtime::MessageMutInner::<'msg, PayloadPlayerZoneEnterCompleteResponse>::wrap_raw(msg, arena) };
-        PayloadPlayerZoneEnterCompleteResponseMut::new(::protobuf::__internal::Private, inner)
+        -> PayloadPlayerZoneEnterReadyResponseMut<'msg> {
+        let inner = unsafe { ::protobuf::__internal::runtime::MessageMutInner::<'msg, PayloadPlayerZoneEnterReadyResponse>::wrap_raw(msg, arena) };
+        PayloadPlayerZoneEnterReadyResponseMut::new(::protobuf::__internal::Private, inner)
     }
 }
 
 #[allow(dead_code)]
 #[allow(non_camel_case_types)]
-pub struct PayloadPlayerZoneEnterCompleteResponseMut<'msg> {
-  inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, PayloadPlayerZoneEnterCompleteResponse>,
+pub struct PayloadPlayerZoneEnterReadyResponseMut<'msg> {
+  inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, PayloadPlayerZoneEnterReadyResponse>,
 }
 
-impl<'msg> ::protobuf::__internal::SealedInternal for PayloadPlayerZoneEnterCompleteResponseMut<'msg> {}
+impl<'msg> ::protobuf::__internal::SealedInternal for PayloadPlayerZoneEnterReadyResponseMut<'msg> {}
 
-impl<'msg> ::protobuf::MessageMut<'msg> for PayloadPlayerZoneEnterCompleteResponseMut<'msg> {
-  type Message = PayloadPlayerZoneEnterCompleteResponse;
+impl<'msg> ::protobuf::MessageMut<'msg> for PayloadPlayerZoneEnterReadyResponseMut<'msg> {
+  type Message = PayloadPlayerZoneEnterReadyResponse;
 }
 
-impl ::std::fmt::Debug for PayloadPlayerZoneEnterCompleteResponseMut<'_> {
+impl ::std::fmt::Debug for PayloadPlayerZoneEnterReadyResponseMut<'_> {
   fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
     let string = unsafe {
       ::protobuf::__internal::runtime::debug_string(
@@ -1995,14 +1995,14 @@ impl ::std::fmt::Debug for PayloadPlayerZoneEnterCompleteResponseMut<'_> {
   }
 }
 
-impl ::protobuf::Serialize for PayloadPlayerZoneEnterCompleteResponseMut<'_> {
+impl ::protobuf::Serialize for PayloadPlayerZoneEnterReadyResponseMut<'_> {
   fn serialize(&self) -> ::std::result::Result<Vec<u8>, ::protobuf::SerializeError> {
     ::protobuf::AsView::as_view(self).serialize()
   }
 }
 
 #[allow(dead_code)]
-impl<'msg> PayloadPlayerZoneEnterCompleteResponseMut<'msg> {
+impl<'msg> PayloadPlayerZoneEnterReadyResponseMut<'msg> {
   #[doc(hidden)]
   pub fn from_parent<ParentT: ::protobuf::Message>(
              _private: ::protobuf::__internal::Private,
@@ -2015,7 +2015,7 @@ impl<'msg> PayloadPlayerZoneEnterCompleteResponseMut<'msg> {
   }
 
   #[doc(hidden)]
-  pub fn new(_private: ::protobuf::__internal::Private, inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, PayloadPlayerZoneEnterCompleteResponse>) -> Self {
+  pub fn new(_private: ::protobuf::__internal::Private, inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, PayloadPlayerZoneEnterReadyResponse>) -> Self {
     Self { inner }
   }
 
@@ -2025,11 +2025,11 @@ impl<'msg> PayloadPlayerZoneEnterCompleteResponseMut<'msg> {
 
   #[doc(hidden)]
   pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
-    -> ::protobuf::__internal::runtime::MessageMutInner<'msg, PayloadPlayerZoneEnterCompleteResponse> {
+    -> ::protobuf::__internal::runtime::MessageMutInner<'msg, PayloadPlayerZoneEnterReadyResponse> {
     self.inner
   }
 
-  pub fn to_owned(&self) -> PayloadPlayerZoneEnterCompleteResponse {
+  pub fn to_owned(&self) -> PayloadPlayerZoneEnterReadyResponse {
     ::protobuf::AsView::as_view(self).to_owned()
   }
 
@@ -2094,44 +2094,44 @@ impl<'msg> PayloadPlayerZoneEnterCompleteResponseMut<'msg> {
 }
 
 // SAFETY:
-// - `PayloadPlayerZoneEnterCompleteResponseMut` does not perform any shared mutation.
-// - `PayloadPlayerZoneEnterCompleteResponseMut` is not `Send`, and so even in the presence of mutator
+// - `PayloadPlayerZoneEnterReadyResponseMut` does not perform any shared mutation.
+// - `PayloadPlayerZoneEnterReadyResponseMut` is not `Send`, and so even in the presence of mutator
 //   splitting, synchronous access of an arena is impossible.
-unsafe impl Sync for PayloadPlayerZoneEnterCompleteResponseMut<'_> {}
+unsafe impl Sync for PayloadPlayerZoneEnterReadyResponseMut<'_> {}
 
-impl<'msg> ::protobuf::Proxy<'msg> for PayloadPlayerZoneEnterCompleteResponseMut<'msg> {}
-impl<'msg> ::protobuf::MutProxy<'msg> for PayloadPlayerZoneEnterCompleteResponseMut<'msg> {}
+impl<'msg> ::protobuf::Proxy<'msg> for PayloadPlayerZoneEnterReadyResponseMut<'msg> {}
+impl<'msg> ::protobuf::MutProxy<'msg> for PayloadPlayerZoneEnterReadyResponseMut<'msg> {}
 
-impl<'msg> ::protobuf::AsView for PayloadPlayerZoneEnterCompleteResponseMut<'msg> {
-  type Proxied = PayloadPlayerZoneEnterCompleteResponse;
-  fn as_view(&self) -> ::protobuf::View<'_, PayloadPlayerZoneEnterCompleteResponse> {
-    PayloadPlayerZoneEnterCompleteResponseView {
+impl<'msg> ::protobuf::AsView for PayloadPlayerZoneEnterReadyResponseMut<'msg> {
+  type Proxied = PayloadPlayerZoneEnterReadyResponse;
+  fn as_view(&self) -> ::protobuf::View<'_, PayloadPlayerZoneEnterReadyResponse> {
+    PayloadPlayerZoneEnterReadyResponseView {
       inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner.clone()),
       _phantom: ::std::marker::PhantomData
     }
   }
 }
 
-impl<'msg> ::protobuf::IntoView<'msg> for PayloadPlayerZoneEnterCompleteResponseMut<'msg> {
-  fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, PayloadPlayerZoneEnterCompleteResponse>
+impl<'msg> ::protobuf::IntoView<'msg> for PayloadPlayerZoneEnterReadyResponseMut<'msg> {
+  fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, PayloadPlayerZoneEnterReadyResponse>
   where
       'msg: 'shorter {
-    PayloadPlayerZoneEnterCompleteResponseView {
+    PayloadPlayerZoneEnterReadyResponseView {
       inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner.clone()),
       _phantom: ::std::marker::PhantomData
     }
   }
 }
 
-impl<'msg> ::protobuf::AsMut for PayloadPlayerZoneEnterCompleteResponseMut<'msg> {
-  type MutProxied = PayloadPlayerZoneEnterCompleteResponse;
-  fn as_mut(&mut self) -> PayloadPlayerZoneEnterCompleteResponseMut<'msg> {
-    PayloadPlayerZoneEnterCompleteResponseMut { inner: self.inner }
+impl<'msg> ::protobuf::AsMut for PayloadPlayerZoneEnterReadyResponseMut<'msg> {
+  type MutProxied = PayloadPlayerZoneEnterReadyResponse;
+  fn as_mut(&mut self) -> PayloadPlayerZoneEnterReadyResponseMut<'msg> {
+    PayloadPlayerZoneEnterReadyResponseMut { inner: self.inner }
   }
 }
 
-impl<'msg> ::protobuf::IntoMut<'msg> for PayloadPlayerZoneEnterCompleteResponseMut<'msg> {
-  fn into_mut<'shorter>(self) -> PayloadPlayerZoneEnterCompleteResponseMut<'shorter>
+impl<'msg> ::protobuf::IntoMut<'msg> for PayloadPlayerZoneEnterReadyResponseMut<'msg> {
+  fn into_mut<'shorter>(self) -> PayloadPlayerZoneEnterReadyResponseMut<'shorter>
   where
       'msg: 'shorter {
     self
@@ -2139,7 +2139,7 @@ impl<'msg> ::protobuf::IntoMut<'msg> for PayloadPlayerZoneEnterCompleteResponseM
 }
 
 #[allow(dead_code)]
-impl PayloadPlayerZoneEnterCompleteResponse {
+impl PayloadPlayerZoneEnterReadyResponse {
   pub fn new() -> Self {
     Self { inner: ::protobuf::__internal::runtime::OwnedMessageInner::<Self>::new() }
   }
@@ -2149,7 +2149,7 @@ impl PayloadPlayerZoneEnterCompleteResponse {
   }
 
   #[doc(hidden)]
-  pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessageMutInner<'_, PayloadPlayerZoneEnterCompleteResponse> {
+  pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessageMutInner<'_, PayloadPlayerZoneEnterReadyResponse> {
     ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner)
   }
 
@@ -2167,15 +2167,15 @@ impl PayloadPlayerZoneEnterCompleteResponse {
     ::protobuf::ClearAndParse::clear_and_parse_dont_enforce_required(&mut msg, data).map(|_| msg)
   }
 
-  pub fn as_view(&self) -> PayloadPlayerZoneEnterCompleteResponseView {
-    PayloadPlayerZoneEnterCompleteResponseView::new(
+  pub fn as_view(&self) -> PayloadPlayerZoneEnterReadyResponseView {
+    PayloadPlayerZoneEnterReadyResponseView::new(
         ::protobuf::__internal::Private,
         ::protobuf::__internal::runtime::MessageViewInner::view_of_owned(&self.inner))
   }
 
-  pub fn as_mut(&mut self) -> PayloadPlayerZoneEnterCompleteResponseMut {
+  pub fn as_mut(&mut self) -> PayloadPlayerZoneEnterReadyResponseMut {
     let inner = ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner);
-    PayloadPlayerZoneEnterCompleteResponseMut::new(::protobuf::__internal::Private, inner)
+    PayloadPlayerZoneEnterReadyResponseMut::new(::protobuf::__internal::Private, inner)
   }
 
   // player_data: optional message Proto.RoutePlayerData
@@ -2232,39 +2232,39 @@ impl PayloadPlayerZoneEnterCompleteResponse {
     }
   }
 
-}  // impl PayloadPlayerZoneEnterCompleteResponse
+}  // impl PayloadPlayerZoneEnterReadyResponse
 
-impl ::std::ops::Drop for PayloadPlayerZoneEnterCompleteResponse {
+impl ::std::ops::Drop for PayloadPlayerZoneEnterReadyResponse {
   fn drop(&mut self) {
   }
 }
 
-impl ::std::clone::Clone for PayloadPlayerZoneEnterCompleteResponse {
+impl ::std::clone::Clone for PayloadPlayerZoneEnterReadyResponse {
   fn clone(&self) -> Self {
     self.as_view().to_owned()
   }
 }
 
-impl ::protobuf::AsView for PayloadPlayerZoneEnterCompleteResponse {
+impl ::protobuf::AsView for PayloadPlayerZoneEnterReadyResponse {
   type Proxied = Self;
-  fn as_view(&self) -> PayloadPlayerZoneEnterCompleteResponseView {
+  fn as_view(&self) -> PayloadPlayerZoneEnterReadyResponseView {
     self.as_view()
   }
 }
 
-impl ::protobuf::AsMut for PayloadPlayerZoneEnterCompleteResponse {
+impl ::protobuf::AsMut for PayloadPlayerZoneEnterReadyResponse {
   type MutProxied = Self;
-  fn as_mut(&mut self) -> PayloadPlayerZoneEnterCompleteResponseMut {
+  fn as_mut(&mut self) -> PayloadPlayerZoneEnterReadyResponseMut {
     self.as_mut()
   }
 }
 
-unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadPlayerZoneEnterCompleteResponse {
+unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadPlayerZoneEnterReadyResponse {
   fn mini_table() -> *const ::protobuf::__internal::runtime::upb_MiniTable {
     static ONCE_LOCK: ::std::sync::OnceLock<::protobuf::__internal::runtime::MiniTablePtr> =
         ::std::sync::OnceLock::new();
     ONCE_LOCK.get_or_init(|| unsafe {
-      super::Proto__PayloadPlayerZoneEnterCompleteResponse_msg_init.0 =
+      super::Proto__PayloadPlayerZoneEnterReadyResponse_msg_init.0 =
           ::protobuf::__internal::runtime::upb_MiniTable_Build(
               "$3".as_ptr(),
               2,
@@ -2276,64 +2276,64 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadPlay
       let subenums = [
       ];
       assert!(::protobuf::__internal::runtime::upb_MiniTable_Link(
-          super::Proto__PayloadPlayerZoneEnterCompleteResponse_msg_init.0,
+          super::Proto__PayloadPlayerZoneEnterReadyResponse_msg_init.0,
           submessages.as_ptr() as *const *const ::protobuf::__internal::runtime::upb_MiniTable,
           submessages.len(), subenums.as_ptr(), subenums.len()));
-      ::protobuf::__internal::runtime::MiniTablePtr(super::Proto__PayloadPlayerZoneEnterCompleteResponse_msg_init.0)
+      ::protobuf::__internal::runtime::MiniTablePtr(super::Proto__PayloadPlayerZoneEnterReadyResponse_msg_init.0)
     }).0
   }
 }
-unsafe impl ::protobuf::__internal::runtime::UpbGetArena for PayloadPlayerZoneEnterCompleteResponse {
+unsafe impl ::protobuf::__internal::runtime::UpbGetArena for PayloadPlayerZoneEnterReadyResponse {
   fn get_arena(&mut self, _private: ::protobuf::__internal::Private) -> &::protobuf::__internal::runtime::Arena {
     self.inner.arena()
   }
 }
 
-unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadPlayerZoneEnterCompleteResponseView<'_> {
+unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadPlayerZoneEnterReadyResponseView<'_> {
   #[inline(always)]
   fn mini_table() -> *const ::protobuf::__internal::runtime::upb_MiniTable {
-    <PayloadPlayerZoneEnterCompleteResponse as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table()
+    <PayloadPlayerZoneEnterReadyResponse as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table()
   }
 }
 
-unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadPlayerZoneEnterCompleteResponseMut<'_> {
+unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadPlayerZoneEnterReadyResponseMut<'_> {
   #[inline(always)]
   fn mini_table() -> *const ::protobuf::__internal::runtime::upb_MiniTable {
-    <PayloadPlayerZoneEnterCompleteResponse as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table()
+    <PayloadPlayerZoneEnterReadyResponse as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table()
   }
 }
-unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for PayloadPlayerZoneEnterCompleteResponse {
-  type Msg = PayloadPlayerZoneEnterCompleteResponse;
-  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadPlayerZoneEnterCompleteResponse> {
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for PayloadPlayerZoneEnterReadyResponse {
+  type Msg = PayloadPlayerZoneEnterReadyResponse;
+  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadPlayerZoneEnterReadyResponse> {
     self.inner.ptr_mut()
   }
 }
-unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for PayloadPlayerZoneEnterCompleteResponse {
-  type Msg = PayloadPlayerZoneEnterCompleteResponse;
-  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadPlayerZoneEnterCompleteResponse> {
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for PayloadPlayerZoneEnterReadyResponse {
+  type Msg = PayloadPlayerZoneEnterReadyResponse;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadPlayerZoneEnterReadyResponse> {
     self.inner.ptr()
   }
 }
-unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for PayloadPlayerZoneEnterCompleteResponseMut<'_> {
-  type Msg = PayloadPlayerZoneEnterCompleteResponse;
-  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadPlayerZoneEnterCompleteResponse> {
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for PayloadPlayerZoneEnterReadyResponseMut<'_> {
+  type Msg = PayloadPlayerZoneEnterReadyResponse;
+  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadPlayerZoneEnterReadyResponse> {
     self.inner.ptr_mut()
   }
 }
-unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for PayloadPlayerZoneEnterCompleteResponseMut<'_> {
-  type Msg = PayloadPlayerZoneEnterCompleteResponse;
-  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadPlayerZoneEnterCompleteResponse> {
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for PayloadPlayerZoneEnterReadyResponseMut<'_> {
+  type Msg = PayloadPlayerZoneEnterReadyResponse;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadPlayerZoneEnterReadyResponse> {
     self.inner.ptr()
   }
 }
-unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for PayloadPlayerZoneEnterCompleteResponseView<'_> {
-  type Msg = PayloadPlayerZoneEnterCompleteResponse;
-  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadPlayerZoneEnterCompleteResponse> {
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for PayloadPlayerZoneEnterReadyResponseView<'_> {
+  type Msg = PayloadPlayerZoneEnterReadyResponse;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PayloadPlayerZoneEnterReadyResponse> {
     self.inner.ptr()
   }
 }
 
-unsafe impl ::protobuf::__internal::runtime::UpbGetArena for PayloadPlayerZoneEnterCompleteResponseMut<'_> {
+unsafe impl ::protobuf::__internal::runtime::UpbGetArena for PayloadPlayerZoneEnterReadyResponseMut<'_> {
   fn get_arena(&mut self, _private: ::protobuf::__internal::Private) -> &::protobuf::__internal::runtime::Arena {
     self.inner.arena()
   }
@@ -2341,10 +2341,10 @@ unsafe impl ::protobuf::__internal::runtime::UpbGetArena for PayloadPlayerZoneEn
 
 
 // upb kernel doesn't support any owned message or message mut interop.
-impl ::protobuf::OwnedMessageInterop for PayloadPlayerZoneEnterCompleteResponse {}
-impl<'a> ::protobuf::MessageMutInterop<'a> for PayloadPlayerZoneEnterCompleteResponseMut<'a> {}
+impl ::protobuf::OwnedMessageInterop for PayloadPlayerZoneEnterReadyResponse {}
+impl<'a> ::protobuf::MessageMutInterop<'a> for PayloadPlayerZoneEnterReadyResponseMut<'a> {}
 
-impl<'a> ::protobuf::MessageViewInterop<'a> for PayloadPlayerZoneEnterCompleteResponseView<'a> {
+impl<'a> ::protobuf::MessageViewInterop<'a> for PayloadPlayerZoneEnterReadyResponseView<'a> {
   unsafe fn __unstable_wrap_raw_message(
     msg: &'a *const ::std::ffi::c_void) -> Self {
     let raw = ::protobuf::__internal::runtime::RawMessage::new(*msg as *mut _).unwrap();

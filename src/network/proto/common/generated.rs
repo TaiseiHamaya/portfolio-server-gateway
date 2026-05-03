@@ -52,12 +52,12 @@ pub mod internal_do_not_use_process_szone_senemy;
 
 #[allow(unused_imports, nonstandard_style)]
 pub use internal_do_not_use_process_szone_senemy::*;
-#[path="../process/zone/client_initializer.u.pb.rs"]
+#[path="../process/zone/client_data_getter.u.pb.rs"]
 #[allow(nonstandard_style)]
-pub mod internal_do_not_use_process_szone_sclient__initializer;
+pub mod internal_do_not_use_process_szone_sclient__data__getter;
 
 #[allow(unused_imports, nonstandard_style)]
-pub use internal_do_not_use_process_szone_sclient__initializer::*;
+pub use internal_do_not_use_process_szone_sclient__data__getter::*;
 #[path="../process/world/player_route.u.pb.rs"]
 #[allow(nonstandard_style)]
 pub mod internal_do_not_use_process_sworld_splayer__route;

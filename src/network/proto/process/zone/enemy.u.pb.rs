@@ -122,8 +122,8 @@ impl<'msg> PayloadEnemySpawnView<'msg> {
     ::protobuf::IntoProxied::into_proxied(*self, ::protobuf::__internal::Private)
   }
 
-  // id: optional uint64
-  pub fn id(self) -> u64 {
+  // enemy_type_id: optional uint64
+  pub fn enemy_type_id(self) -> u64 {
     unsafe {
       // TODO: b/361751487: This .into() and .try_into() is only
       // here for the enum<->i32 case, we should avoid it for
@@ -137,15 +137,19 @@ impl<'msg> PayloadEnemySpawnView<'msg> {
     }
   }
 
-  // name: optional string
-  pub fn name(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
-    let str_view = unsafe {
-      self.inner.ptr().get_string_at_index(
-        1, (b"").into()
-      )
-    };
-    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
-    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  // entity_id: optional uint64
+  pub fn entity_id(self) -> u64 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u64_at_index(
+        1, (0u64).into()
+      ).try_into().unwrap()
+    }
   }
 
   // position: optional message Proto.Vector3
@@ -319,8 +323,8 @@ impl<'msg> PayloadEnemySpawnMut<'msg> {
     self.inner.arena()
   }
 
-  // id: optional uint64
-  pub fn id(&self) -> u64 {
+  // enemy_type_id: optional uint64
+  pub fn enemy_type_id(&self) -> u64 {
     unsafe {
       // TODO: b/361751487: This .into() and .try_into() is only
       // here for the enum<->i32 case, we should avoid it for
@@ -333,7 +337,7 @@ impl<'msg> PayloadEnemySpawnMut<'msg> {
       ).try_into().unwrap()
     }
   }
-  pub fn set_id(&mut self, val: u64) {
+  pub fn set_enemy_type_id(&mut self, val: u64) {
     unsafe {
       // TODO: b/361751487: This .into() is only here
       // here for the enum<->i32 case, we should avoid it for
@@ -345,29 +349,29 @@ impl<'msg> PayloadEnemySpawnMut<'msg> {
     }
   }
 
-  // name: optional string
-  pub fn name(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
-    let str_view = unsafe {
-      self.inner.ptr().get_string_at_index(
-        1, (b"").into()
-      )
-    };
-    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
-    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
-  }
-  pub fn set_name(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
-    let s = val.into_proxied(::protobuf::__internal::Private);
-    let (view, arena) =
-      s.into_inner(::protobuf::__internal::Private).into_raw_parts();
-
-    let parent_arena = self.inner.arena();
-    parent_arena.fuse(&arena);
-
+  // entity_id: optional uint64
+  pub fn entity_id(&self) -> u64 {
     unsafe {
-      self.inner.ptr_mut().set_base_field_string_at_index(
-        1,
-        view,
-      );
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u64_at_index(
+        1, (0u64).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_entity_id(&mut self, val: u64) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u64_at_index(
+        1, val.into()
+      )
     }
   }
 
@@ -512,8 +516,8 @@ impl PayloadEnemySpawn {
     PayloadEnemySpawnMut::new(::protobuf::__internal::Private, inner)
   }
 
-  // id: optional uint64
-  pub fn id(&self) -> u64 {
+  // enemy_type_id: optional uint64
+  pub fn enemy_type_id(&self) -> u64 {
     unsafe {
       // TODO: b/361751487: This .into() and .try_into() is only
       // here for the enum<->i32 case, we should avoid it for
@@ -526,7 +530,7 @@ impl PayloadEnemySpawn {
       ).try_into().unwrap()
     }
   }
-  pub fn set_id(&mut self, val: u64) {
+  pub fn set_enemy_type_id(&mut self, val: u64) {
     unsafe {
       // TODO: b/361751487: This .into() is only here
       // here for the enum<->i32 case, we should avoid it for
@@ -538,29 +542,29 @@ impl PayloadEnemySpawn {
     }
   }
 
-  // name: optional string
-  pub fn name(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
-    let str_view = unsafe {
-      self.inner.ptr().get_string_at_index(
-        1, (b"").into()
-      )
-    };
-    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
-    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
-  }
-  pub fn set_name(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
-    let s = val.into_proxied(::protobuf::__internal::Private);
-    let (view, arena) =
-      s.into_inner(::protobuf::__internal::Private).into_raw_parts();
-
-    let parent_arena = self.inner.arena();
-    parent_arena.fuse(&arena);
-
+  // entity_id: optional uint64
+  pub fn entity_id(&self) -> u64 {
     unsafe {
-      self.inner.ptr_mut().set_base_field_string_at_index(
-        1,
-        view,
-      );
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u64_at_index(
+        1, (0u64).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_entity_id(&mut self, val: u64) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u64_at_index(
+        1, val.into()
+      )
     }
   }
 
@@ -652,7 +656,7 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PayloadEnem
     ONCE_LOCK.get_or_init(|| unsafe {
       super::Proto__PayloadEnemySpawn_msg_init.0 =
           ::protobuf::__internal::runtime::upb_MiniTable_Build(
-              "$,P1X3".as_ptr(),
+              "$,P,P3".as_ptr(),
               6,
               ::protobuf::__internal::runtime::THREAD_LOCAL_ARENA.with(|a| a.raw()),
               ::std::ptr::null_mut());
@@ -871,8 +875,8 @@ impl<'msg> PayloadEnemyDespawnView<'msg> {
     ::protobuf::IntoProxied::into_proxied(*self, ::protobuf::__internal::Private)
   }
 
-  // id: optional uint64
-  pub fn id(self) -> u64 {
+  // entity_id: optional uint64
+  pub fn entity_id(self) -> u64 {
     unsafe {
       // TODO: b/361751487: This .into() and .try_into() is only
       // here for the enum<->i32 case, we should avoid it for
@@ -1039,8 +1043,8 @@ impl<'msg> PayloadEnemyDespawnMut<'msg> {
     self.inner.arena()
   }
 
-  // id: optional uint64
-  pub fn id(&self) -> u64 {
+  // entity_id: optional uint64
+  pub fn entity_id(&self) -> u64 {
     unsafe {
       // TODO: b/361751487: This .into() and .try_into() is only
       // here for the enum<->i32 case, we should avoid it for
@@ -1053,7 +1057,7 @@ impl<'msg> PayloadEnemyDespawnMut<'msg> {
       ).try_into().unwrap()
     }
   }
-  pub fn set_id(&mut self, val: u64) {
+  pub fn set_entity_id(&mut self, val: u64) {
     unsafe {
       // TODO: b/361751487: This .into() is only here
       // here for the enum<->i32 case, we should avoid it for
@@ -1152,8 +1156,8 @@ impl PayloadEnemyDespawn {
     PayloadEnemyDespawnMut::new(::protobuf::__internal::Private, inner)
   }
 
-  // id: optional uint64
-  pub fn id(&self) -> u64 {
+  // entity_id: optional uint64
+  pub fn entity_id(&self) -> u64 {
     unsafe {
       // TODO: b/361751487: This .into() and .try_into() is only
       // here for the enum<->i32 case, we should avoid it for
@@ -1166,7 +1170,7 @@ impl PayloadEnemyDespawn {
       ).try_into().unwrap()
     }
   }
-  pub fn set_id(&mut self, val: u64) {
+  pub fn set_entity_id(&mut self, val: u64) {
     unsafe {
       // TODO: b/361751487: This .into() is only here
       // here for the enum<->i32 case, we should avoid it for
