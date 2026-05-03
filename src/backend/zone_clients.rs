@@ -131,6 +131,7 @@ impl ZoneClients {
                                 .try_send((BackendServerType::Zone(zone_id), payload.clone()));
                         });
                     }
+                    drop(streaming);
                     log::info!("Stopped broadcasting for zone_id {}.", zone_id);
                 });
 
@@ -140,23 +141,26 @@ impl ZoneClients {
     }
 
     pub fn unregister_user_from_zone(&self, zone_id: u64, user_id: u64) {
-        match self.clients.remove(&zone_id) {
-            Some((_, client)) => {
+        let should_remove_client = match self.clients.get(&zone_id) {
+            Some(client) => {
                 client.users.remove(&user_id);
-                if client.users.is_empty() {
-                    log::info!(
-                        "No more users in zone_id {}. Removing ZoneClient and channel.",
-                        zone_id
-                    );
-                    self.channels.remove(&zone_id);
-                }
+                client.users.is_empty()
             }
             None => {
                 log::warn!(
                     "Zone client for zone_id {} does not exist. Cannot unregister user.",
                     zone_id
                 );
+                false
             }
+        };
+
+        if should_remove_client {
+            log::info!(
+                "No more users in zone_id {}. Removing ZoneClient and channel.",
+                zone_id
+            );
+            self.clients.remove(&zone_id);
         }
     }
 
