@@ -284,6 +284,24 @@ impl<'msg> ToServerMessageView<'msg> {
     super::PayloadTextMessageView::new(::protobuf::__internal::Private, inner)
   }
 
+  // heartbeat_request: optional message Proto.PayloadHeartbeatRequest
+  pub fn has_heartbeat_request(self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(9)
+    }
+  }
+  pub fn heartbeat_request_opt(self) -> ::protobuf::Optional<super::PayloadHeartbeatRequestView<'msg>> {
+        ::protobuf::Optional::new(self.heartbeat_request(), self.has_heartbeat_request())
+  }
+  pub fn heartbeat_request(self) -> super::PayloadHeartbeatRequestView<'msg> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(9)
+    };
+    let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
+    let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
+    super::PayloadHeartbeatRequestView::new(::protobuf::__internal::Private, inner)
+  }
+
   pub fn message(self) -> super::to_server_message::MessageOneof<'msg> {
     match self.message_case() {
       super::to_server_message::MessageCase::LoginRequest =>
@@ -304,6 +322,8 @@ impl<'msg> ToServerMessageView<'msg> {
           super::to_server_message::MessageOneof::PlayAction(self.play_action()),
       super::to_server_message::MessageCase::TextMessage =>
           super::to_server_message::MessageOneof::TextMessage(self.text_message()),
+      super::to_server_message::MessageCase::HeartbeatRequest =>
+          super::to_server_message::MessageOneof::HeartbeatRequest(self.heartbeat_request()),
       _ => super::to_server_message::MessageOneof::not_set(std::marker::PhantomData)
     }
   }
@@ -959,6 +979,60 @@ impl<'msg> ToServerMessageMut<'msg> {
     }
   }
 
+  // heartbeat_request: optional message Proto.PayloadHeartbeatRequest
+  pub fn has_heartbeat_request(&self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(9)
+    }
+  }
+  pub fn clear_heartbeat_request(&mut self) {
+    unsafe {
+      self.inner.ptr().clear_field_at_index(
+        9
+      );
+    }
+  }
+  pub fn heartbeat_request_opt(&self) -> ::protobuf::Optional<super::PayloadHeartbeatRequestView<'_>> {
+        ::protobuf::Optional::new(self.heartbeat_request(), self.has_heartbeat_request())
+  }
+  pub fn heartbeat_request(&self) -> super::PayloadHeartbeatRequestView<'_> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(9)
+    };
+    let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
+    let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
+    super::PayloadHeartbeatRequestView::new(::protobuf::__internal::Private, inner)
+  }
+  pub fn heartbeat_request_mut(&mut self) -> super::PayloadHeartbeatRequestMut<'_> {
+     let ptr = unsafe {
+       self.inner.ptr_mut().get_or_create_mutable_message_at_index(
+         9, self.arena()
+       ).unwrap()
+     };
+     super::PayloadHeartbeatRequestMut::from_parent(
+       ::protobuf::__internal::Private,
+       self.as_message_mut_inner(::protobuf::__internal::Private),
+       ptr.raw())
+  }
+  pub fn set_heartbeat_request(&mut self,
+    val: impl ::protobuf::IntoProxied<super::PayloadHeartbeatRequest>) {
+
+    // The message and arena are dropped after the setter. The
+    // memory remains allocated as we fuse the arena with the
+    // parent message's arena.
+    let mut child = val.into_proxied(::protobuf::__internal::Private);
+    self.inner
+      .arena()
+      .fuse(::protobuf::__internal::runtime::UpbGetArena::get_arena(&mut child, ::protobuf::__internal::Private));
+
+    let child_ptr = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_ptr_mut(&mut child, ::protobuf::__internal::Private);
+    unsafe {
+      self.inner.ptr_mut().set_base_field_message_at_index(
+        9, child_ptr
+      );
+    }
+  }
+
   pub fn message(&self) -> super::to_server_message::MessageOneof<'_> {
     match &self.message_case() {
       super::to_server_message::MessageCase::LoginRequest =>
@@ -979,6 +1053,8 @@ impl<'msg> ToServerMessageMut<'msg> {
           super::to_server_message::MessageOneof::PlayAction(self.play_action()),
       super::to_server_message::MessageCase::TextMessage =>
           super::to_server_message::MessageOneof::TextMessage(self.text_message()),
+      super::to_server_message::MessageCase::HeartbeatRequest =>
+          super::to_server_message::MessageOneof::HeartbeatRequest(self.heartbeat_request()),
       _ => super::to_server_message::MessageOneof::not_set(std::marker::PhantomData)
     }
   }
@@ -1568,6 +1644,60 @@ impl ToServerMessage {
     }
   }
 
+  // heartbeat_request: optional message Proto.PayloadHeartbeatRequest
+  pub fn has_heartbeat_request(&self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(9)
+    }
+  }
+  pub fn clear_heartbeat_request(&mut self) {
+    unsafe {
+      self.inner.ptr().clear_field_at_index(
+        9
+      );
+    }
+  }
+  pub fn heartbeat_request_opt(&self) -> ::protobuf::Optional<super::PayloadHeartbeatRequestView<'_>> {
+        ::protobuf::Optional::new(self.heartbeat_request(), self.has_heartbeat_request())
+  }
+  pub fn heartbeat_request(&self) -> super::PayloadHeartbeatRequestView<'_> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(9)
+    };
+    let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
+    let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
+    super::PayloadHeartbeatRequestView::new(::protobuf::__internal::Private, inner)
+  }
+  pub fn heartbeat_request_mut(&mut self) -> super::PayloadHeartbeatRequestMut<'_> {
+     let ptr = unsafe {
+       self.inner.ptr_mut().get_or_create_mutable_message_at_index(
+         9, self.arena()
+       ).unwrap()
+     };
+     super::PayloadHeartbeatRequestMut::from_parent(
+       ::protobuf::__internal::Private,
+       self.as_message_mut_inner(::protobuf::__internal::Private),
+       ptr.raw())
+  }
+  pub fn set_heartbeat_request(&mut self,
+    val: impl ::protobuf::IntoProxied<super::PayloadHeartbeatRequest>) {
+
+    // The message and arena are dropped after the setter. The
+    // memory remains allocated as we fuse the arena with the
+    // parent message's arena.
+    let mut child = val.into_proxied(::protobuf::__internal::Private);
+    self.inner
+      .arena()
+      .fuse(::protobuf::__internal::runtime::UpbGetArena::get_arena(&mut child, ::protobuf::__internal::Private));
+
+    let child_ptr = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_ptr_mut(&mut child, ::protobuf::__internal::Private);
+    unsafe {
+      self.inner.ptr_mut().set_base_field_message_at_index(
+        9, child_ptr
+      );
+    }
+  }
+
   pub fn message(&self) -> super::to_server_message::MessageOneof<'_> {
     match &self.message_case() {
       super::to_server_message::MessageCase::LoginRequest =>
@@ -1588,6 +1718,8 @@ impl ToServerMessage {
           super::to_server_message::MessageOneof::PlayAction(self.play_action()),
       super::to_server_message::MessageCase::TextMessage =>
           super::to_server_message::MessageOneof::TextMessage(self.text_message()),
+      super::to_server_message::MessageCase::HeartbeatRequest =>
+          super::to_server_message::MessageOneof::HeartbeatRequest(self.heartbeat_request()),
       _ => super::to_server_message::MessageOneof::not_set(std::marker::PhantomData)
     }
   }
@@ -1638,8 +1770,8 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for ToServerMes
     ONCE_LOCK.get_or_init(|| unsafe {
       super::Proto__ToServerMessage_msg_init.0 =
           ::protobuf::__internal::runtime::upb_MiniTable_Build(
-              "$333333333^!|#|$|%|&|(|)|*|+".as_ptr(),
-              28,
+              "$3333333333^!|#|$|%|&|(|)|*|+|,".as_ptr(),
+              31,
               ::protobuf::__internal::runtime::THREAD_LOCAL_ARENA.with(|a| a.raw()),
               ::std::ptr::null_mut());
       let submessages = [
@@ -1652,6 +1784,7 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for ToServerMes
         <super::PayloadTransformSync as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
         <super::PayloadPlayAction as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
         <super::PayloadTextMessage as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
+        <super::PayloadHeartbeatRequest as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
       ];
       let subenums = [
       ];
@@ -1735,6 +1868,7 @@ pub enum MessageOneof<'msg> {
   TransformSync(::protobuf::View<'msg, super::super::PayloadTransformSync>) = 7,
   PlayAction(::protobuf::View<'msg, super::super::PayloadPlayAction>) = 8,
   TextMessage(::protobuf::View<'msg, super::super::PayloadTextMessage>) = 9,
+  HeartbeatRequest(::protobuf::View<'msg, super::super::PayloadHeartbeatRequest>) = 10,
 
   not_set(std::marker::PhantomData<&'msg ()>) = 0
 }
@@ -1752,6 +1886,7 @@ pub enum MessageCase {
   TransformSync = 7,
   PlayAction = 8,
   TextMessage = 9,
+  HeartbeatRequest = 10,
 
   not_set = 0
 }
@@ -1770,6 +1905,7 @@ impl MessageCase {
       7 => Some(MessageCase::TransformSync),
       8 => Some(MessageCase::PlayAction),
       9 => Some(MessageCase::TextMessage),
+      10 => Some(MessageCase::HeartbeatRequest),
       _ => None
     }
   }
@@ -2173,6 +2309,24 @@ impl<'msg> ToClientMessageView<'msg> {
     super::PayloadTextMessageView::new(::protobuf::__internal::Private, inner)
   }
 
+  // heartbeat_response: optional message Proto.PayloadHeartbeatResponse
+  pub fn has_heartbeat_response(self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(14)
+    }
+  }
+  pub fn heartbeat_response_opt(self) -> ::protobuf::Optional<super::PayloadHeartbeatResponseView<'msg>> {
+        ::protobuf::Optional::new(self.heartbeat_response(), self.has_heartbeat_response())
+  }
+  pub fn heartbeat_response(self) -> super::PayloadHeartbeatResponseView<'msg> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(14)
+    };
+    let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
+    let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
+    super::PayloadHeartbeatResponseView::new(::protobuf::__internal::Private, inner)
+  }
+
   pub fn message(self) -> super::to_client_message::MessageOneof<'msg> {
     match self.message_case() {
       super::to_client_message::MessageCase::LogoutResponse =>
@@ -2203,6 +2357,8 @@ impl<'msg> ToClientMessageView<'msg> {
           super::to_client_message::MessageOneof::ZoneExitNotification(self.zone_exit_notification()),
       super::to_client_message::MessageCase::TextMessage =>
           super::to_client_message::MessageOneof::TextMessage(self.text_message()),
+      super::to_client_message::MessageCase::HeartbeatResponse =>
+          super::to_client_message::MessageOneof::HeartbeatResponse(self.heartbeat_response()),
       _ => super::to_client_message::MessageOneof::not_set(std::marker::PhantomData)
     }
   }
@@ -3128,6 +3284,60 @@ impl<'msg> ToClientMessageMut<'msg> {
     }
   }
 
+  // heartbeat_response: optional message Proto.PayloadHeartbeatResponse
+  pub fn has_heartbeat_response(&self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(14)
+    }
+  }
+  pub fn clear_heartbeat_response(&mut self) {
+    unsafe {
+      self.inner.ptr().clear_field_at_index(
+        14
+      );
+    }
+  }
+  pub fn heartbeat_response_opt(&self) -> ::protobuf::Optional<super::PayloadHeartbeatResponseView<'_>> {
+        ::protobuf::Optional::new(self.heartbeat_response(), self.has_heartbeat_response())
+  }
+  pub fn heartbeat_response(&self) -> super::PayloadHeartbeatResponseView<'_> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(14)
+    };
+    let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
+    let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
+    super::PayloadHeartbeatResponseView::new(::protobuf::__internal::Private, inner)
+  }
+  pub fn heartbeat_response_mut(&mut self) -> super::PayloadHeartbeatResponseMut<'_> {
+     let ptr = unsafe {
+       self.inner.ptr_mut().get_or_create_mutable_message_at_index(
+         14, self.arena()
+       ).unwrap()
+     };
+     super::PayloadHeartbeatResponseMut::from_parent(
+       ::protobuf::__internal::Private,
+       self.as_message_mut_inner(::protobuf::__internal::Private),
+       ptr.raw())
+  }
+  pub fn set_heartbeat_response(&mut self,
+    val: impl ::protobuf::IntoProxied<super::PayloadHeartbeatResponse>) {
+
+    // The message and arena are dropped after the setter. The
+    // memory remains allocated as we fuse the arena with the
+    // parent message's arena.
+    let mut child = val.into_proxied(::protobuf::__internal::Private);
+    self.inner
+      .arena()
+      .fuse(::protobuf::__internal::runtime::UpbGetArena::get_arena(&mut child, ::protobuf::__internal::Private));
+
+    let child_ptr = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_ptr_mut(&mut child, ::protobuf::__internal::Private);
+    unsafe {
+      self.inner.ptr_mut().set_base_field_message_at_index(
+        14, child_ptr
+      );
+    }
+  }
+
   pub fn message(&self) -> super::to_client_message::MessageOneof<'_> {
     match &self.message_case() {
       super::to_client_message::MessageCase::LogoutResponse =>
@@ -3158,6 +3368,8 @@ impl<'msg> ToClientMessageMut<'msg> {
           super::to_client_message::MessageOneof::ZoneExitNotification(self.zone_exit_notification()),
       super::to_client_message::MessageCase::TextMessage =>
           super::to_client_message::MessageOneof::TextMessage(self.text_message()),
+      super::to_client_message::MessageCase::HeartbeatResponse =>
+          super::to_client_message::MessageOneof::HeartbeatResponse(self.heartbeat_response()),
       _ => super::to_client_message::MessageOneof::not_set(std::marker::PhantomData)
     }
   }
@@ -4017,6 +4229,60 @@ impl ToClientMessage {
     }
   }
 
+  // heartbeat_response: optional message Proto.PayloadHeartbeatResponse
+  pub fn has_heartbeat_response(&self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(14)
+    }
+  }
+  pub fn clear_heartbeat_response(&mut self) {
+    unsafe {
+      self.inner.ptr().clear_field_at_index(
+        14
+      );
+    }
+  }
+  pub fn heartbeat_response_opt(&self) -> ::protobuf::Optional<super::PayloadHeartbeatResponseView<'_>> {
+        ::protobuf::Optional::new(self.heartbeat_response(), self.has_heartbeat_response())
+  }
+  pub fn heartbeat_response(&self) -> super::PayloadHeartbeatResponseView<'_> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(14)
+    };
+    let raw = submsg.map(|ptr| ptr.raw()).unwrap_or(::protobuf::__internal::runtime::ScratchSpace::zeroed_block());
+    let inner = unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap_raw(raw) };
+    super::PayloadHeartbeatResponseView::new(::protobuf::__internal::Private, inner)
+  }
+  pub fn heartbeat_response_mut(&mut self) -> super::PayloadHeartbeatResponseMut<'_> {
+     let ptr = unsafe {
+       self.inner.ptr_mut().get_or_create_mutable_message_at_index(
+         14, self.arena()
+       ).unwrap()
+     };
+     super::PayloadHeartbeatResponseMut::from_parent(
+       ::protobuf::__internal::Private,
+       self.as_message_mut_inner(::protobuf::__internal::Private),
+       ptr.raw())
+  }
+  pub fn set_heartbeat_response(&mut self,
+    val: impl ::protobuf::IntoProxied<super::PayloadHeartbeatResponse>) {
+
+    // The message and arena are dropped after the setter. The
+    // memory remains allocated as we fuse the arena with the
+    // parent message's arena.
+    let mut child = val.into_proxied(::protobuf::__internal::Private);
+    self.inner
+      .arena()
+      .fuse(::protobuf::__internal::runtime::UpbGetArena::get_arena(&mut child, ::protobuf::__internal::Private));
+
+    let child_ptr = ::protobuf::__internal::runtime::UpbGetMessagePtrMut::get_ptr_mut(&mut child, ::protobuf::__internal::Private);
+    unsafe {
+      self.inner.ptr_mut().set_base_field_message_at_index(
+        14, child_ptr
+      );
+    }
+  }
+
   pub fn message(&self) -> super::to_client_message::MessageOneof<'_> {
     match &self.message_case() {
       super::to_client_message::MessageCase::LogoutResponse =>
@@ -4047,6 +4313,8 @@ impl ToClientMessage {
           super::to_client_message::MessageOneof::ZoneExitNotification(self.zone_exit_notification()),
       super::to_client_message::MessageCase::TextMessage =>
           super::to_client_message::MessageOneof::TextMessage(self.text_message()),
+      super::to_client_message::MessageCase::HeartbeatResponse =>
+          super::to_client_message::MessageOneof::HeartbeatResponse(self.heartbeat_response()),
       _ => super::to_client_message::MessageOneof::not_set(std::marker::PhantomData)
     }
   }
@@ -4097,8 +4365,8 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for ToClientMes
     ONCE_LOCK.get_or_init(|| unsafe {
       super::Proto__ToClientMessage_msg_init.0 =
           ::protobuf::__internal::runtime::upb_MiniTable_Build(
-              "$a33333333333333^#|$|%|&|(|)|*|+|,|-|.|/|0|1".as_ptr(),
-              44,
+              "$a333333333333333^#|$|%|&|(|)|*|+|,|-|.|/|0|1|2".as_ptr(),
+              47,
               ::protobuf::__internal::runtime::THREAD_LOCAL_ARENA.with(|a| a.raw()),
               ::std::ptr::null_mut());
       let submessages = [
@@ -4116,6 +4384,7 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for ToClientMes
         <super::PayloadZoneEnterNotification as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
         <super::PayloadZoneExitNotification as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
         <super::PayloadTextMessage as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
+        <super::PayloadHeartbeatResponse as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
       ];
       let subenums = [
       ];
@@ -4204,6 +4473,7 @@ pub enum MessageOneof<'msg> {
   ZoneEnterNotification(::protobuf::View<'msg, super::super::PayloadZoneEnterNotification>) = 13,
   ZoneExitNotification(::protobuf::View<'msg, super::super::PayloadZoneExitNotification>) = 14,
   TextMessage(::protobuf::View<'msg, super::super::PayloadTextMessage>) = 15,
+  HeartbeatResponse(::protobuf::View<'msg, super::super::PayloadHeartbeatResponse>) = 16,
 
   not_set(std::marker::PhantomData<&'msg ()>) = 0
 }
@@ -4226,6 +4496,7 @@ pub enum MessageCase {
   ZoneEnterNotification = 13,
   ZoneExitNotification = 14,
   TextMessage = 15,
+  HeartbeatResponse = 16,
 
   not_set = 0
 }
@@ -4249,6 +4520,7 @@ impl MessageCase {
       13 => Some(MessageCase::ZoneEnterNotification),
       14 => Some(MessageCase::ZoneExitNotification),
       15 => Some(MessageCase::TextMessage),
+      16 => Some(MessageCase::HeartbeatResponse),
       _ => None
     }
   }

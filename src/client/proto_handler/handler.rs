@@ -7,7 +7,8 @@ use crate::{
         client_main::Client,
         proto_handler::handle_func::{
             endgame_handler::endgame_handler, forward_to_session::forward_to_session,
-            forward_to_zone::forward_to_zone, start_game_handler::start_game_handler,
+            forward_to_zone::forward_to_zone, heartbeat_handler::handle_heartbeat,
+            start_game_handler::start_game_handler,
         },
     },
     network::proto::proto::{ToServerMessage, to_server_message::MessageCase},
@@ -46,6 +47,8 @@ impl ClientMessageHandler {
         result.register_handler(MessageCase::TextMessage, forward_to_zone);
         result.register_handler(MessageCase::PlayAction, forward_to_zone);
         result.register_handler(MessageCase::TransformSync, forward_to_zone);
+
+        result.register_handler(MessageCase::HeartbeatRequest, handle_heartbeat);
 
         result
     }

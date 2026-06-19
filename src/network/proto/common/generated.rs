@@ -94,3 +94,9 @@ pub mod internal_do_not_use_process_slobby_sexit;
 
 #[allow(unused_imports, nonstandard_style)]
 pub use internal_do_not_use_process_slobby_sexit::*;
+#[path="../process/gateway/heartbeat.u.pb.rs"]
+#[allow(nonstandard_style)]
+pub mod internal_do_not_use_process_sgateway_sheartbeat;
+
+#[allow(unused_imports, nonstandard_style)]
+pub use internal_do_not_use_process_sgateway_sheartbeat::*;
