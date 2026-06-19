@@ -18,7 +18,8 @@ pub async fn handle_heartbeat(packet: proto::ToServerMessage, client: Arc<RwLock
                     heartbeat_response.set_timestamp(chrono::Utc::now().timestamp_micros());
                 }
                 match client
-                    .blocking_write()
+                    .write()
+                    .await
                     .tx
                     .send((BackendServerType::ECHO, response))
                     .await
