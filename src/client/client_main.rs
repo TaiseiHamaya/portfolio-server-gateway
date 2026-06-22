@@ -24,6 +24,7 @@ pub enum BackendServerType {
     World,
     Zone(u64), // zone_id
     DB,
+    ECHO,
 }
 
 #[allow(dead_code)]
@@ -209,6 +210,13 @@ async fn writer(
                         current_status
                     );
                 }
+            }
+            to_client_message::MessageCase::HeartbeatResponse => {
+                log::info!(
+                    "Received message to send to client: {:?}",
+                    message.message_case()
+                );
+                send_message_to_client(&mut framed_write, message).await;
             }
             _ => {
                 log::warn!("Received unexpected message: {:?}", message.message_case());
