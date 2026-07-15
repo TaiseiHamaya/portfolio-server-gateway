@@ -81,7 +81,7 @@ async fn reader(
         match frame_reader.next().await {
             Some(Ok(frame)) => match proto::ToServerMessage::parse(frame.chunk()) {
                 Ok(message) => {
-                    log::info!(
+                    log::trace!(
                         "Received ToServerMessage from {}: {:?}",
                         addr,
                         message.message_case()
@@ -134,7 +134,7 @@ async fn writer(
         match message_case {
             to_client_message::MessageCase::LogoutResponse
             | to_client_message::MessageCase::SignupResponse => {
-                log::info!(
+                log::trace!(
                     "Received message to send to client: {:?}",
                     message.message_case()
                 );
@@ -142,7 +142,7 @@ async fn writer(
             }
 
             to_client_message::MessageCase::ClientInitializerData => {
-                log::info!(
+                log::trace!(
                     "Received message to send to client: {:?}",
                     message.message_case()
                 );
@@ -151,7 +151,7 @@ async fn writer(
                     if server_type == BackendServerType::Zone(zone_id) {
                         send_message_to_client(&mut framed_write, message).await;
                         client.write().await.status = ClientStatus::Zone(zone_id);
-                        log::info!("Client status updated to Zone for zone_id {}", zone_id);
+                        log::trace!("Client status updated to Zone for zone_id {}", zone_id);
                     }
                 }
             }
@@ -178,7 +178,7 @@ async fn writer(
                 // otherwise, discard
                 let reading = client.read().await;
                 if reading.status == ClientStatus::Zone(zone_id) {
-                    log::info!(
+                    log::trace!(
                         "Received message to send to client: {:?}",
                         message.message_case()
                     );
@@ -186,7 +186,7 @@ async fn writer(
                 }
             }
             to_client_message::MessageCase::LobbyEnterResponse => {
-                log::info!(
+                log::trace!(
                     "Received message to send to client: {:?}",
                     message.message_case()
                 );
@@ -195,14 +195,14 @@ async fn writer(
                 }
             }
             to_client_message::MessageCase::StartGameResponse => {
-                log::info!(
+                log::trace!(
                     "Received message to send to client: {:?}",
                     message.message_case()
                 );
                 let current_status = client.read().await.status;
                 if let ClientStatus::Routing(Some(zone_id)) = current_status {
                     client.write().await.status = ClientStatus::WaitEnter(zone_id);
-                    log::info!("Client status updated to WaitEnter({}).", zone_id);
+                    log::trace!("Client status updated to WaitEnter({}).", zone_id);
                     send_message_to_client(&mut framed_write, message).await;
                 } else {
                     log::warn!(
@@ -212,7 +212,7 @@ async fn writer(
                 }
             }
             to_client_message::MessageCase::HeartbeatResponse => {
-                log::info!(
+                log::trace!(
                     "Received message to send to client: {:?}",
                     message.message_case()
                 );
