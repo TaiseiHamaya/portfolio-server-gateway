@@ -73,6 +73,21 @@ pub async fn forward_to_zone(packet: proto::ToServerMessage, client: Arc<RwLock<
                     }
                 };
             }
+            MessageCase::TextMessage => {
+                let text_message_view = packet.text_message();
+                match zone_sync_client
+                    .send_chat(proto_client::PayloadTextMessage {
+                        id: text_message_view.id(),
+                        message: text_message_view.message().to_string(),
+                    })
+                    .await
+                {
+                    Ok(_) => {}
+                    Err(e) => {
+                        log::error!("Failed to forward TextMessage to zone: {}", e);
+                    }
+                };
+            }
             _ => {
                 log::warn!(
                     "Received unsupported message type for forwarding to zone: {:?}",
